@@ -1,3 +1,4 @@
+
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -80,7 +81,7 @@ DATABASES = {
         'PASSWORD': 'postgres',
         'HOST': "localhost",
         'PORT': "5432"
-    } 
+    }
 }
 
 # Password validation
