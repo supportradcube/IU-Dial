@@ -48,15 +48,26 @@ class StudentDetails(models.Model):
     start_session = models.CharField(
         "When would you like to start?", max_length=100, null=True, blank=True
     )
-    
-    date_of_birth = models.DateField(
-        null=True, blank=True
+
+    # IU Student?
+
+    former_enrollment = models.BooleanField(default=False)
+    currently_enrolled = models.BooleanField(default=False)
+
+    # if yes
+
+    iu_id = models.CharField(max_length=40)
+    first_name = models.CharField(
+        max_length=40
     )
-    citizenship = models.CharField(
-        max_length=40, null=True, blank=True
+    last_name = models.CharField(
+        max_length=40
     )
-    gender = models.CharField(
-        max_length=6, null=True, blank=True
+    email = models.EmailField(
+        max_length=40, unique=True
+    )
+    confirm_email = models.EmailField(
+        max_length=40, unique=True
     )
     phone_number = models.CharField(
         max_length=20, null=True, blank=True
@@ -64,15 +75,29 @@ class StudentDetails(models.Model):
     contact_method = models.CharField(
         max_length=10, null=True, blank=True
     )
+
+    date_of_birth = models.DateField(
+        null=True, blank=True
+    )
+    citizenship = models.CharField(
+        "Which status best describes you?", max_length=40, null=True, blank=True
+    )
+
+    # Veteran Member?
+
+    veteran_member = models.BooleanField(default=False)
+    veteran_member = models.CharField(
+        max_length=40, null=True, blank=True
+    )
+    benefits = models.BooleanField(default=False)
+
     # Current Address
+
     address = models.TextField(
         blank=True, null=True
     )
     city = models.CharField(
         max_length=40, blank=True, null=True
-    )
-    residency_in_indiana = models.CharField(
-        max_length=40, null=True, blank=True
     )
     state = models.CharField(
         max_length=150, null=True, blank=True
@@ -86,7 +111,17 @@ class StudentDetails(models.Model):
     is_permanent_address = models.BooleanField(
         default=False
     )
+    residency_in_indiana = models.CharField(
+        max_length=40, null=True, blank=True
+    )
+    gender = models.CharField(
+        max_length=6, null=True, blank=True
+    )
+    gender_info = models.CharField(
+        max_length=70, null=True, blank=True
+    )
     # Former Name
+
     former_name = models.CharField(
         max_length=80, null=True, blank=True
     )
