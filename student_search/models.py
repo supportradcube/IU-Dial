@@ -37,7 +37,18 @@ class StudentDetails(models.Model):
     legal_last_name = models.CharField(
         max_length=40, null=True, blank=True
     )
-
+    educator_role = models.CharField(
+        "Great! We are excited to help you. To see what is available, please tell us a little more about your role as an educator. Select all that apply.", max_length=100, null=True, blank=True
+    )
+    institution = models.CharField(
+        "Which institution(s) are you affiliated with?", max_length=100, null=True, blank=True
+    )
+    purpose = models.CharField(
+        "What would you like to do?", max_length=100, null=True, blank=True)
+    start_session = models.CharField(
+        "When would you like to start?", max_length=100, null=True, blank=True
+    )
+    
     date_of_birth = models.DateField(
         null=True, blank=True
     )
