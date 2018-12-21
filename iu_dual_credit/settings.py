@@ -72,12 +72,12 @@ WSGI_APPLICATION = 'iu_dual_credit.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'dual_credit_db',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': "localhost",
-        'PORT': "5432"
+        'USER': 'admin',
+        'PASSWORD': 'admin',
+        'HOST': "",
+        'PORT': ""
     }
 }
 
