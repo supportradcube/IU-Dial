@@ -1,1243 +1,822 @@
-<!DOCTYPE html>
-<html lang="en">
-   <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, width=device-width">
-      <meta name="apple-mobile-web-app-capable" content="yes">
-      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <title>IU Dual Credit</title>
-      <link rel="apple-touch-icon" href="images/apple-icon-120.png">
-      <link href="css/bootstrap.min.css" rel="stylesheet">
-      <link href="css/fontawesome-all.min.css" rel="stylesheet">
-      <link href="css/animate.css" rel="stylesheet">
-      <link href="css/slick-theme.css" rel="stylesheet">
-      <link href="css/slick.css" rel="stylesheet">
-      <link href="css/style.css" rel="stylesheet">
-      <link href="css/global.css" rel="stylesheet">
-      <link href="css/mobile.css" rel="stylesheet">
-   </head>
-   <body class="notLogged">
-    <header class="header1">
-         <div class="container">
-            <nav class="d-flex w-100 align-items-center justify-content-between">
-               <div class="logo">
-                  <a href="index.html">
-                     <span class="web-view-logo"><img src="images/download.png" alt="Logo"></span>
-                     <span class="mob-view-logo">
-                        <!-- <img src="images/mob-logo.png" alt="Logo"/> -->L
-                     </span>
-                  </a>
-               </div>
-               <div class="menu " id="menubox">
-                  <span class="close-menu" id="menuClose"></span>
-                  <ul class="onHoverDropdown dropDownStyle nav-menu-list">
-                     <li class="dropdown"><a href="javascript:void(0)">ABOUT</a></li>
-                     <li class="dropdown"><a href="javascript:void(0)">MARKET DATA</a></li>
-                     <li class="dropdown"><a href="#memoryWall">NOICON SYSTEM</a></li>
-                     <li class="dropdown"><a href="#tokenSection">TOKEN</a></li>
-                     <li class="dropdown"><a href="#roadmapSection">ROAD MAP</a></li>
-                     <li class="dropdown"><a href="#ourTeamSection">OUR TEAM</a></li>
-                  </ul>
-               </div>
-               <div class="loginBox">
-                  <!-- <a href="signin.html" class="btn btnHeader">SIGN IN</a>
-                  <a href="signup.html" class="btn btnHeader">SIGN UP</a> -->
-                
-               </div>
-               <a href="javascript:;" class="mob-menu" id="menuShow">
-               <span class="menu-bar"></span>
-               </a>
-            </nav>
-         </div>
-         
-      </header>
-      <div class="criteria">
-         <div class="container mb20 mt20">
-          <div class="red">
-          <h5 class="mb-0">Student Details</h5>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="criteria">
+  <div class="container mb20 mt20">
+    <div class="red">
+      <h5 class="mb-0">Student Details</h5>
+    </div>
+    <div style="box-shadow:0px 0px 10px #ccc;padding:20px; ">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="    margin: 0 auto;">
+            <ul class="mb0 listing">
+              <li><label>Student Name:</label><span>Jane Doe</li>
+              <li><label>Username:</label><span>jdoe</span></li>
+            </ul>
+            <ul class="mb0 listing">
+              <li class="d-flex justify-content-between align-items-center"><label>UID:</label><span style="width: 50%;"><input
+                    type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"></li>
+              <li><label>Date of Birth:</label><span>02/21/1985</span></li>
+            </ul>
+            <ul class="mb0 listing">
+              <li><label>Citizenship:</label><span>U.S. Citizen</span></li>
+              <li><label>Student Type:</label><span>Graduate Certificate</span></li>
+            </ul>
           </div>
-            <div style="box-shadow:0px 0px 10px #ccc;padding:20px; ">
-             
-                  <div class="row">
-                  <div class="col-md-6">
-                     <div class="    margin: 0 auto;">
-                        <ul class="mb0 listing">
-                           <li><label>Student Name:</label><span>Jane Doe</li>
-                           <li><label>Username:</label><span >jdoe</span></li>
-                        </ul>
-                        <ul class="mb0 listing">
-                           <li class="d-flex justify-content-between align-items-center"><label>UID:</label><span style="    width: 50%;"><input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" ></li>
-                           <li><label>Date of Birth:</label><span >02/21/1985</span></li>
-                        </ul>
-                        <ul class="mb0 listing">
-                           <li><label>Citizenship:</label><span >U.S. Citizen</span></li>
-                           <li><label>Student Type:</label><span >Graduate Certificate</span></li>
-                        </ul>
-                     </div>
-                     </div>
-
-                        <div class="col-md-6">
-                        <div class="    margin: 0 auto;">
-                        <ul class="mb0 listing">
-                           <li><label>Legal Sex:</label><span>Female</li>
-                           <li><label>Gender Identity:</label><span >N/A</span></li>
-                        </ul>
-                        <ul class="mb0 listing">
-                           <li><label>Phone Number:</label><span>(317) 317-3177</a></li>
-                           <li><label>Contact Method:</label><span >Text, Call</span></li>
-                        </ul>
-                        <ul class="mb0 listing">
-                           <li><label>Email:</label><span >jane.doe@gmail.com</span></li>
-                         
-                        </ul>
-                     </div>
-                     </div>
-                     <div class="col-md-6 mt20 ">
-                     <div style="box-shadow: 0px 0px 10px #ccc">
-                     <div class="red">
-                     <h5>Former Name(s)</h5>
-                     </div>
-             <table class="table table-hovertable-section"  >
-                          <thead class="thead-light">
-                            <tr>
-                              <th scope="col">Farmer Name</th>
-                             
-                             
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              
-                              <td>Stephanie Guilizzoni</td>
-                            
-
-                            
-                            </tr>
-                            <tr>
-                              
-                              <td>Stephanie Botton</td>
-                           
-                           
-                             
-                              
-                            </tr>
-                              <tr>
-                              
-                              <td>Steph Marcovellie</td>
-                            </tr>
-                           
-                          </tbody>
-                        </table>
-                        </div>
-                         <p>Documents Sent under another Name: <span>Yes</span></p>
-
-
-</div>
-
-
-<div class="col-md-6  mt20">
-                        <div class="    margin: 0 auto;">
-                        <ul class="mb0 listing">
-                           <li><label>Legal Sex:</label><span>Female</span></li>
-                           <li><label>Gender Identity:</label><span>N/A</span></li>
-                        </ul>
-                        <ul class="mb0 listing">
-                           <li><label>Phone Number:</label><span>(317) 317-3177</span></li>
-                           <li><label>Contact Method:</label><span>Text, Call</span></li>
-                        </ul>
-                        <ul class="mb0 listing">
-                           <li><label>Email:</label><span>jane.doe@gmail.com</span></li>
-                         
-                        </ul>
-                     </div>
-                     </div>
-                     <div class="d-flex align-items-center justify-content-center" style="margin: 0 auto">
-                <button type="submit" class="btn btn-primary btn-red">Save</button>
-              
-     
-      </div>
-</div>
-         </div>
-
-          
-</div>
-<div class="container">
-              <div class="row">
-                <div class="col-md-12 ">
-                <div style="box-shadow: 0px 0px 10px #ccc">
-                  <nav>
-                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                      <a class="nav-item nav-link active show" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Student Education 2018</a>
-                      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Student Education 2017</a>
-                      <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Student Education 2016</a>
-                      <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-about" aria-selected="false">Student Education 2015</a>
-                    </div>
-                  </nav>
-                  <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-                    <div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                   <div class="row">
-                  <div class="col-md-6">
-                     <div class="  p20">
-                        <ul class="mb0 listing">
-                           <li><label>Qualtrics Application ID:</label><span>R_3qpvI9bldJxSte0</span></li>
-                           <li><label>Qualtrics Completion Date:</label><span>09/10/2018</span></li>
-                        </ul>
-                        
-                        <ul class="mb0 listing">
-                           <li><label>Requested Start Date:</label><span>01/10/2019</span></li>
-                           <li><label>DC Partner:</label><span>Arsenal Tech High School</span></li>
-                        </ul>
-                        <ul class="mb0 listing">
-                           <li><label>Required Teaching in Subject Area:</label><span>Yes</span></li>
-                         
-                        </ul>
-                     </div>
-                     </div>
-
-                        <div class="col-md-6">
-                        <div class="p20">
-                        <ul class="mb0 listing">
-                           <li><label>Highest Degree Earned:</label><span>Masters</span></li>
-                           <li><label>State Licensure:</label><span>Yes</span></li>
-                        </ul>
-                        <ul class="mb0 listing">
-                           <li><label>Currently Enrolled at IU:</label><span>No</span></li>
-                           <li><label>Previous Classwork through IU:</label><span>Yes</span></li>
-                        </ul>
-                        <ul class="mb0 listing">
-                           <li><label>Previous Name:</label><span>Stephanie Smith</span></li>
-                         
-                        </ul>
-                     </div>
-                     </div>
-                     <div class="col-md-6 mt20 ">
-                     <div class="p20">
-                     <div style="box-shadow: 0px 0px 10px #ccc">
-                     <div class="red">
-                     <h5>Educator Role</h5>
-                     </div>
-             <table class="table table-hovertable-section">
-                          <thead class="thead-light">
-                            <tr>
-                              <th scope="col">Role</th>
-                             
-                             
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              
-                              <td>Instructor in Indiana University's Advance College</td>
-                            
-
-                            
-                            </tr>
-                            <tr>
-                              
-                              <td>Instructor at a community college</td>
-                           
-                           
-                             
-                              
-                            </tr>
-                             
-                           
-                          </tbody>
-                        </table>
-                        </div>
-                       
-
-
-</div>
-</div>
-                     <div class="col-md-6 mt20 ">
-                     <div class="p20">
-                     <div style="box-shadow: 0px 0px 10px #ccc">
-                     <div class="red">
-                     <h5>Institution Affiliation(s)</h5>
-                     </div>
-             <table class="table table-hovertable-section">
-                          <thead class="thead-light">
-                            <tr>
-                              <th scope="col">Institution</th>
-                             
-                             
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              
-                              <td>Indiana Tech</td>
-                            
-
-                            
-                            </tr>
-                            <tr>
-                              
-                              <td>Ivy Tech Community College</td>
-                           
-                           
-                             
-                              
-                            </tr>
-                             
-                           
-                          </tbody>
-                        </table>
-                        </div>
-                       
-
-
-</div>
-</div>
-
-</div>
-                    </div>
-                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                    <div class="row">
-                  <div class="col-md-6">
-                     <div class="  p20">
-                        <ul class="mb0 listing">
-                           <li><label>Qualtrics Application ID:</label><span>R_3qpvI9bldJxSte0</span></li>
-                           <li><label>Qualtrics Completion Date:</label><span>09/10/2018</span></li>
-                        </ul>
-                        
-                        <ul class="mb0 listing">
-                           <li><label>Requested Start Date:</label><span>01/10/2019</span></li>
-                           <li><label>DC Partner:</label><span>Arsenal Tech High School</span></li>
-                        </ul>
-                        <ul class="mb0 listing">
-                           <li><label>Required Teaching in Subject Area:</label><span>Yes</span></li>
-                         
-                        </ul>
-                     </div>
-                     </div>
-
-                        <div class="col-md-6">
-                        <div class="p20">
-                        <ul class="mb0 listing">
-                           <li><label>Highest Degree Earned:</label><span>Masters</span></li>
-                           <li><label>State Licensure:</label><span>Yes</span></li>
-                        </ul>
-                        <ul class="mb0 listing">
-                           <li><label>Currently Enrolled at IU:</label><span>No</span></li>
-                           <li><label>Previous Classwork through IU:</label><span>Yes</span></li>
-                        </ul>
-                        <ul class="mb0 listing">
-                           <li><label>Previous Name:</label><span>Stephanie Smith</span></li>
-                         
-                        </ul>
-                     </div>
-                     </div>
-                     <div class="col-md-6 mt20 ">
-                     <div class="p20">
-                     <div style="box-shadow: 0px 0px 10px #ccc">
-                     <div class="red">
-                     <h5>Educator Role</h5>
-                     </div>
-             <table class="table table-hovertable-section">
-                          <thead class="thead-light">
-                            <tr>
-                              <th scope="col">Role</th>
-                             
-                             
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              
-                              <td>Instructor in Indiana University's Advance College</td>
-                            
-
-                            
-                            </tr>
-                            <tr>
-                              
-                              <td>Instructor at a community college</td>
-                           
-                           
-                             
-                              
-                            </tr>
-                             
-                           
-                          </tbody>
-                        </table>
-                        </div>
-                       
-
-
-</div>
-</div>
-                     <div class="col-md-6 mt20 ">
-                     <div class="p20">
-                     <div style="box-shadow: 0px 0px 10px #ccc">
-                     <div class="red">
-                     <h5>Institution Affiliation(s)</h5>
-                     </div>
-             <table class="table table-hovertable-section">
-                          <thead class="thead-light">
-                            <tr>
-                              <th scope="col">Institution</th>
-                             
-                             
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              
-                              <td>Indiana Tech</td>
-                            
-
-                            
-                            </tr>
-                            <tr>
-                              
-                              <td>Ivy Tech Community College</td>
-                           
-                           
-                             
-                              
-                            </tr>
-                             
-                           
-                          </tbody>
-                        </table>
-                        </div>
-                       
-
-
-</div>
-</div>
-</div>
-                    
-
-                    </div>
-                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                    <div class="row">
-                  <div class="col-md-6">
-                     <div class="  p20">
-                        <ul class="mb0 listing">
-                           <li><label>Qualtrics Application ID:</label><span>R_3qpvI9bldJxSte0</span></li>
-                           <li><label>Qualtrics Completion Date:</label><span>09/10/2018</span></li>
-                        </ul>
-                        
-                        <ul class="mb0 listing">
-                           <li><label>Requested Start Date:</label><span>01/10/2019</span></li>
-                           <li><label>DC Partner:</label><span>Arsenal Tech High School</span></li>
-                        </ul>
-                        <ul class="mb0 listing">
-                           <li><label>Required Teaching in Subject Area:</label><span>Yes</span></li>
-                         
-                        </ul>
-                     </div>
-                     </div>
-
-                        <div class="col-md-6">
-                        <div class="p20">
-                        <ul class="mb0 listing">
-                           <li><label>Highest Degree Earned:</label><span>Masters</span></li>
-                           <li><label>State Licensure:</label><span>Yes</span></li>
-                        </ul>
-                        <ul class="mb0 listing">
-                           <li><label>Currently Enrolled at IU:</label><span>No</span></li>
-                           <li><label>Previous Classwork through IU:</label><span>Yes</span></li>
-                        </ul>
-                        <ul class="mb0 listing">
-                           <li><label>Previous Name:</label><span>Stephanie Smith</span></li>
-                         
-                        </ul>
-                     </div>
-                     </div>
-                     <div class="col-md-6 mt20 ">
-                     <div class="p20">
-                     <div style="box-shadow: 0px 0px 10px #ccc">
-                     <div class="red">
-                     <h5>Educator Role</h5>
-                     </div>
-             <table class="table table-hovertable-section">
-                          <thead class="thead-light">
-                            <tr>
-                              <th scope="col">Role</th>
-                             
-                             
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              
-                              <td>Instructor in Indiana University's Advance College</td>
-                            
-
-                            
-                            </tr>
-                            <tr>
-                              
-                              <td>Instructor at a community college</td>
-                           
-                           
-                             
-                              
-                            </tr>
-                             
-                           
-                          </tbody>
-                        </table>
-                        </div>
-                       
-
-
-</div>
-</div>
-                     <div class="col-md-6 mt20 ">
-                     <div class="p20">
-                     <div style="box-shadow: 0px 0px 10px #ccc">
-                     <div class="red">
-                     <h5>Institution Affiliation(s)</h5>
-                     </div>
-             <table class="table table-hovertable-section">
-                          <thead class="thead-light">
-                            <tr>
-                              <th scope="col">Institution</th>
-                             
-                             
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              
-                              <td>Indiana Tech</td>
-                            
-
-                            
-                            </tr>
-                            <tr>
-                              
-                              <td>Ivy Tech Community College</td>
-                           
-                           
-                             
-                              
-                            </tr>
-                             
-                           
-                          </tbody>
-                        </table>
-                        </div>
-                       
-
-
-</div>
-</div>
-</div>
-                   
-                    </div>
-                    <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
-               <div class="p20">
-                             <div class="row">
-                                     <div class="col-md-6">
-                                <div class="form-group">
-                                  <label for="exampleInputEmail1">Term</label>
-                                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Term">
-                                 
-                                </div>
-                                </div>
-                                 <div class="col-md-6">
-                                <div class="form-group">
-                                  <label for="exampleInputPassword1">Batch Process</label>
-                                  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Batch Process">
-                                </div>
-                             
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-center">
-                <button type="submit" class="btn btn-primary btn-red">Download</button>
-
-                    </div>
-                  </div>
-                    </div>
-                  </div>
-                
-                </div>
-              </div>
         </div>
+        <div class="col-md-6">
+          <div class="    margin: 0 auto;">
+            <ul class="mb0 listing">
+              <li><label>Legal Sex:</label><span>Female</li>
+              <li><label>Gender Identity:</label><span>N/A</span></li>
+            </ul>
+            <ul class="mb0 listing">
+              <li><label>Phone Number:</label><span>(317) 317-3177</a></li>
+              <li><label>Contact Method:</label><span>Text, Call</span></li>
+            </ul>
+            <ul class="mb0 listing">
+              <li><label>Email:</label><span>jane.doe@gmail.com</span></li>
+            </ul>
+          </div>
         </div>
-        <div class="container mb20 mt20">
-              <div class="row">
-                <div class="col-md-12 ">
-                <div style="box-shadow: 0px 0px 10px #ccc">
-                  <nav>
-                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                      <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home1" role="tab" aria-controls="nav-home" aria-selected="false">Other Information 2018</a>
-                      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile1" role="tab" aria-controls="nav-profile" aria-selected="false">Other Information 2017</a>
-                      <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact1" role="tab" aria-controls="nav-contact" aria-selected="false">Other Information 2016</a>
-                      <a class="nav-item nav-link active show" id="nav-about-tab" data-toggle="tab" href="#nav-about1" role="tab" aria-controls="nav-about" aria-selected="true"> Other Information 2015</a>
-                    </div>
-                  </nav>
-                  <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-                    <div class="tab-pane fade" id="nav-home1" role="tabpanel" aria-labelledby="nav-home-tab">
-                   <div class="row">
-                  <div class="col-md-6">
-                     <div class="  p20">
-                        <ul class="mb0 listing">
-                           <li><label>Veteran/Active Military:</label><span>Yes</span></li>
-                           <li><label>Family Military History:</label><span>Spouse</span></li>
-                        </ul>
-                        
-                        <ul class="mb0 listing">
-                           <li><label>VA/DoD Educational Benefits:</label><span>Yes</span></li>
-                         
-                        </ul>
-                      
-                     </div>
-                     </div>
-
-                        <div class="col-md-6">
-                        <div class="p20">
-                        <ul class="mb0 listing">
-                           <li><label>High School Disciplinary Action:</label><span>No</span></li>
-                           <li><label>State Licensure:</label><span>Yes</span></li>
-                        </ul>
-                        <ul class="mb0 listing">
-                           <li><label>Currently Enrolled at IU:</label><span>No</span></li>
-                           <li><label>Previous Classwork through IU:</label><span>Yes</span></li>
-                        </ul>
-                      
-                     </div>
-                     </div>
- 
-      
-
-</div>
-                    </div>
-                    <div class="tab-pane fade" id="nav-profile1" role="tabpanel" aria-labelledby="nav-profile-tab">
-                    <div class="row">
-                  <div class="col-md-6">
-                     <div class="  p20">
-                        <ul class="mb0 listing">
-                           <li><label>Qualtrics Application ID:</label><span>R_3qpvI9bldJxSte0</span></li>
-                           <li><label>Qualtrics Completion Date:</label><span>09/10/2018</span></li>
-                        </ul>
-                        
-                        <ul class="mb0 listing">
-                           <li><label>Requested Start Date:</label><span>01/10/2019</span></li>
-                           <li><label>DC Partner:</label><span>Arsenal Tech High School</span></li>
-                        </ul>
-                        <ul class="mb0 listing">
-                           <li><label>Required Teaching in Subject Area:</label><span>Yes</span></li>
-                         
-                        </ul>
-                     </div>
-                     </div>
-
-                        <div class="col-md-6">
-                        <div class="p20">
-                        <ul class="mb0 listing">
-                           <li><label>Highest Degree Earned:</label><span>Masters</span></li>
-                           <li><label>State Licensure:</label><span>Yes</span></li>
-                        </ul>
-                        <ul class="mb0 listing">
-                           <li><label>Currently Enrolled at IU:</label><span>No</span></li>
-                           <li><label>Previous Classwork through IU:</label><span>Yes</span></li>
-                        </ul>
-                        <ul class="mb0 listing">
-                           <li><label>Previous Name:</label><span>Stephanie Smith</span></li>
-                         
-                        </ul>
-                     </div>
-                     </div>
-                     <div class="col-md-6 mt20 ">
-                     <div class="p20">
-                     <div style="box-shadow: 0px 0px 10px #ccc">
-                     <div class="red">
-                     <h5>Educator Role</h5>
-                     </div>
-             <table class="table table-hovertable-section">
-                          <thead class="thead-light">
-                            <tr>
-                              <th scope="col">Role</th>
-                             
-                             
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              
-                              <td>Instructor in Indiana University's Advance College</td>
-                            
-
-                            
-                            </tr>
-                            <tr>
-                              
-                              <td>Instructor at a community college</td>
-                           
-                           
-                             
-                              
-                            </tr>
-                             
-                           
-                          </tbody>
-                        </table>
-                        </div>
-                       
-
-
-</div>
-</div>
-                     <div class="col-md-6 mt20 ">
-                     <div class="p20">
-                     <div style="box-shadow: 0px 0px 10px #ccc">
-                     <div class="red">
-                     <h5>Institution Affiliation(s)</h5>
-                     </div>
-             <table class="table table-hovertable-section">
-                          <thead class="thead-light">
-                            <tr>
-                              <th scope="col">Institution</th>
-                             
-                             
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              
-                              <td>Indiana Tech</td>
-                            
-
-                            
-                            </tr>
-                            <tr>
-                              
-                              <td>Ivy Tech Community College</td>
-                           
-                           
-                             
-                              
-                            </tr>
-                             
-                           
-                          </tbody>
-                        </table>
-                        </div>
-                       
-
-
-</div>
-</div>
-</div>
-                    
-
-                    </div>
-                    <div class="tab-pane fade" id="nav-contact1" role="tabpanel" aria-labelledby="nav-contact-tab">
-                    <div class="row">
-                  <div class="col-md-6">
-                     <div class="  p20">
-                        <ul class="mb0 listing">
-                           <li><label>Qualtrics Application ID:</label><span>R_3qpvI9bldJxSte0</span></li>
-                           <li><label>Qualtrics Completion Date:</label><span>09/10/2018</span></li>
-                        </ul>
-                        
-                        <ul class="mb0 listing">
-                           <li><label>Requested Start Date:</label><span>01/10/2019</span></li>
-                           <li><label>DC Partner:</label><span>Arsenal Tech High School</span></li>
-                        </ul>
-                        <ul class="mb0 listing">
-                           <li><label>Required Teaching in Subject Area:</label><span>Yes</span></li>
-                         
-                        </ul>
-                     </div>
-                     </div>
-
-                        <div class="col-md-6">
-                        <div class="p20">
-                        <ul class="mb0 listing">
-                           <li><label>Highest Degree Earned:</label><span>Masters</span></li>
-                           <li><label>State Licensure:</label><span>Yes</span></li>
-                        </ul>
-                        <ul class="mb0 listing">
-                           <li><label>Currently Enrolled at IU:</label><span>No</span></li>
-                           <li><label>Previous Classwork through IU:</label><span>Yes</span></li>
-                        </ul>
-                        <ul class="mb0 listing">
-                           <li><label>Previous Name:</label><span>Stephanie Smith</span></li>
-                         
-                        </ul>
-                     </div>
-                     </div>
-                     <div class="col-md-6 mt20 ">
-                     <div class="p20">
-                     <div style="box-shadow: 0px 0px 10px #ccc">
-                     <div class="red">
-                     <h5>Educator Role</h5>
-                     </div>
-             <table class="table table-hovertable-section">
-                          <thead class="thead-light">
-                            <tr>
-                              <th scope="col">Role</th>
-                             
-                             
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              
-                              <td>Instructor in Indiana University's Advance College</td>
-                            
-
-                            
-                            </tr>
-                            <tr>
-                              
-                              <td>Instructor at a community college</td>
-                           
-                           
-                             
-                              
-                            </tr>
-                             
-                           
-                          </tbody>
-                        </table>
-                        </div>
-                       
-
-
-</div>
-</div>
-                     <div class="col-md-6 mt20 ">
-                     <div class="p20">
-                     <div style="box-shadow: 0px 0px 10px #ccc">
-                     <div class="red">
-                     <h5>Institution Affiliation(s)</h5>
-                     </div>
-             <table class="table table-hovertable-section">
-                          <thead class="thead-light">
-                            <tr>
-                              <th scope="col">Institution</th>
-                             
-                             
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              
-                              <td>Indiana Tech</td>
-                            
-
-                            
-                            </tr>
-                            <tr>
-                              
-                              <td>Ivy Tech Community College</td>
-                           
-                           
-                             
-                              
-                            </tr>
-                             
-                           
-                          </tbody>
-                        </table>
-                        </div>
-                       
-
-
-</div>
-</div>
-</div>
-                   
-                    </div>
-                    <div class="tab-pane fade active show" id="nav-about1" role="tabpanel" aria-labelledby="nav-about-tab">
-               <div class="p20">
-                             <div class="row">
-                                     <div class="col-md-6">
-                                <div class="form-group">
-                                  <label for="exampleInputEmail1">Term</label>
-                                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Term">
-                                 
-                                </div>
-                                </div>
-                                 <div class="col-md-6">
-                                <div class="form-group">
-                                  <label for="exampleInputPassword1">Batch Process</label>
-                                  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Batch Process">
-                                </div>
-                             
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-center">
-                <button type="submit" class="btn btn-primary btn-red">Download</button>
-
-                    </div>
-                  </div>
-                    </div>
-                  </div>
-                
-                </div>
-              </div>
-        </div>
-      </div>
-
-      <div class="container mb20 mt20">
-          <div class="row">
-
-      <div class="col-md-6 mt20 ">
- <div style="box-shadow: 0px 0px 10px #ccc">
-                     <div class="red">
-                     <h5>Enrollment History</h5>
-                     </div>
-                     <div class="table-responsive">
-             <table class="table table-hovertable-section">
-                          <thead class="thead-light">
-                            <tr>
-                              <th scope="col">Course</th>
-                                <th scope="col">Class</th>
-                                  <th scope="col">Term</th>
-                                    <th scope="col">Funding</th>
-                                      <th scope="col">Enrollment</th>
-                                       <th scope="col">Grade</th>
-                                        <th scope="col">Credit Hours</th>
-                             
-                             
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                            
-
-                            
-                            </tr>
-                            <tr>
-                              
-                              <td>Instructor at a community college</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                           
-                           
-                             
-                              
-                            </tr>
-                             
-                           
-                          </tbody>
-                        </table>
-                        </div>
-                       
-
-
-</div>
-</div>
- 
-     
-<div class="col-md-6 mt20 ">
-                    
-                     <div style="box-shadow: 0px 0px 10px #ccc">
-                     <div class="red">
-                     <h5>Enrollment History</h5>
-                     </div>
-                     <div class="table-responsive">
-             <table class="table table-hovertable-section">
-                          <thead class="thead-light">
-                            <tr>
-                              <th scope="col">Course</th>
-                                <th scope="col">Class</th>
-                                  <th scope="col">Term</th>
-                                    <th scope="col">Funding</th>
-                                      <th scope="col">Enrollment</th>
-                                       <th scope="col">Grade</th>
-                                        <th scope="col">Credit Hours</th>
-                             
-                             
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                            
-
-                            
-                            </tr>
-                            <tr>
-                              
-                              <td>Instructor at a community college</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                           
-                           
-                             
-                              
-                            </tr>
-                             
-                           
-                          </tbody>
-                        </table>
-                        </div>
-                       
-
-
-</div>
-</div>
-      </div>
-      </div>
-
-      <div class="container">
-      <div style="box-shadow: 0px 0px 10px #ccc">
-      <div class="red">
-                     <h5>Enrollments</h5>
-                     </div>
-                     <div class="d-flex justify-content-center flex-wrap">
-                     <form class="form-inline">
-  <div class="form-group">
-    <label for="email">Term</label>
-<select class="browser-default custom-select">
-  <option selected>Open this select menu</option>
-  <option value="1">One</option>
-  <option value="2">Two</option>
-  <option value="3">Three</option>
-</select>
-  </div>
-  <div class="form-group ml-3">
-    <label for="pwd">Course</label>
- <select class="browser-default custom-select">
-  <option selected>Open this select menu</option>
-  <option value="1">One</option>
-  <option value="2">Two</option>
-  <option value="3">Three</option>
-</select>
-  </div>
-   <div class="form-group ml-3">
-    <label for="pwd">Course</label>
- <select class="browser-default custom-select">
-  <option selected>Open this select menu</option>
-  <option value="1">One</option>
-  <option value="2">Two</option>
-  <option value="3">Three</option>
-</select>
-  </div>
-
-<div class="d-flex ml-3">
-                <button type="submit" class="btn btn-primary btn-red">Add</button>
-
-                    </div>
-</form>
-</div>
-<div class="container">
-
-<div class="col-md-12 mt20 mb20 pb20">
-<div style="box-shadow: 0px 0px 10px #ccc;">
-
-                     <div class="red">
-                     <h5>Enrollment History</h5>
-                     </div>
-                     <div class="table-responsive">
-             <table class="table table-hovertable-section">
-                          <thead class="thead-light">
-                            <tr>
-                              <th scope="col">Course</th>
-                                <th scope="col">Class</th>
-                                  <th scope="col">Term</th>
-                                    <th scope="col">Funding</th>
-                                      <th scope="col">Enrollment</th>
-                                       <th scope="col">Grade</th>
-                                        <th scope="col">Credit Hours</th>
-                             
-                             
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                            
-
-                            
-                            </tr>
-                            <tr>
-                              
-                              <td>Instructor at a community college</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                           
-                           
-                             
-                              
-                            </tr>
-                             
-                           
-                          </tbody>
-                        </table>
-                        </div>
-                       
-
-
-</div>
-</div>
-      </div>
-      </div>
-      </div>
-      <div class="container">
-      <div style="box-shadow: 0px 0px 10px #ccc">
-
- 
-                     <div class="red">
-                     <h5>Comments</h5>
-                     </div>
-                     <div class="table-responsive">
-             <table class="table table-hovertable-section">
-                          <thead class="thead-light">
-                            <tr>
-                              <th scope="col">Date</th>
-                                <th scope="col">Comment</th>
-                                  <th scope="col">Username</th>
-                                    
-                             
-                             
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                            
-                            
-
-                            
-                            </tr>
-                            <tr>
-                              
-                              <td>Instructor at a community college</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                              <td>Instructor in Indiana University's Advance College</td>
-                            
-                           
-                           
-                             
-                              
-                            </tr>
-                             
-                           
-                          </tbody>
-                        </table>
-                        </div>
-                       
-<div class="d-flex justify-content-end pb20 pr5">
-                <button type="submit" class="btn btn-primary btn-red">Add New</button>
-
-                    </div>
-
-</div>
-
-</div>
-
-      </div>
-
-      <footer>
-         <div class="container1440">
-            <div class="row align-items-center">
-               <div class="col-md-8">
-                  <div class="quick_links">
-                     <ul class="mb-0">
-                        <li>
-                            <a href="index.html">Home</a>
-                        </li>
-                        <li>
-                            <a href="about-us.html">About Us</a>
-                        </li>
-                        <li>
-                            <a href="privacy.html">Privacy Policy</a>
-                        </li>
-                        <li>
-                            <a href="terms.html">Terms &amp; Conditions</a>
-                        </li>
-                     </ul>
-                     <p class="copyRight mb-0 mt-2">© Copyright 2018 school. All Rights Reserved.</p>
-                  </div>
-               </div>
-               <div class="col-md-4">
-                  <div class="social-icons text-right">
-                     <ul class="mb-0">
-                        <li>
-                           <a href="javascript:void(0)">
-                              <i class="fab fa-twitter"></i>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="javascript:void(0)">
-                              <i class="fab fa-facebook-f"></i>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="javascript:void(0)">
-                              <i class="fab fa-pinterest-p"></i>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="javascript:void(0)">
-                              <i class="fab fa-google-plus-g"></i>
-                           </a>
-                        </li> 
-                     </ul>
-                  </div>
-               </div>
+        <div class="col-md-6 mt20 ">
+          <div style="box-shadow: 0px 0px 10px #ccc">
+            <div class="red">
+              <h5>Former Name(s)</h5>
             </div>
-            
-         </div>
-      </footer>
-
-
-
-
-
-
-      <script src="js/jquery-3.3.1.min.js"></script>
-      <script src="js/popper.min.js"></script>
-      <script src="js/bootstrap.min.js"></script>
-      <!-- ======For Timer======== -->
-      <script src="js/particles.js"></script>
-      <script src="js/app.js"></script>
-      <script src="js/slick.min.js"></script>
-      <script src="js/custom.js"></script>
-      <!--  <script src="js/hammer.js"></script>
-         <script src="js/index.js"></script> -->
-   </body>
-</html>
+            <table class="table table-hovertable-section">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Farmer Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Stephanie Guilizzoni</td>
+                </tr>
+                <tr>
+                  <td>Stephanie Botton</td>
+                </tr>
+                <tr>
+                  <td>Steph Marcovellie</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Documents Sent under another Name: <span>Yes</span></p>
+        </div>
+        <div class="col-md-6  mt20">
+          <div class="    margin: 0 auto;">
+            <ul class="mb0 listing">
+              <li><label>Legal Sex:</label><span>Female</span></li>
+              <li><label>Gender Identity:</label><span>N/A</span></li>
+            </ul>
+            <ul class="mb0 listing">
+              <li><label>Phone Number:</label><span>(317) 317-3177</span></li>
+              <li><label>Contact Method:</label><span>Text, Call</span></li>
+            </ul>
+            <ul class="mb0 listing">
+              <li><label>Email:</label><span>jane.doe@gmail.com</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="d-flex align-items-center justify-content-center" style="margin: 0 auto">
+          <button type="submit" class="btn btn-primary btn-red">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 ">
+        <div style="box-shadow: 0px 0px 10px #ccc">
+          <nav>
+            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link active show" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+                aria-controls="nav-home" aria-selected="true">Student Education 2018</a>
+              <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+                aria-controls="nav-profile" aria-selected="false">Student Education 2017</a>
+              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
+                aria-controls="nav-contact" aria-selected="false">Student Education 2016</a>
+              <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab"
+                aria-controls="nav-about" aria-selected="false">Student Education 2015</a>
+            </div>
+          </nav>
+          <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+            <div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="  p20">
+                    <ul class="mb0 listing">
+                      <li><label>Qualtrics Application ID:</label><span>R_3qpvI9bldJxSte0</span></li>
+                      <li><label>Qualtrics Completion Date:</label><span>09/10/2018</span></li>
+                    </ul>
+                    <ul class="mb0 listing">
+                      <li><label>Requested Start Date:</label><span>01/10/2019</span></li>
+                      <li><label>DC Partner:</label><span>Arsenal Tech High School</span></li>
+                    </ul>
+                    <ul class="mb0 listing">
+                      <li><label>Required Teaching in Subject Area:</label><span>Yes</span></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="p20">
+                    <ul class="mb0 listing">
+                      <li><label>Highest Degree Earned:</label><span>Masters</span></li>
+                      <li><label>State Licensure:</label><span>Yes</span></li>
+                    </ul>
+                    <ul class="mb0 listing">
+                      <li><label>Currently Enrolled at IU:</label><span>No</span></li>
+                      <li><label>Previous Classwork through IU:</label><span>Yes</span></li>
+                    </ul>
+                    <ul class="mb0 listing">
+                      <li><label>Previous Name:</label><span>Stephanie Smith</span></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-6 mt20 ">
+                  <div class="p20">
+                    <div style="box-shadow: 0px 0px 10px #ccc">
+                      <div class="red">
+                        <h5>Educator Role</h5>
+                      </div>
+                      <table class="table table-hovertable-section">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col">Role</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Instructor in Indiana University's Advance College</td>
+                          </tr>
+                          <tr>
+                            <td>Instructor at a community college</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 mt20 ">
+                  <div class="p20">
+                    <div style="box-shadow: 0px 0px 10px #ccc">
+                      <div class="red">
+                        <h5>Institution Affiliation(s)</h5>
+                      </div>
+                      <table class="table table-hovertable-section">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col">Institution</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Indiana Tech</td>
+                          </tr>
+                          <tr>
+                            <td>Ivy Tech Community College</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="  p20">
+                    <ul class="mb0 listing">
+                      <li><label>Qualtrics Application ID:</label><span>R_3qpvI9bldJxSte0</span></li>
+                      <li><label>Qualtrics Completion Date:</label><span>09/10/2018</span></li>
+                    </ul>
+                    <ul class="mb0 listing">
+                      <li><label>Requested Start Date:</label><span>01/10/2019</span></li>
+                      <li><label>DC Partner:</label><span>Arsenal Tech High School</span></li>
+                    </ul>
+                    <ul class="mb0 listing">
+                      <li><label>Required Teaching in Subject Area:</label><span>Yes</span></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="p20">
+                    <ul class="mb0 listing">
+                      <li><label>Highest Degree Earned:</label><span>Masters</span></li>
+                      <li><label>State Licensure:</label><span>Yes</span></li>
+                    </ul>
+                    <ul class="mb0 listing">
+                      <li><label>Currently Enrolled at IU:</label><span>No</span></li>
+                      <li><label>Previous Classwork through IU:</label><span>Yes</span></li>
+                    </ul>
+                    <ul class="mb0 listing">
+                      <li><label>Previous Name:</label><span>Stephanie Smith</span></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-6 mt20 ">
+                  <div class="p20">
+                    <div style="box-shadow: 0px 0px 10px #ccc">
+                      <div class="red">
+                        <h5>Educator Role</h5>
+                      </div>
+                      <table class="table table-hovertable-section">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col">Role</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Instructor in Indiana University's Advance College</td>
+                          </tr>
+                          <tr>
+                            <td>Instructor at a community college</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 mt20 ">
+                  <div class="p20">
+                    <div style="box-shadow: 0px 0px 10px #ccc">
+                      <div class="red">
+                        <h5>Institution Affiliation(s)</h5>
+                      </div>
+                      <table class="table table-hovertable-section">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col">Institution</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Indiana Tech</td>
+                          </tr>
+                          <tr>
+                            <td>Ivy Tech Community College</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="  p20">
+                    <ul class="mb0 listing">
+                      <li><label>Qualtrics Application ID:</label><span>R_3qpvI9bldJxSte0</span></li>
+                      <li><label>Qualtrics Completion Date:</label><span>09/10/2018</span></li>
+                    </ul>
+                    <ul class="mb0 listing">
+                      <li><label>Requested Start Date:</label><span>01/10/2019</span></li>
+                      <li><label>DC Partner:</label><span>Arsenal Tech High School</span></li>
+                    </ul>
+                    <ul class="mb0 listing">
+                      <li><label>Required Teaching in Subject Area:</label><span>Yes</span></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="p20">
+                    <ul class="mb0 listing">
+                      <li><label>Highest Degree Earned:</label><span>Masters</span></li>
+                      <li><label>State Licensure:</label><span>Yes</span></li>
+                    </ul>
+                    <ul class="mb0 listing">
+                      <li><label>Currently Enrolled at IU:</label><span>No</span></li>
+                      <li><label>Previous Classwork through IU:</label><span>Yes</span></li>
+                    </ul>
+                    <ul class="mb0 listing">
+                      <li><label>Previous Name:</label><span>Stephanie Smith</span></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-6 mt20 ">
+                  <div class="p20">
+                    <div style="box-shadow: 0px 0px 10px #ccc">
+                      <div class="red">
+                        <h5>Educator Role</h5>
+                      </div>
+                      <table class="table table-hovertable-section">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col">Role</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Instructor in Indiana University's Advance College</td>
+                          </tr>
+                          <tr>
+                            <td>Instructor at a community college</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 mt20 ">
+                  <div class="p20">
+                    <div style="box-shadow: 0px 0px 10px #ccc">
+                      <div class="red">
+                        <h5>Institution Affiliation(s)</h5>
+                      </div>
+                      <table class="table table-hovertable-section">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col">Institution</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Indiana Tech</td>
+                          </tr>
+                          <tr>
+                            <td>Ivy Tech Community College</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
+              <div class="p20">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Term</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="Term">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Batch Process</label>
+                      <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Batch Process">
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-center">
+                  <button type="submit" class="btn btn-primary btn-red">Download</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container mb20 mt20">
+    <div class="row">
+      <div class="col-md-12 ">
+        <div style="box-shadow: 0px 0px 10px #ccc">
+          <nav>
+            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home1" role="tab"
+                aria-controls="nav-home" aria-selected="false">Other Information 2018</a>
+              <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile1" role="tab"
+                aria-controls="nav-profile" aria-selected="false">Other Information 2017</a>
+              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact1" role="tab"
+                aria-controls="nav-contact" aria-selected="false">Other Information 2016</a>
+              <a class="nav-item nav-link active show" id="nav-about-tab" data-toggle="tab" href="#nav-about1" role="tab"
+                aria-controls="nav-about" aria-selected="true"> Other Information 2015</a>
+            </div>
+          </nav>
+          <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+            <div class="tab-pane fade" id="nav-home1" role="tabpanel" aria-labelledby="nav-home-tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="  p20">
+                    <ul class="mb0 listing">
+                      <li><label>Veteran/Active Military:</label><span>Yes</span></li>
+                      <li><label>Family Military History:</label><span>Spouse</span></li>
+                    </ul>
+                    <ul class="mb0 listing">
+                      <li><label>VA/DoD Educational Benefits:</label><span>Yes</span></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="p20">
+                    <ul class="mb0 listing">
+                      <li><label>High School Disciplinary Action:</label><span>No</span></li>
+                      <li><label>State Licensure:</label><span>Yes</span></li>
+                    </ul>
+                    <ul class="mb0 listing">
+                      <li><label>Currently Enrolled at IU:</label><span>No</span></li>
+                      <li><label>Previous Classwork through IU:</label><span>Yes</span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="nav-profile1" role="tabpanel" aria-labelledby="nav-profile-tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="  p20">
+                    <ul class="mb0 listing">
+                      <li><label>Qualtrics Application ID:</label><span>R_3qpvI9bldJxSte0</span></li>
+                      <li><label>Qualtrics Completion Date:</label><span>09/10/2018</span></li>
+                    </ul>
+                    <ul class="mb0 listing">
+                      <li><label>Requested Start Date:</label><span>01/10/2019</span></li>
+                      <li><label>DC Partner:</label><span>Arsenal Tech High School</span></li>
+                    </ul>
+                    <ul class="mb0 listing">
+                      <li><label>Required Teaching in Subject Area:</label><span>Yes</span></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="p20">
+                    <ul class="mb0 listing">
+                      <li><label>Highest Degree Earned:</label><span>Masters</span></li>
+                      <li><label>State Licensure:</label><span>Yes</span></li>
+                    </ul>
+                    <ul class="mb0 listing">
+                      <li><label>Currently Enrolled at IU:</label><span>No</span></li>
+                      <li><label>Previous Classwork through IU:</label><span>Yes</span></li>
+                    </ul>
+                    <ul class="mb0 listing">
+                      <li><label>Previous Name:</label><span>Stephanie Smith</span></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-6 mt20 ">
+                  <div class="p20">
+                    <div style="box-shadow: 0px 0px 10px #ccc">
+                      <div class="red">
+                        <h5>Educator Role</h5>
+                      </div>
+                      <table class="table table-hovertable-section">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col">Role</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Instructor in Indiana University's Advance College</td>
+                          </tr>
+                          <tr>
+                            <td>Instructor at a community college</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 mt20 ">
+                  <div class="p20">
+                    <div style="box-shadow: 0px 0px 10px #ccc">
+                      <div class="red">
+                        <h5>Institution Affiliation(s)</h5>
+                      </div>
+                      <table class="table table-hovertable-section">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col">Institution</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Indiana Tech</td>
+                          </tr>
+                          <tr>
+                            <td>Ivy Tech Community College</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="nav-contact1" role="tabpanel" aria-labelledby="nav-contact-tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="  p20">
+                    <ul class="mb0 listing">
+                      <li><label>Qualtrics Application ID:</label><span>R_3qpvI9bldJxSte0</span></li>
+                      <li><label>Qualtrics Completion Date:</label><span>09/10/2018</span></li>
+                    </ul>
+                    <ul class="mb0 listing">
+                      <li><label>Requested Start Date:</label><span>01/10/2019</span></li>
+                      <li><label>DC Partner:</label><span>Arsenal Tech High School</span></li>
+                    </ul>
+                    <ul class="mb0 listing">
+                      <li><label>Required Teaching in Subject Area:</label><span>Yes</span></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="p20">
+                    <ul class="mb0 listing">
+                      <li><label>Highest Degree Earned:</label><span>Masters</span></li>
+                      <li><label>State Licensure:</label><span>Yes</span></li>
+                    </ul>
+                    <ul class="mb0 listing">
+                      <li><label>Currently Enrolled at IU:</label><span>No</span></li>
+                      <li><label>Previous Classwork through IU:</label><span>Yes</span></li>
+                    </ul>
+                    <ul class="mb0 listing">
+                      <li><label>Previous Name:</label><span>Stephanie Smith</span></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-6 mt20 ">
+                  <div class="p20">
+                    <div style="box-shadow: 0px 0px 10px #ccc">
+                      <div class="red">
+                        <h5>Educator Role</h5>
+                      </div>
+                      <table class="table table-hovertable-section">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col">Role</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Instructor in Indiana University's Advance College</td>
+                          </tr>
+                          <tr>
+                            <td>Instructor at a community college</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 mt20 ">
+                  <div class="p20">
+                    <div style="box-shadow: 0px 0px 10px #ccc">
+                      <div class="red">
+                        <h5>Institution Affiliation(s)</h5>
+                      </div>
+                      <table class="table table-hovertable-section">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col">Institution</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Indiana Tech</td>
+                          </tr>
+                          <tr>
+                            <td>Ivy Tech Community College</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade active show" id="nav-about1" role="tabpanel" aria-labelledby="nav-about-tab">
+              <div class="p20">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Term</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="Term">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Batch Process</label>
+                      <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Batch Process">
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-center">
+                  <button type="submit" class="btn btn-primary btn-red">Download</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container mb20 mt20">
+    <div class="row">
+      <div class="col-md-6 mt20 ">
+        <div style="box-shadow: 0px 0px 10px #ccc">
+          <div class="red">
+            <h5>Enrollment History</h5>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-hovertable-section">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Course</th>
+                  <th scope="col">Class</th>
+                  <th scope="col">Term</th>
+                  <th scope="col">Funding</th>
+                  <th scope="col">Enrollment</th>
+                  <th scope="col">Grade</th>
+                  <th scope="col">Credit Hours</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Instructor in Indiana University's Advance College</td>
+                  <td>Instructor in Indiana University's Advance College</td>
+                  <td>Instructor in Indiana University's Advance College</td>
+                  <td>Instructor in Indiana University's Advance College</td>
+                  <td>Instructor in Indiana University's Advance College</td>
+                  <td>Instructor in Indiana University's Advance College</td>
+                  <td>Instructor in Indiana University's Advance College</td>
+                </tr>
+                <tr>
+                  <td>Instructor at a community college</td>
+                  <td>Instructor in Indiana University's Advance College</td>
+                  <td>Instructor in Indiana University's Advance College</td>
+                  <td>Instructor in Indiana University's Advance College</td>
+                  <td>Instructor in Indiana University's Advance College</td>
+                  <td>Instructor in Indiana University's Advance College</td>
+                  <td>Instructor in Indiana University's Advance College</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mt20 ">
+        <div style="box-shadow: 0px 0px 10px #ccc">
+          <div class="red">
+            <h5>Enrollment History</h5>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-hovertable-section">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Course</th>
+                  <th scope="col">Class</th>
+                  <th scope="col">Term</th>
+                  <th scope="col">Funding</th>
+                  <th scope="col">Enrollment</th>
+                  <th scope="col">Grade</th>
+                  <th scope="col">Credit Hours</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Instructor in Indiana University's Advance College</td>
+                  <td>Instructor in Indiana University's Advance College</td>
+                  <td>Instructor in Indiana University's Advance College</td>
+                  <td>Instructor in Indiana University's Advance College</td>
+                  <td>Instructor in Indiana University's Advance College</td>
+                  <td>Instructor in Indiana University's Advance College</td>
+                  <td>Instructor in Indiana University's Advance College</td>
+                </tr>
+                <tr>
+                  <td>Instructor at a community college</td>
+                  <td>Instructor in Indiana University's Advance College</td>
+                  <td>Instructor in Indiana University's Advance College</td>
+                  <td>Instructor in Indiana University's Advance College</td>
+                  <td>Instructor in Indiana University's Advance College</td>
+                  <td>Instructor in Indiana University's Advance College</td>
+                  <td>Instructor in Indiana University's Advance College</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div style="box-shadow: 0px 0px 10px #ccc">
+      <div class="red">
+        <h5>Enrollments</h5>
+      </div>
+      <div class="d-flex justify-content-center flex-wrap">
+        <form class="form-inline">
+          <div class="form-group">
+            <label for="email">Term</label>
+            <select class="browser-default custom-select">
+              <option selected>Open this select menu</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
+          <div class="form-group ml-3">
+            <label for="pwd">Course</label>
+            <select class="browser-default custom-select">
+              <option selected>Open this select menu</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
+          <div class="form-group ml-3">
+            <label for="pwd">Course</label>
+            <select class="browser-default custom-select">
+              <option selected>Open this select menu</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
+          <div class="d-flex ml-3">
+            <button type="submit" class="btn btn-primary btn-red">Add</button>
+          </div>
+        </form>
+      </div>
+      <div class="container">
+        <div class="col-md-12 mt20 mb20 pb20">
+          <div style="box-shadow: 0px 0px 10px #ccc;">
+            <div class="red">
+              <h5>Enrollment History</h5>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-hovertable-section">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Course</th>
+                    <th scope="col">Class</th>
+                    <th scope="col">Term</th>
+                    <th scope="col">Funding</th>
+                    <th scope="col">Enrollment</th>
+                    <th scope="col">Grade</th>
+                    <th scope="col">Credit Hours</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Instructor in Indiana University's Advance College</td>
+                    <td>Instructor in Indiana University's Advance College</td>
+                    <td>Instructor in Indiana University's Advance College</td>
+                    <td>Instructor in Indiana University's Advance College</td>
+                    <td>Instructor in Indiana University's Advance College</td>
+                    <td>Instructor in Indiana University's Advance College</td>
+                    <td>Instructor in Indiana University's Advance College</td>
+                  </tr>
+                  <tr>
+                    <td>Instructor at a community college</td>
+                    <td>Instructor in Indiana University's Advance College</td>
+                    <td>Instructor in Indiana University's Advance College</td>
+                    <td>Instructor in Indiana University's Advance College</td>
+                    <td>Instructor in Indiana University's Advance College</td>
+                    <td>Instructor in Indiana University's Advance College</td>
+                    <td>Instructor in Indiana University's Advance College</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div style="box-shadow: 0px 0px 10px #ccc">
+      <div class="red">
+        <h5>Comments</h5>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hovertable-section">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Comment</th>
+              <th scope="col">Username</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Instructor in Indiana University's Advance College</td>
+              <td>Instructor in Indiana University's Advance College</td>
+              <td>Instructor in Indiana University's Advance College</td>
+            </tr>
+            <tr>
+              <td>Instructor at a community college</td>
+              <td>Instructor in Indiana University's Advance College</td>
+              <td>Instructor in Indiana University's Advance College</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="d-flex justify-content-end pb20 pr5">
+        <button type="submit" class="btn btn-primary btn-red">Add New</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
