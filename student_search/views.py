@@ -9,6 +9,7 @@ class StudentSearchView(View):
     def get(self, request):
         return render(request, 'Student Search.html')
 
+
 class StudentDetailsView(View):
     """Student Details View"""
 

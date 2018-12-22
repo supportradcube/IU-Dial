@@ -1,124 +1,123 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, width=device-width">
-      <meta name="apple-mobile-web-app-capable" content="yes">
-      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <title>IU Dual Credit</title>
-      <link rel="apple-touch-icon" href="{% static 'images/apple-icon-120.png' %}">
-      <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-      <link href="{% static 'css/fontawesome-all.min.css' %}" rel="stylesheet">
-      <link href="{% static 'css/animate.css' %}" rel="stylesheet">
-      <link href="{% static 'css/slick-theme.css' %}" rel="stylesheet">
-      <link href="{% static 'css/slick.css' %}" rel="stylesheet">
-      <link href="{% static 'css/style.css' %}" rel="stylesheet">
-      <link href="{% static 'css/global.css' %}" rel="stylesheet">
-      <link href="{% static 'css/mobile.css' %}" rel="stylesheet">
-   </head>
-   <body class="notLogged">
-  <header class="header1">
-         <div class="container">
-            <nav class="d-flex w-100 align-items-center justify-content-between">
-               <div class="logo">
-                  <a href="{% url 'student_search:search' %}">
-                     <span class="web-view-logo"><img src="{% static 'images/download.png' %}" alt="Logo"></span>
-                     <span class="mob-view-logo">
-                        <!-- <img src="images/mob-logo.png" alt="Logo"/> -->L
-                     </span>
-                  </a>
+
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, width=device-width">
+   <meta name="apple-mobile-web-app-capable" content="yes">
+   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   <title>IU Dual Credit</title>
+   <link rel="apple-touch-icon" href="{% static 'images/apple-icon-120.png' %}">
+   <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+   <link href="{% static 'css/fontawesome-all.min.css' %}" rel="stylesheet">
+   <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+   <link href="{% static 'css/slick-theme.css' %}" rel="stylesheet">
+   <link href="{% static 'css/slick.css' %}" rel="stylesheet">
+   <link href="{% static 'css/style.css' %}" rel="stylesheet">
+   <link href="{% static 'css/global.css' %}" rel="stylesheet">
+   <link href="{% static 'css/mobile.css' %}" rel="stylesheet">
+</head>
+
+<body class="notLogged">
+   <header class="header1">
+      <div class="container">
+         <nav class="d-flex w-100 align-items-center justify-content-between">
+            <div class="logo">
+               <a href="{% url 'student_search:search' %}">
+                  <span class="web-view-logo"><img src="{% static 'images/download.png' %}" alt="Logo"></span>
+                  <span class="mob-view-logo">
+                     <!-- <img src="images/mob-logo.png" alt="Logo"/> -->L
+                  </span>
+               </a>
+            </div>
+            <div class="menu " id="menubox">
+               <span class="close-menu" id="menuClose"></span>
+               <ul class="onHoverDropdown dropDownStyle nav-menu-list">
+                  <!-- <li class="dropdown"><a href="javascript:void(0)">ABOUT</a></li>
+                        <li class="dropdown"><a href="javascript:void(0)">MARKET DATA</a></li>
+                        <li class="dropdown"><a href="#memoryWall">NOICON SYSTEM</a></li>
+                        <li class="dropdown"><a href="#tokenSection">TOKEN</a></li>
+                        <li class="dropdown"><a href="#roadmapSection">ROAD MAP</a></li> -->
+                  <!-- <li class="dropdown"><a href="#ourTeamSection">OUR TEAM</a></li> -->
+               </ul>
+            </div>
+            <div class="loginBox">
+               <!-- <a href="signin.html" class="btn btnHeader">SIGN IN</a>
+                     <a href="signup.html" class="btn btnHeader">SIGN UP</a> -->
+            </div>
+            <a href="javascript:;" class="mob-menu" id="menuShow">
+               <span class="menu-bar"></span>
+            </a>
+         </nav>
+      </div>
+   </header>
+   {% block content %}
+   {% endblock %}
+   <footer>
+      <div class="container">
+         <div class="row align-items-center">
+            <div class="col-md-8">
+               <div class="quick_links">
+                  <ul class="mb-0">
+                     <li>
+                        <a href="index.html">Home</a>
+                     </li>
+                     <li>
+                        <a href="about-us.html">About Us</a>
+                     </li>
+                     <li>
+                        <a href="privacy.html">Privacy Policy</a>
+                     </li>
+                     <li>
+                        <a href="terms.html">Terms &amp; Conditions</a>
+                     </li>
+                  </ul>
+                  <p class="copyRight mb-0 mt-2">© Copyright 2018 school. All Rights Reserved.</p>
                </div>
-               <div class="menu " id="menubox">
-                  <span class="close-menu" id="menuClose"></span>
-                  <ul class="onHoverDropdown dropDownStyle nav-menu-list">
-                     <!-- <li class="dropdown"><a href="javascript:void(0)">ABOUT</a></li>
-                     <li class="dropdown"><a href="javascript:void(0)">MARKET DATA</a></li>
-                     <li class="dropdown"><a href="#memoryWall">NOICON SYSTEM</a></li>
-                     <li class="dropdown"><a href="#tokenSection">TOKEN</a></li>
-                     <li class="dropdown"><a href="#roadmapSection">ROAD MAP</a></li> -->
-                     <!-- <li class="dropdown"><a href="#ourTeamSection">OUR TEAM</a></li> -->
+            </div>
+            <div class="col-md-4">
+               <div class="social-icons text-right">
+                  <ul class="mb-0">
+                     <li>
+                        <a href="javascript:void(0)">
+                           <i class="fab fa-twitter"></i>
+                        </a>
+                     </li>
+                     <li>
+                        <a href="javascript:void(0)">
+                           <i class="fab fa-facebook-f"></i>
+                        </a>
+                     </li>
+                     <li>
+                        <a href="javascript:void(0)">
+                           <i class="fab fa-pinterest-p"></i>
+                        </a>
+                     </li>
+                     <li>
+                        <a href="javascript:void(0)">
+                           <i class="fab fa-google-plus-g"></i>
+                        </a>
+                     </li>
                   </ul>
                </div>
-               <div class="loginBox">
-                  <!-- <a href="signin.html" class="btn btnHeader">SIGN IN</a>
-                  <a href="signup.html" class="btn btnHeader">SIGN UP</a> -->
-                
-               </div>
-               <a href="javascript:;" class="mob-menu" id="menuShow">
-               <span class="menu-bar"></span>
-               </a>
-            </nav>
+            </div>
          </div>
-         
-      </header>
-      {% block content %}
-      {% endblock %}
-      <footer>
-        <div class="container">
-           <div class="row align-items-center">
-              <div class="col-md-8">
-                 <div class="quick_links">
-                    <ul class="mb-0">
-                       <li>
-                           <a href="index.html">Home</a>
-                       </li>
-                       <li>
-                           <a href="about-us.html">About Us</a>
-                       </li>
-                       <li>
-                           <a href="privacy.html">Privacy Policy</a>
-                       </li>
-                       <li>
-                           <a href="terms.html">Terms &amp; Conditions</a>
-                       </li>
-                    </ul>
-                    <p class="copyRight mb-0 mt-2">© Copyright 2018 school. All Rights Reserved.</p>
-                 </div>
-              </div>
-              <div class="col-md-4">
-                 <div class="social-icons text-right">
-                    <ul class="mb-0">
-                       <li>
-                          <a href="javascript:void(0)">
-                             <i class="fab fa-twitter"></i>
-                          </a>
-                       </li>
-                       <li>
-                          <a href="javascript:void(0)">
-                             <i class="fab fa-facebook-f"></i>
-                          </a>
-                       </li>
-                       <li>
-                          <a href="javascript:void(0)">
-                             <i class="fab fa-pinterest-p"></i>
-                          </a>
-                       </li>
-                       <li>
-                          <a href="javascript:void(0)">
-                             <i class="fab fa-google-plus-g"></i>
-                          </a>
-                       </li> 
-                    </ul>
-                 </div>
-              </div>
-           </div>
-           
-        </div>
-     </footer>
+      </div>
+   </footer>
+   <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+   <script src="{% static 'js/popper.min.js' %}"></script>
+   <script src="{% static 'js/bootstrap.min.js' %}"></script>
+   <!-- ======For Timer======== -->
+   <script src="{% static 'js/particles.js' %}"></script>
+   <script src="{% static 'js/app.js' %}"></script>
+   <script src="{% static 'js/slick.min.js' %}"></script>
+   <script src="{% static 'js/custom.js' %}"></script>
+   <!--  <script src="js/hammer.js"></script>
+         <script src="js/index.js"></script> -->
+</body>
 
-     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-     <script src="{% static 'js/popper.min.js' %}"></script>
-     <script src="{% static 'js/bootstrap.min.js' %}"></script>
-     <!-- ======For Timer======== -->
-     <script src="{% static 'js/particles.js' %}"></script>
-     <script src="{% static 'js/app.js' %}"></script>
-     <script src="{% static 'js/slick.min.js' %}"></script>
-     <script src="{% static 'js/custom.js' %}"></script>
-    <!--  <script src="js/hammer.js"></script>
-     <script src="js/index.js"></script> -->
-  </body>
 </html>
