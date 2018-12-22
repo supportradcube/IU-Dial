@@ -14,8 +14,9 @@ function enrollment_tab() {
     document.getElementById("course-search-criteria").style.display = "none";
 }
 function batchexport_tab() {
-    // document.getElementById("enrollment-search-criteria").style.display = "none";
-    // document.getElementById("student-search-criteria").style.display = "none";
-    // document.getElementById("course-search-criteria").style.display = "none";
-    document.getElementById("master-container").style.display = "none";
+    document.getElementById("enrollment-search-criteria").style.display = "none";
+    document.getElementById("student-search-criteria").style.display = "none";
+    document.getElementById("course-search-criteria").style.display = "none";
+    // document.getElementById("master-container").style.display = "none";
+    document.getElementById("master-container").setAttribute('style', 'min-height:0');
 } 

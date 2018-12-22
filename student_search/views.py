@@ -7,11 +7,25 @@ class StudentSearchView(View):
     """Landing page View"""
 
     def get(self, request):
-        return render(request, 'Student Search.html')
+        return render(request, 'search_screen.html')
 
 
 class StudentDetailsView(View):
     """Student Details View"""
 
     def get(self, request):
-        return render(request, 'Student Details.html')
+        return render(request, 'student_details.html')
+
+
+class CourseDetailsView(View):
+    """Course Details View"""
+
+    def get(self, request):
+        return render(request, 'course_details.html')
+
+
+class EnrollmentDetailsView(View):
+    """Enrollment Details View"""
+
+    def get(self, request):
+        return render(request, 'enrollment_details.html')

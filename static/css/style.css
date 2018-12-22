@@ -155,7 +155,8 @@ footer {
     position: relative;
     font-size: 14px;
     color: #fff;
-        border-top: 8px solid #921700;
+    border-top: 8px solid #921700;
+    margin-top: 40px;
 
 }
 .quick_links ul li:not(:last-child) {
