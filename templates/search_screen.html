@@ -200,14 +200,26 @@
                <div class="col-md-6">
                   <div class="form-group">
                      <label for="exampleInputEmail1">Campus of Instruction</label>
-                     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        placeholder="">
+                     <!-- <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder=""> -->
+                        <select class="browser-default custom-select">
+                           <option selected>Select</option>
+                           <option value="1">One</option>
+                           <option value="2">Two</option>
+                           <option value="3">Three</option>
+                        </select>
                   </div>
                </div>
                <div class="col-md-6">
                   <div class="form-group">
                      <label for="exampleInputPassword1">Term</label>
-                     <input type="text" class="form-control" id="exampleInputPassword1" placeholder="">
+                     <!-- <input type="text" class="form-control" id="exampleInputPassword1" placeholder=""> -->
+                     <select class="browser-default custom-select">
+                        <option selected>Select</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                     </select>
                   </div>
                </div>
             </div>
@@ -217,6 +229,9 @@
          </form>
       </div>
    </div>
+</div>
+<div style="margin-bottom:20px; float:right;">
+   <button type="submit" class="btn btn-primary btn-red">Export</button>
 </div>
 <div class="container">
    <div class="row">
@@ -240,22 +255,22 @@
                      <table class="table table-hover table-responsive table-section">
                         <thead class="thead-light">
                            <tr>
-                              <th scope="col">Student Name</th>
+                              <th style="width:116px;" scope="col">Student Name</th>
                               <th scope="col">UID</th>
-                              <th scope="col">Student Type</th>
-                              <th scope="col">DC Partner</th>
-                              <th scope="col">Pending Course Request Date</th>
-                              <th scope="col">Course Choice</th>
+                              <th style="width:107px;" scope="col">Student Type</th>
+                              <th style="width:95px;" scope="col">DC Partner</th>
+                              <th style="width:125px;" scope="col">Pending Course Request Date</th>
+                              <th style="width:115px;" scope="col">Course Choice</th>
                               <th scope="col">Second Course Choice</th>
-                              <th scope="col">Credit Hours Earned</th>
+                              <th style="width:155px;" scope="col">Credit Hours Earned</th>
                               <th scope="col">Email</th>
-                              <th scope="col">Campus Affiliation</th>
+                              <th style="width:145px;" scope="col">Campus Affiliation</th>
                            </tr>
                         </thead>
                         <tbody>
                            <tr>
-                              <td scope="row">1</td>
-                              <td>Mark</td>
+                              <td scope="row">Mark</td>
+                              <td>1</td>
                               <td>Otto</td>
                               <td>@mdo</td>
                               <td>@mdo</td>
@@ -266,8 +281,44 @@
                               <td>@mdo</td>
                            </tr>
                            <tr>
-                              <td scope="row">2</td>
-                              <td>Jacob</td>
+                              <td scope="row">Mark</td>
+                              <td>2</td>
+                              <td>Otto</td>
+                              <td>@mdo</td>
+                              <td>@mdo</td>
+                              <td>@mdo</td>
+                              <td>@mdo</td>
+                              <td>@mdo</td>
+                              <td>@mdo</td>
+                              <td>@mdo</td>
+                           </tr>
+                           <tr>
+                              <td scope="row">Mark</td>
+                              <td>4</td>
+                              <td>Otto</td>
+                              <td>@mdo</td>
+                              <td>@mdo</td>
+                              <td>@mdo</td>
+                              <td>@mdo</td>
+                              <td>@mdo</td>
+                              <td>@mdo</td>
+                              <td>@mdo</td>
+                           </tr>
+                           <tr>
+                              <td scope="row">Mark</td>
+                              <td>5</td>
+                              <td>Otto</td>
+                              <td>@mdo</td>
+                              <td>@mdo</td>
+                              <td>@mdo</td>
+                              <td>@mdo</td>
+                              <td>@mdo</td>
+                              <td>@mdo</td>
+                              <td>@mdo</td>
+                           </tr>
+                           <tr>
+                              <td scope="row">Mark</td>
+                              <td>6</td>
                               <td>Thornton</td>
                               <td>@fat</td>
                               <td>@mdo</td>
@@ -278,8 +329,8 @@
                               <td>@mdo</td>
                            </tr>
                            <tr>
-                              <td scope="row">3</td>
-                              <td>Larry</td>
+                              <td scope="row">Mark</td>
+                              <td>7</td>
                               <td>the Bird</td>
                               <td>@twitter</td>
                               <td>@mdo</td>
@@ -297,15 +348,15 @@
                      <table class="table table-hover table-responsive table-section">
                         <thead class="thead-light">
                            <tr>
-                              <th scope="col" style="width: 125px;">Course Number</th>
+                              <th scope="col" style="width: 126px;">Course Number</th>
                               <th scope="col" style="width: 125px;">Course Name</th>
-                              <th scope="col" style="width: 125px;">Term</th>
-                              <th scope="col" style="width: 125px;">Campus of Instruction</th>
-                              <th scope="col" style="width: 125px;">Instructor</th>
-                              <th scope="col" style="width: 125px;">Total Seats</th>
-                              <th scope="col" style="width: 125px;">Enrolled</th>
-                              <th scope="col" style="width: 125px;">Pending Enrolled</th>
-                              <th scope="col" style="width: 125px;">Calculated Remaining</th>
+                              <th scope="col" style="width: 94px;">Term</th>
+                              <th scope="col" style="width: 165px;">Campus of Instruction</th>
+                              <th scope="col" style="width: 94px;">Instructor</th>
+                              <th scope="col" style="width: 100px;">Total Seats</th>
+                              <th scope="col" style="width: 94px;">Enrolled</th>
+                              <th scope="col" style="width: 145px;">Pending Enrolled</th>
+                              <th scope="col" style="width: 165px;">Calculated Remaining</th>
                            </tr>
                         </thead>
                         <tbody>
@@ -393,14 +444,26 @@
                         <div class="col-md-6">
                            <div class="form-group">
                               <label for="exampleInputEmail1">Term</label>
-                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                 placeholder="Term">
+                              <!-- <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                 placeholder="Term"> -->
+                                 <select class="browser-default custom-select">
+                                    <option selected>Select</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                 </select>
                            </div>
                         </div>
                         <div class="col-md-6">
                            <div class="form-group">
                               <label for="exampleInputPassword1">Batch Process</label>
-                              <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Batch Process">
+                              <!-- <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Batch Process"> -->
+                              <select class="browser-default custom-select">
+                                 <option selected>Select</option>
+                                 <option value="1">One</option>
+                                 <option value="2">Two</option>
+                                 <option value="3">Three</option>
+                              </select>
                            </div>
                         </div>
                      </div>
