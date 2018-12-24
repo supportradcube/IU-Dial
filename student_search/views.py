@@ -4,7 +4,7 @@ from .models import *
 
 
 class StudentSearchView(View):
-    """Landing page View"""
+    """Landing page / Search screen View"""
 
     def get(self, request):
         return render(request, 'search_screen.html')
