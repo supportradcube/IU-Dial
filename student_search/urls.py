@@ -17,4 +17,5 @@ urlpatterns = [
     url(r'^enrollment-details$', views.EnrollmentDetailsView.as_view(),
         name='enrollment-details'),
 
+
 ]
