@@ -7,7 +7,7 @@ class StudentSearchView(View):
     """Landing page / Search screen View"""
 
     def get(self, request):
-        return render(request, 'search_screen.html')
+        return render(request, 'search_screen.html') 
 
 
 class StudentDetailsView(View):
