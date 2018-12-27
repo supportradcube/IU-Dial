@@ -1,11 +1,11 @@
 
 """Student_search app URL Configuration"""
 
-from student_search import views
+from search_module import views
 from django.conf.urls import url
 from .views import *
 
-app_name = 'student_search'
+app_name = 'search_module'
 
 urlpatterns = [
 
