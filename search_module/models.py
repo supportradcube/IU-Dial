@@ -6,19 +6,21 @@ from languages.fields import LanguageField
 
 class Qualtrics(models.Model):
 
-    ip_address = models.GenericIPAddressField()
-    progress = models.PositiveIntegerField()
     RESPONSE_TYPE = (
         ("IP Address", "IP Address"),
         ("Survey Preview", "Survey Preview")
     )
-    response_type = models.CharField(max_length=14, choices=RESPONSE_TYPE)
+    response_type = models.CharField(
+        max_length=14, choices=RESPONSE_TYPE, default="IP Address"
+    )
+    ip_address = models.GenericIPAddressField()
+    progress = models.PositiveIntegerField()
     response_id = models.CharField("Application ID", max_length=30)
-
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
+    duration = models.IntegerField()
     finished = models.BooleanField(default=False)
-    recorded_date = models.DateTimeField(auto_now_add=True)
+    recorded_date = models.DateTimeField()
 
     class Meta:
         """docstring for meta"""
@@ -28,31 +30,24 @@ class Qualtrics(models.Model):
 class RecipientDetails(models.Model):
 
     qualtrics_detail = models.ForeignKey(
-        Qualtrics, on_delete=models.CASCADE, related_name="recipient_details")
-
-    recipient_first_name = models.CharField(
-        max_length=40, null=True, blank=True,
+        Qualtrics, on_delete=models.CASCADE,
+        related_name="recipient_details"
     )
-    recipient_last_name = models.CharField(
-        max_length=40, null=True, blank=True
-    )
-    recipient_email = models.EmailField(
-        max_length=255, null=True, blank=True
-    )
-    external_data_reference = models.CharField(
-        max_length=80, null=True, blank=True
-    )
+    recipient_first_name = models.CharField(max_length=40)
+    recipient_last_name = models.CharField(max_length=40)
+    recipient_email = models.EmailField(max_length=255)
+    external_data_reference = models.CharField(max_length=80)
     latitude = models.DecimalField(
-        decimal_places=8, max_digits=15, blank=True, null=True
+        decimal_places=8, max_digits=15
     )
     longitude = models.DecimalField(
-        decimal_places=8, max_digits=15, blank=True, null=True
+        decimal_places=8, max_digits=15
     )
     DISTRIBUTION = (
         ("anonymous", "anonymous"),
         ("preview", "preview")
     )
-    distribution = models.CharField(
+    distribution_channel = models.CharField(
         max_length=9, choices=DISTRIBUTION
     )
 
@@ -64,8 +59,11 @@ class RecipientDetails(models.Model):
 class StudentDetails(models.Model):
 
     qualtrics_detail = models.ForeignKey(
-        Qualtrics, on_delete=models.CASCADE, related_name="student_details")
-    UID = models.CharField(max_length=20, null=True, blank=True)
+        Qualtrics, on_delete=models.CASCADE, related_name="student_details"
+    )
+    UID = models.CharField(
+        max_length=20, null=True, blank=True
+    )
     first_name = models.CharField(max_length=40)
     last_name = models.CharField(max_length=40)
     email = models.EmailField(
@@ -86,12 +84,12 @@ class StudentDetails(models.Model):
     gender = models.CharField(
         max_length=6
     )
-    gender_info = models.CharField(
+    gender_identity = models.CharField(
         max_length=255
     )
     citizenship = models.CharField(max_length=40)
 
-    role = models.CharField(max_length=255)
+    educator_role = models.CharField(max_length=255)
     affilated_institution = models.CharField(
         max_length=255
     )
@@ -102,9 +100,11 @@ class StudentDetails(models.Model):
         ("take a graduate course", "take a graduate course"),
         ("explore IU Online", "explore IU Online")
     )
-    application_for = models.CharField(max_length=50, choices=APPLICATION)
+    application_for = models.CharField(
+        max_length=50, choices=APPLICATION
+    )
     session = models.CharField(max_length=20)
-    former_student = models.BooleanField(default=False)
+    formerly_enrolled = models.BooleanField(default=False)
     currently_enrolled = models.BooleanField(default=False)
     user_language = LanguageField()
 
@@ -113,10 +113,10 @@ class StudentDetails(models.Model):
         verbose_name_plural = "Student Details"
 
 
-class EducationDetails(models.Model):
+class IUEducationDetails(models.Model):
 
     qualtrics_detail = models.ForeignKey(
-        Qualtrics, on_delete=models.CASCADE, related_name="education_details")
+        Qualtrics, on_delete=models.CASCADE, related_name="iu_education_details")
     iu_id = models.CharField(
         max_length=10
     )
@@ -126,16 +126,40 @@ class EducationDetails(models.Model):
     last_name = models.CharField(
         max_length=40
     )
-    graduate_degree = models.CharField(max_length=100)
-    first_spring_course_request = models.CharField(max_length=255)
-    second_spring_course_request = models.CharField(max_length=255)
+    graduate_degree_holder = models.BooleanField(default=False)
+    state_licensure = models.BooleanField(default=False)
+    teaching_experience = models.BooleanField(default=False)
+    graduate_degree = models.CharField(max_length=255)
+
+    first_course_request = models.CharField(max_length=255)
+    second_course_request = models.CharField(max_length=255)
     notes = models.CharField(max_length=255)
     graduate_certificate_program = models.BooleanField(default=False)
-    graduate_program_name = models.CharField(max_length=255)
+    graduate_certificate_program_name = models.CharField(max_length=255)
 
     class Meta:
         """docstring for meta"""
         verbose_name_plural = "Student IU Details"
+
+
+class VeteranDetails(models.Model):
+    qualtrics_detail = models.ForeignKey(
+        Qualtrics, on_delete=models.CASCADE, related_name="veteran_details"
+    )
+    veteran_member = models.BooleanField(default=False)
+    VETERAN_MEMBER = (
+        ("No", "No"),
+        ("Spouse", "Spouse"),
+        ("Parent/Guardian", "Parent/Guardian")
+    )
+    veteran_family_member = models.CharField(
+        max_length=40, choices=VETERAN_MEMBER
+    )
+    educational_benefits = models.BooleanField(default=False)
+
+    class Meta:
+        """docstring for meta"""
+        verbose_name_plural = "Veteran Details"
 
 
 class CurrentAddress(models.Model):
@@ -147,7 +171,7 @@ class CurrentAddress(models.Model):
         max_length=40
     )
     state = models.CharField(
-        max_length=150
+        "State/Province/Region", max_length=150
     )
     postal_code = models.CharField(
         max_length=12
@@ -168,19 +192,19 @@ class CurrentAddress(models.Model):
 class PermanentAddress(models.Model):
 
     qualtrics_detail = models.ForeignKey(
-        Qualtrics, on_delete=models.CASCADE, related_name="permanent_address")
+        Qualtrics, on_delete=models.CASCADE, related_name="permanent_address"
+    )
     address = models.TextField()
     city = models.CharField(
-        max_length=40, blank=True, null=True
+        max_length=40
     )
     state = models.CharField(
-        max_length=150, null=True, blank=True
-    )
+        "State/Province/Region", max_length=150)
     postal_code = models.CharField(
-        max_length=12, null=True, blank=True
+        max_length=5
     )
     country = models.CharField(
-        max_length=40, null=True, blank=True
+        max_length=40
     )
 
     class Meta:
@@ -188,21 +212,10 @@ class PermanentAddress(models.Model):
         verbose_name_plural = "Permanent Address"
 
 
-class VeteranDetails(models.Model):
-    qualtrics_detail = models.ForeignKey(
-        Qualtrics, on_delete=models.CASCADE, related_name="veteran_details")
-    veteran_member = models.BooleanField(default=False)
-    veteran_family_member = models.CharField(max_length=40)
-    educational_benefits = models.BooleanField(default=False)
-
-    class Meta:
-        """docstring for meta"""
-        verbose_name_plural = "Veteran Details"
-
-
 class FormerName(models.Model):
     qualtrics_detail = models.ForeignKey(
-        Qualtrics, on_delete=models.CASCADE, related_name="former_name")
+        Qualtrics, on_delete=models.CASCADE, related_name="former_name"
+    )
     former_name = models.BooleanField(default=False)
 
     former_name_1 = models.CharField(
@@ -229,7 +242,8 @@ class LegalDetails(models.Model):
     formal_disciplinary_action = models.BooleanField(default=False)
     legal_charges = models.BooleanField(default=False)
     pending_criminal_charges = models.BooleanField(default=False)
-    restraining_order = models.BooleanField(default=False)
+    restraining_order = models.BooleanField(
+        "Injury to Person/Property", default=False)
     response = models.CharField(max_length=255)
 
 
@@ -242,11 +256,16 @@ class OtherDetails(models.Model):
     user = models.CharField(max_length=255)
 
     access_zip = models.CharField(max_length=5)
-    access_country = models.CharField(max_length=255)
+    access_country = models.CharField(max_length=20)
     access_date = models.DateField()
     access_time = models.TimeField()
-    inquiry_type = models.CharField(max_length=10)
-    q_r_del = models.CharField(max_length=10)
+    INQUIRY_TYPE = (
+        ("Complete", "Complete"),
+        ("INP", "INP"),
+        ("NOCON", "NOCON")
+    )
+    inquiry_type = models.CharField(max_length=10, choices=INQUIRY_TYPE)
+    q_r_del = models.CharField(max_length=5)
     audience = models.CharField(max_length=255)
     date = models.DateField()
     mobile_device = models.BooleanField(default=False)
@@ -255,115 +274,3 @@ class OtherDetails(models.Model):
     class Meta:
         """docstring for meta"""
         verbose_name_plural = "Other Details"
-
-
-class EnrollmentData(models.Model):
-
-    # Grant Enrollment Data Sheet
-
-    class_number = models.PositiveIntegerField()
-    course_subject_code = models.CharField(max_length=10)
-    present_university_id = models.CharField(max_length=10)
-    academic_term_code = models.PositiveIntegerField()
-    grant_id = models.PositiveIntegerField()
-
-    class Meta:
-        """docstring for meta"""
-        verbose_name_plural = "Enrollment Data"
-
-
-class Enrollment(models.Model):
-
-    # Enrollment Data
-
-    enrollment_details = models.ForeignKey(
-        EnrollmentData, on_delete=models.CASCADE, related_name="enrollment_details")
-
-    # class_number = models.PositiveIntegerField()
-    # course_subject_code = models.CharField(max_length=10)
-    # present_university_id = models.CharField(max_length=10)
-    # academic_term_code = models.PositiveIntegerField()
-
-    institution_code = models.CharField(max_length=5)
-    course_official_grade_code = models.CharField(max_length=5)
-    enrollment_add_date = models.DateField()
-    enrollment_drop_date = models.DateField(null=True, blank=True)
-    course_id = models.CharField(max_length=5)
-    course_description = models.CharField(max_length=100)
-    course_cateloge_number = models.PositiveIntegerField()
-    class_instructor_name = models.CharField(max_length=80)
-    class_instructor_email = models.EmailField()
-    campus_location_code = models.CharField(max_length=2)
-    student_without_description = models.CharField(
-        max_length=100, null=True, blank=True)
-    student_with_description = models.CharField(
-        max_length=100, null=True, blank=True)
-
-    class Meta:
-        """docstring for meta"""
-        verbose_name_plural = "Enrollment"
-
-
-class Application(models.Model):
-
-    # Application Data
-
-    university_id = models.CharField(max_length=10)
-    application_number = models.CharField(max_length=10)
-    row_effective_date = models.DateField()
-    academic_plan_code = models.CharField(max_length=15)
-    academic_program_code = models.CharField(max_length=15)
-    institution_code = models.CharField(max_length=5)
-    first_name = models.CharField(
-        max_length=40
-    )
-    last_name = models.CharField(
-        max_length=40
-    )
-    middle_name = models.CharField(
-        max_length=40
-    )
-    other_email = models.EmailField(
-        max_length=255, null=True, blank=True
-    )
-    campus_email = models.EmailField(
-        max_length=255, null=True, blank=True
-    )
-    network_id = models.CharField(max_length=15)
-
-    class Meta:
-        """docstring for meta"""
-        verbose_name_plural = "Application"
-
-
-class ClassData(models.Model):
-
-    # Class Data
-
-    class_number = models.PositiveIntegerField()
-    course_id = models.CharField(max_length=5)
-    academic_term_code = models.PositiveIntegerField()
-    class_instructor_name = models.CharField(max_length=80)
-    class_instructor_email = models.EmailField()
-    campus = models.CharField(max_length=5)
-    enrollment_cap = models.PositiveIntegerField()
-    enrollment_total = models.PositiveIntegerField()
-
-    class Meta:
-        """docstring for meta"""
-        verbose_name_plural = "Class Data"
-
-
-class University(models.Model):
-
-    # Grant Data
-
-    university_id = models.CharField(max_length=10)
-    name = models.CharField(max_length=10)
-    account = models.CharField(max_length=10)
-    amount = models.DecimalField(decimal_places=2, max_digits=10)
-    campus = models.CharField(max_length=5)
-
-    class Meta:
-        """docstring for meta"""
-        verbose_name_plural = "University"
