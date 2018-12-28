@@ -8,42 +8,41 @@
          <h5 class="mb-0"> Search Criteria</h5>
       </div>
       <div style="box-shadow:0px 0px 10px #ccc;padding:20px;">
-         <form>
+         <form method="POST" action="">
+            {% csrf_token %}
             <div class="row">
                <div class="col-md-6">
                   <div class="form-group">
-                     <label for="exampleInputEmail1">Username</label>
-                     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        placeholder="">
+                     <label for="username">Username</label>
+                     <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp">
                   </div>
                </div>
                <div class="col-md-6">
                   <div class="form-group">
-                     <label for="exampleInputPassword1">UID</label>
-                     <input type="text" class="form-control" id="exampleInputPassword1" placeholder="">
+                     <label for="uid">UID</label>
+                     <input type="text" class="form-control" id="uid">
                   </div>
                </div>
             </div>
             <div class="row">
                <div class="col-md-6">
                   <div class="form-group">
-                     <label for="exampleInputEmail1">Student First Name</label>
-                     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        placeholder="">
+                     <label for="first_name">Student First Name</label>
+                     <input type="text" class="form-control" id="first_name" name="first_name" aria-describedby="emailHelp">
                   </div>
                </div>
                <div class="col-md-6">
                   <div class="form-group">
-                     <label for="exampleInputPassword1">Student Last Name</label>
-                     <input type="text" class="form-control" id="exampleInputPassword1" placeholder="">
+                     <label for="last_name">Student Last Name</label>
+                     <input type="text" class="form-control" id="last_name" name="last_name">
                   </div>
                </div>
             </div>
             <div class="row">
                <div class="col-md-6">
                   <div class="form-group">
-                     <label for="exampleInputPassword1">Campus of Enrollment</label>
-                     <select class="browser-default custom-select">
+                     <label for="enrollment_campus">Campus of Enrollment</label>
+                     <select class="browser-default custom-select" id="enrollment_campus" name="enrollment_campus">
                         <option selected>Campus of Enrollment</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
@@ -53,8 +52,8 @@
                </div>
                <div class="col-md-6">
                   <div class="form-group">
-                     <label for="exampleInputPassword1">Student Type</label>
-                     <select class="browser-default custom-select">
+                     <label for="student_type">Student Type</label>
+                     <select class="browser-default custom-select" id="student_type" name="student_type">
                         <option selected>Student Type</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
@@ -66,8 +65,8 @@
             <div class="row">
                <div class="col-md-6">
                   <div class="form-group">
-                     <label for="exampleInputPassword1">DC Partner</label>
-                     <select class="browser-default custom-select">
+                     <label for="dc_partner">DC Partner</label>
+                     <select class="browser-default custom-select" id="dc_partner" name="dc_partner">
                         <option selected>Multiselect</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
@@ -78,94 +77,15 @@
                <div class="d-flex align-items-center justify-content-between max-WT-500">
                   <div class="col-md-6 ">
                      <label class="container checkbox">Currently Enrolled
-                        <input type="checkbox">
+                        <input type="checkbox" id="currently_enrolled" name="currently_enrolled">
                         <span class="checkmark"></span>
                      </label>
                   </div>
                   <div class="col-md-6 ">
                      <label class="container checkbox">Pending Enrollment Requests
-                        <input type="checkbox">
+                        <input type="checkbox" id="pending_enrollment" name="pending_enrollment">
                         <span class="checkmark"></span>
                      </label>
-                  </div>
-               </div>
-            </div>
-            <div class="d-flex align-items-center justify-content-center">
-               <button type="submit" class="btn btn-primary btn-red">Search</button>
-            </div>
-         </form>
-      </div>
-   </div>
-   <div style="display:none;" id="enrollment-search-criteria" class="container mb20 mt20">
-      <div class="red">
-         <h5 class="mb-0"> Search Criteria</h5>
-      </div>
-      <div style="box-shadow:0px 0px 10px #ccc;padding:20px;">
-         <form>
-            <div class="row">
-               <div class="col-md-6">
-                  <div class="form-group">
-                     <label for="exampleInputEmail1">Student First Name</label>
-                     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        placeholder="">
-                  </div>
-               </div>
-               <div class="col-md-6">
-                  <div class="form-group">
-                     <label for="exampleInputPassword1">Student Last Name</label>
-                     <input type="text" class="form-control" id="exampleInputPassword1" placeholder="">
-                  </div>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-md-6">
-                  <div class="form-group">
-                     <label for="exampleInputEmail1">Course Number</label>
-                     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        placeholder="">
-                  </div>
-               </div>
-               <div class="col-md-6">
-                  <div class="form-group">
-                     <label for="exampleInputPassword1">Class Number</label>
-                     <input type="text" class="form-control" id="exampleInputPassword1" placeholder="">
-                  </div>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-md-6">
-                  <div class="form-group">
-                     <label for="exampleInputPassword1">Campus of Enrollment</label>
-                     <select class="browser-default custom-select">
-                        <option selected>Campus of Enrollment</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                     </select>
-                  </div>
-               </div>
-               <div class="col-md-6">
-                  <div class="form-group">
-                     <label for="exampleInputPassword1">Term</label>
-                     <select class="browser-default custom-select">
-                        <option selected>Student Type</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                     </select>
-                  </div>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-md-6">
-                  <div class="form-group">
-                     <label for="exampleInputPassword1">Grant</label>
-                     <select class="browser-default custom-select">
-                        <option selected>Multiselect</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                     </select>
                   </div>
                </div>
             </div>
@@ -180,7 +100,8 @@
          <h5 class="mb-0"> Search Criteria</h5>
       </div>
       <div style="box-shadow:0px 0px 10px #ccc;padding:20px;">
-         <form>
+         <form method="POST" action="">
+            {% csrf_token %}
             <div class="row">
                <div class="col-md-6">
                   <div class="form-group">
@@ -226,6 +147,85 @@
          </form>
       </div>
    </div>
+   <div style="display:none;" id="enrollment-search-criteria" class="container mb20 mt20">
+      <div class="red">
+         <h5 class="mb-0"> Search Criteria</h5>
+      </div>
+      <div style="box-shadow:0px 0px 10px #ccc;padding:20px;">
+         <form method="POST" action="">
+            {% csrf_token %}
+            <div class="row">
+               <div class="col-md-6">
+                  <div class="form-group">
+                     <label for="student_first_name">Student First Name</label>
+                     <input type="text" class="form-control" id="student_first_name" name="first_name" aria-describedby="emailHelp">
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="form-group">
+                     <label for="student_last_name">Student Last Name</label>
+                     <input type="text" class="form-control" id="student_last_name" name="last_name">
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-6">
+                  <div class="form-group">
+                     <label for="course_number">Course Number</label>
+                     <input type="text" class="form-control" id="course_number" name="course_number" aria-describedby="emailHelp">
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="form-group">
+                     <label for="class_number">Class Number</label>
+                     <input type="text" class="form-control" id="class_number" name="class_number" placeholder="">
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-6">
+                  <div class="form-group">
+                     <label for="Campus_of_enrollment">Campus of Enrollment</label>
+                     <select class="browser-default custom-select" id="Campus_of_enrollment" name="campus_of_enrollment">
+                        <option selected>Campus of Enrollment</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                     </select>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="form-group">
+                     <label for="term">Term</label>
+                     <select class="browser-default custom-select" id="term" name="term">
+                        <option selected>Student Type</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                     </select>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-6">
+                  <div class="form-group">
+                     <label for="grant">Grant</label>
+                     <select class="browser-default custom-select" id="grant" name="grant">
+                        <option selected>Multiselect</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                     </select>
+                  </div>
+               </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-center">
+               <button type="submit" class="btn btn-primary btn-red">Search</button>
+            </div>
+         </form>
+      </div>
+   </div>
+
 </div>
 <div class="container">
    <div class="row">

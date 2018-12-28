@@ -29,30 +29,14 @@
          <nav class="d-flex w-100 align-items-center justify-content-between">
             <div class="logo">
                <a href="{% url 'student_search:search' %}">
-                  <span class="web-view-logo"><img src="{% static 'images/iu_logo.png' %}" alt="Logo"></span>
+                  <span class="web-view-logo">
+                     <img src="{% static 'images/iu_logo.png' %}" alt="Logo">
+                  </span>
                   <span class="mob-view-logo">
-                     <!-- <img src="images/mob-logo.png" alt="Logo"/> -->L
+                     <img src="{% static 'images/iu_logo.png' %}" alt="Logo">
                   </span>
                </a>
             </div>
-            <div class="menu " id="menubox">
-               <span class="close-menu" id="menuClose"></span>
-               <!-- <ul class="onHoverDropdown dropDownStyle nav-menu-list">
-                  <li class="dropdown"><a href="javascript:void(0)">ABOUT</a></li>
-                        <li class="dropdown"><a href="javascript:void(0)">MARKET DATA</a></li>
-                        <li class="dropdown"><a href="#memoryWall">NOICON SYSTEM</a></li>
-                        <li class="dropdown"><a href="#tokenSection">TOKEN</a></li>
-                        <li class="dropdown"><a href="#roadmapSection">ROAD MAP</a></li>
-                  <li class="dropdown"><a href="#ourTeamSection">OUR TEAM</a></li>
-               </ul> -->
-            </div>
-            <div class="loginBox">
-               <!-- <a href="signin.html" class="btn btnHeader">SIGN IN</a>
-                     <a href="signup.html" class="btn btnHeader">SIGN UP</a> -->
-            </div>
-            <a href="javascript:;" class="mob-menu" id="menuShow">
-               <span class="menu-bar"></span>
-            </a>
          </nav>
       </div>
    </header>
