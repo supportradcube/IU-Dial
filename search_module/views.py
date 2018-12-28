@@ -29,3 +29,10 @@ class EnrollmentDetailsView(View):
 
     def get(self, request):
         return render(request, 'enrollment_details.html')
+
+
+class ErrorPage(View):
+    """Error Page View"""
+
+    def get(self, request):
+        return render(request, 'error_page.html')

@@ -16,6 +16,6 @@ urlpatterns = [
         name='course-details'),
     url(r'^enrollment-details$', views.EnrollmentDetailsView.as_view(),
         name='enrollment-details'),
-
+    url(r'^error', views.ErrorPage.as_view())
 
 ]

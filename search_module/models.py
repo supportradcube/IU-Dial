@@ -59,7 +59,8 @@ class RecipientDetails(models.Model):
 class StudentDetails(models.Model):
 
     qualtrics_detail = models.ForeignKey(
-        Qualtrics, on_delete=models.CASCADE, related_name="student_details"
+        Qualtrics, on_delete=models.CASCADE,
+        related_name="student_details"
     )
     UID = models.CharField(
         max_length=20, null=True, blank=True
@@ -144,7 +145,8 @@ class IUEducationDetails(models.Model):
 
 class VeteranDetails(models.Model):
     qualtrics_detail = models.ForeignKey(
-        Qualtrics, on_delete=models.CASCADE, related_name="veteran_details"
+        Qualtrics, on_delete=models.CASCADE,
+        related_name="veteran_details"
     )
     veteran_member = models.BooleanField(default=False)
     VETERAN_MEMBER = (
@@ -165,7 +167,8 @@ class VeteranDetails(models.Model):
 class CurrentAddress(models.Model):
 
     qualtrics_detail = models.ForeignKey(
-        Qualtrics, on_delete=models.CASCADE, related_name="current_address")
+        Qualtrics, on_delete=models.CASCADE,
+        related_name="current_address")
     address = models.TextField()
     city = models.CharField(
         max_length=40
@@ -192,7 +195,8 @@ class CurrentAddress(models.Model):
 class PermanentAddress(models.Model):
 
     qualtrics_detail = models.ForeignKey(
-        Qualtrics, on_delete=models.CASCADE, related_name="permanent_address"
+        Qualtrics, on_delete=models.CASCADE,
+        related_name="permanent_address"
     )
     address = models.TextField()
     city = models.CharField(
@@ -214,7 +218,8 @@ class PermanentAddress(models.Model):
 
 class FormerName(models.Model):
     qualtrics_detail = models.ForeignKey(
-        Qualtrics, on_delete=models.CASCADE, related_name="former_name"
+        Qualtrics, on_delete=models.CASCADE,
+        related_name="former_name"
     )
     former_name = models.BooleanField(default=False)
 
@@ -237,7 +242,8 @@ class FormerName(models.Model):
 
 class LegalDetails(models.Model):
     qualtrics_detail = models.ForeignKey(
-        Qualtrics, on_delete=models.CASCADE, related_name="legal_details")
+        Qualtrics, on_delete=models.CASCADE,
+        related_name="legal_details")
     full_name = models.CharField(max_length=80)
     formal_disciplinary_action = models.BooleanField(default=False)
     legal_charges = models.BooleanField(default=False)
@@ -249,7 +255,8 @@ class LegalDetails(models.Model):
 
 class OtherDetails(models.Model):
     qualtrics_detail = models.ForeignKey(
-        Qualtrics, on_delete=models.CASCADE, related_name="other_details")
+        Qualtrics, on_delete=models.CASCADE,
+        related_name="other_details")
     source = models.CharField(max_length=255)
     program_type = models.CharField(max_length=255)
     program_id = models.CharField(max_length=255)
