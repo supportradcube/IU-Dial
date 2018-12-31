@@ -7,11 +7,12 @@ function student_tab() {
 }
 
 function course_tab() {
+    
+    // document.getElementById("master-container").setAttribute('style', 'min-height: calc(90vh - 320px);');
     document.getElementById("student-search-criteria").style.display = "none";
     document.getElementById("enrollment-search-criteria").style.display = "none";
     document.getElementById("course-search-criteria").style.display = "block";
     document.getElementById("footer").setAttribute('style', 'margin-top:40px');
-
 }
 
 function enrollment_tab() {

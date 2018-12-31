@@ -391,7 +391,8 @@ nav>div a.nav-item.nav-link {
 	/* padding-bottom: 50px;  */
 	padding-bottom: 10px;
 	/* min-height: calc(100vh - 142px); */
-	min-height: calc(90vh - 142px);
+	/* min-height: calc(90vh - 142px); */
+	min-height: calc(90vh - 320px);
 }
 
 .nav-tabs .nav-link:focus,
