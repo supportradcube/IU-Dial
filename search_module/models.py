@@ -281,3 +281,5 @@ class OtherDetails(models.Model):
     class Meta:
         """docstring for meta"""
         verbose_name_plural = "Other Details"
+
+# ---------------------------------------------------------------------------
