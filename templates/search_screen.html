@@ -283,7 +283,7 @@
                            </tr>
                         </thead>
                         <tbody>
-                           <tr>
+                           <tr id="student-details_{{student.id}}">
                               <td scope="row">Mark Alex</td>
                               <td>1000645</td>
                               <td>Graduate</td>
@@ -295,7 +295,7 @@
                               <td>email@email.com</td>
                               <td>IU Bloomington</td>
                            </tr>
-                           <tr>
+                           <tr id="student-details_{{student.id}}">
                               <td scope="row">Mark Alex</td>
                               <td>1000645</td>
                               <td>Indiana University</td>
@@ -307,7 +307,7 @@
                               <td>email@email.com</td>
                               <td>IU Bloomington</td>
                            </tr>
-                           <tr>
+                           <tr id="student-details_{{student.id}}">
                               <td scope="row">Mark Alex</td>
                               <td>1000645</td>
                               <td>Graduate</td>
@@ -319,7 +319,7 @@
                               <td>email@email.com</td>
                               <td>IU Bloomington</td>
                            </tr>
-                           <tr>
+                           <tr id="student-details_{{student.id}}">
                               <td scope="row">Mark Alex</td>
                               <td>1000645</td>
                               <td>Trine University</td>
@@ -331,7 +331,7 @@
                               <td>email@email.com</td>
                               <td>IU Bloomington</td>
                            </tr>
-                           <tr>
+                           <tr id="student-details_{{student.id}}">
                               <td scope="row">Mark Alex</td>
                               <td>1000645</td>
                               <td>Graduate</td>
@@ -343,7 +343,7 @@
                               <td>email@email.com</td>
                               <td>IU Bloomington</td>
                            </tr>
-                           <tr>
+                           <tr id="student-details_{{student.id}}">
                               <td scope="row">Mark Alex</td>
                               <td>1000645</td>
                               <td>Graduate</td>
@@ -355,7 +355,7 @@
                               <td>email@email.com</td>
                               <td>IU Bloomington</td>
                            </tr>
-                           <tr>
+                           <tr id="student-details_{{student.id}}">
                               <td scope="row">Mark Alex</td>
                               <td>1000645</td>
                               <td>Graduate</td>
@@ -395,7 +395,7 @@
                            </tr>
                         </thead>
                         <tbody>
-                           <tr>
+                           <tr id="course-details_{{course.id}}">
                               <td scope="row">1</td>
                               <td>Mark</td>
                               <td>Otto</td>
@@ -406,7 +406,7 @@
                               <td>@mdo</td>
                               <td>@mdo</td>
                            </tr>
-                           <tr>
+                           <tr id="course-details_{{course.id}}">
                               <td scope="row">2</td>
                               <td>Jacob</td>
                               <td>Thornton</td>
@@ -417,7 +417,7 @@
                               <td>@mdo</td>
                               <td>@mdo</td>
                            </tr>
-                           <tr>
+                           <tr id="course-details_{{course.id}}">
                               <td scope="row">3</td>
                               <td>Larry</td>
                               <td>the Bird</td>
@@ -453,7 +453,7 @@
                            </tr>
                         </thead>
                         <tbody>
-                           <tr>
+                           <tr id="enrollment-details_{{enrollment.id}}">
                               <td scope="row">Gene Guilizzoni</td>
                               <td>Gene Guilizzoni</td>
                               <td>BIO509</td>
@@ -461,7 +461,7 @@
                               <td>Mariah Maclachlan</td>
                               <td>Valerie Liberty</td>
                            </tr>
-                           <tr>
+                           <tr id="enrollment-details_{{enrollment.id}}">
                               <td scope="row">Gene Guilizzoni</td>
                               <td>Marco Botton</td>
                               <td>BIO509</td>
@@ -469,7 +469,7 @@
                               <td>BIO509</td>
                               <td>BIO509</td>
                            </tr>
-                           <tr>
+                           <tr id="enrollment-details_{{enrollment.id}}">
                               <td scope="row">Gene Guilizzoni</td>
                               <td>Valerie Liberty</td>
                               <td>000204</td>
@@ -524,11 +524,15 @@
    </div>
 </div>
 <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-
-
 <script>
-   $("tr").click(function () {
+   $("#student-details").click(function () {
       window.location = "/student-details";
+   });
+   $("#course-details").click(function () {
+      window.location = "/course-details";
+   });
+   $("#enrollment-details").click(function () {
+      window.location = "/enrollment-details";
    });
 </script>
 {% endblock %}
