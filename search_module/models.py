@@ -282,4 +282,89 @@ class OtherDetails(models.Model):
         """docstring for meta"""
         verbose_name_plural = "Other Details"
 
-# ---------------------------------------------------------------------------
+# ---------------------- Grant Enrollemt Data ------------------------------
+
+
+class GrantEnrollmentData(models.Model):
+
+    class_number = models.PositiveIntegerField()
+    course_subject_code = models.CharField(max_length=10)
+    university_id = models.CharField(max_length=10)
+    academic_term_code = models.CharField(max_length=4)
+    grant_id = models.PositiveIntegerField()
+
+# ---------------------------- Grant Data -----------------------------------
+
+
+class Campus(models.Model):
+
+    campus_id = models.CharField(max_length=10)
+    campus = models.CharField(max_length=10)
+    grant_name = models.CharField(max_length=10)
+    account = models.CharField(max_length=10)
+    amount_total = models.FloatField()
+
+
+class Course(models.Model):
+
+    grant_en_data = models.ForeignKey(
+        GrantEnrollmentData, on_delete=models.CASCADE,
+        related_name="course_detail"
+    )
+    course_id = models.CharField(max_length=5)
+    course_desc = models.CharField(max_length=255)
+    # course_subject_code = models.CharField(max_length=10)
+    course_catlog_number = models.PositiveIntegerField()
+    course_official_grade_code = models.CharField(max_length=4)
+
+
+class Instructor(models.Model):
+    grant_en_data = models.ForeignKey(
+        GrantEnrollmentData, on_delete=models.CASCADE,
+        related_name="instructor_detail"
+    )
+    class_inst_name = models.CharField(max_length=80)
+    class_inst_gds_email = models.EmailField(max_length=255)
+
+# ------------------------- Application Data --------------------------------
+
+
+class Application(models.Model):
+
+    qualtrics_detail = models.ForeignKey(
+        Qualtrics, on_delete=models.CASCADE,
+        related_name="student_application"
+    )
+    grant_en_data = models.ForeignKey(
+        GrantEnrollmentData, on_delete=models.CASCADE,
+        related_name="application_university"
+    )
+    application_number = models.CharField(max_length=10)
+    row_effective_date = models.DateField()
+    academic_plan_code = models.CharField(max_length=15)
+    academic_program_code = models.CharField(max_length=15)
+    network_id = models.CharField(max_length=15)
+    campus_email = models.EmailField(
+        max_length=255, null=True, blank=True
+    )
+    other_email = models.EmailField(
+        max_length=255, null=True, blank=True
+    )
+
+# ------------------------- Enrollemt Data ----------------------------------
+
+
+class EnrollmentData(models.Model):
+
+    grant_en_data = models.ForeignKey(
+        GrantEnrollmentData, on_delete=models.CASCADE,
+        related_name="enrollment_grant"
+    )
+    course_details = models.ForeignKey(
+        Course, on_delete=models.CASCADE,
+        related_name="enrollment_course_detail"
+    )
+    instructor_details = models.ForeignKey(
+        Instructor, on_delete=models.CASCADE,
+        related_name="enrollment_instructor_detail"
+    )
