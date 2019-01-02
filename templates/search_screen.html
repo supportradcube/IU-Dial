@@ -261,10 +261,10 @@
             <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
 
                <!-- Student Table -->
-               
+
                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                   <div class="export-search-results">
-                     <button id="export-search-results" style="padding:5px; margin-left:950px;" type="submit" class="btn btn-primary btn-red">Export</button>
+                     <button id="export-search-results" style="padding:5px; margin-left:870px;" type="submit" class="btn btn-primary btn-red">Export</button>
                   </div>
                   <table class="table table-responsive">
                      <table class="table table-hover table-responsive table-section">
@@ -283,7 +283,7 @@
                            </tr>
                         </thead>
                         <tbody>
-                          <a></a> <tr>
+                           <tr>
                               <td scope="row">Mark Alex</td>
                               <td>1000645</td>
                               <td>Graduate</td>
@@ -377,7 +377,7 @@
 
                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                   <div class="export-search-results">
-                     <button id="export-search-results" style="padding:5px; margin-left:950px;" type="submit" class="btn btn-primary btn-red">Export</button>
+                     <button id="export-search-results" style="padding:5px; margin-left:870px;" type="submit" class="btn btn-primary btn-red">Export</button>
                   </div>
                   <table class="table table-responsive">
                      <table class="table table-hover table-responsive table-section">
@@ -438,7 +438,7 @@
 
                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                   <div class="export-search-results">
-                     <button id="export-search-results" style="padding:5px; margin-left:950px;" type="submit" class="btn btn-primary btn-red">Export</button>
+                     <button id="export-search-results" style="padding:5px; margin-left:870px;" type="submit" class="btn btn-primary btn-red">Export</button>
                   </div>
                   <table class="table table-responsive">
                      <table class="table table-hover table-responsive table-section">
@@ -523,5 +523,12 @@
       </div>
    </div>
 </div>
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
 
+
+<script>
+   $("tr").click(function () {
+      window.location = "/student-details";
+   });
+</script>
 {% endblock %}
