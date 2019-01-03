@@ -45,6 +45,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# AUTH_USER_MODEL = "search_module.MyUser"
+
 ROOT_URLCONF = 'iu_dual_credit.urls'
 
 TEMPLATES = [
