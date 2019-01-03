@@ -351,6 +351,7 @@ class Application(models.Model):
         max_length=255, null=True, blank=True
     )
 
+
 # ------------------------- Enrollemt Data ----------------------------------
 
 
