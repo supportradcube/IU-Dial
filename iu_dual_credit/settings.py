@@ -76,10 +76,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'dual_credit_db',
-        # 'USER': 'admin',
-        # 'PASSWORD': 'admin',
-        'USER': 'root',
-        # 'PASSWORD': 'root',
+        # localhost
+        'USER': 'admin',
+        'PASSWORD': 'admin',
+        # for staging
+        # 'USER': 'root',
         'HOST': "localhost",
         'PORT': ""
     }
