@@ -13,148 +13,148 @@ class MyUserManager(BaseUserManager):
         return user
 
 
-class MyUser(AbstractBaseUser):
-    """docstring for MyUser"""
-    email = models.EmailField(max_length=255, unique=True)
-    is_superuser = models.BooleanField(
-        'Super User', default=False
-    )
-    is_active = models.BooleanField(
-        'Active', default=False
-    )
-    created_at = models.DateTimeField(
-        auto_now_add=True
-    )
-    objects = MyUserManager()
-    USERNAME_FIELD = 'email'
+# class MyUser(AbstractBaseUser):
+#     """docstring for MyUser"""
+#     email = models.EmailField(max_length=255, unique=True)
+#     is_superuser = models.BooleanField(
+#         'Super User', default=False
+#     )
+#     is_active = models.BooleanField(
+#         'Active', default=False
+#     )
+#     created_at = models.DateTimeField(
+#         auto_now_add=True
+#     )
+#     objects = MyUserManager()
+#     USERNAME_FIELD = 'email'
 
-    def __str__(self):
-        """
-        :return: the email
-        """
-        return self.email
+#     def __str__(self):
+#         """
+#         :return: the email
+#         """
+#         return self.email
 
-# --------------------------------- Student ---------------------------------
+# # --------------------------------- Student ---------------------------------
 
 
-class Student(models.Model):
+# class Student(models.Model):
 
-    username = models.CharField(max_length=80)
-    uid = models.CharField(
-        max_length=20, null=True, blank=True
-    )
-    first_name = models.CharField(max_length=40)
-    last_name = models.CharField(max_length=40)
-    campus_of_enrollment = models.CharField(max_length=255)
-    STUDENT_TYPE = (
-        ("Graduate", "Graduate"),
-        ("Certification", "Certification")
-    )
-    student_type = models.CharField(
-        max_length=13, choices=STUDENT_TYPE
-    )
-    dc_partner = models.CharField(
-        max_length=255
-    )
-    currently_enrolled = models.BooleanField(default=False)
-    pending_enrollment_request = models.BooleanField(default=False)
+#     username = models.CharField(max_length=80)
+#     uid = models.CharField(
+#         max_length=20, null=True, blank=True
+#     )
+#     first_name = models.CharField(max_length=40)
+#     last_name = models.CharField(max_length=40)
+#     campus_of_enrollment = models.CharField(max_length=255)
+#     STUDENT_TYPE = (
+#         ("Graduate", "Graduate"),
+#         ("Certification", "Certification")
+#     )
+#     student_type = models.CharField(
+#         max_length=13, choices=STUDENT_TYPE
+#     )
+#     dc_partner = models.CharField(
+#         max_length=255
+#     )
+#     currently_enrolled = models.BooleanField(default=False)
+#     pending_enrollment_request = models.BooleanField(default=False)
 
-    student_name = models.CharField(max_length=80)
-    pending_course_request_date = models.DateField()
-    course_choice = models.CharField(max_length=255)
-    second_course_choice = models.CharField(max_length=255)
-    credit_hours_earned = models.PositiveIntegerField()
-    campus_affilation = models.CharField(
-        max_length=255
-    )
+#     student_name = models.CharField(max_length=80)
+#     pending_course_request_date = models.DateField()
+#     course_choice = models.CharField(max_length=255)
+#     second_course_choice = models.CharField(max_length=255)
+#     credit_hours_earned = models.PositiveIntegerField()
+#     campus_affilation = models.CharField(
+#         max_length=255
+#     )
 
-    date_of_birth = models.DateField()
-    citizenship = models.CharField(max_length=40)
-    gender = models.CharField(
-        max_length=6
-    )
-    gender_identity = models.CharField(
-        max_length=255
-    )
-    phone_number = models.CharField(
-        max_length=20
-    )
-    CONTACT_METHOD = (
-        ("Text", "Text"),
-        ("Call", "Call"),
-        ("Text,Call", "Text,Call")
-    )
-    contact_method = models.CharField(
-        max_length=10, choices=CONTACT_METHOD
-    )
-    email = models.EmailField(
-        max_length=255
-    )
+#     date_of_birth = models.DateField()
+#     citizenship = models.CharField(max_length=40)
+#     gender = models.CharField(
+#         max_length=6
+#     )
+#     gender_identity = models.CharField(
+#         max_length=255
+#     )
+#     phone_number = models.CharField(
+#         max_length=20
+#     )
+#     CONTACT_METHOD = (
+#         ("Text", "Text"),
+#         ("Call", "Call"),
+#         ("Text,Call", "Text,Call")
+#     )
+#     contact_method = models.CharField(
+#         max_length=10, choices=CONTACT_METHOD
+#     )
+#     email = models.EmailField(
+#         max_length=255
+#     )
 
-    # former names
+#     # former names
 
-    former_name = models.BooleanField(default=False)
+#     former_name = models.BooleanField(default=False)
 
-    former_name_1 = models.CharField(
-        max_length=80
-    )
-    former_name_2 = models.CharField(
-        max_length=80
-    )
-    former_name_3 = models.CharField(
-        max_length=80
-    )
-    former_name_4 = models.CharField(
-        max_length=80
-    )
-    former_name_5 = models.CharField(
-        max_length=80
-    )
+#     former_name_1 = models.CharField(
+#         max_length=80
+#     )
+#     former_name_2 = models.CharField(
+#         max_length=80
+#     )
+#     former_name_3 = models.CharField(
+#         max_length=80
+#     )
+#     former_name_4 = models.CharField(
+#         max_length=80
+#     )
+#     former_name_5 = models.CharField(
+#         max_length=80
+#     )
 
-    # current address
+#     # current address
 
-    address = models.TextField()
-    city = models.CharField(
-        max_length=40
-    )
-    state = models.CharField(
-        "State/Province/Region", max_length=150
-    )
-    postal_code = models.CharField(
-        max_length=12
-    )
-    country = models.CharField(
-        max_length=40
-    )
-    residency_in_indiana = models.CharField(max_length=50)
-    is_permanent_mailing_address = models.BooleanField(
-        default=False
-    )
+#     address = models.TextField()
+#     city = models.CharField(
+#         max_length=40
+#     )
+#     state = models.CharField(
+#         "State/Province/Region", max_length=150
+#     )
+#     postal_code = models.CharField(
+#         max_length=12
+#     )
+#     country = models.CharField(
+#         max_length=40
+#     )
+#     residency_in_indiana = models.CharField(max_length=50)
+#     is_permanent_mailing_address = models.BooleanField(
+#         default=False
+#     )
 
-    # permanent address
+#     # permanent address
 
-    permanent_address = models.TextField()
-    permanent_city = models.CharField(
-        max_length=40
-    )
-    permanent_state = models.CharField(
-        "State/Province/Region", max_length=150)
-    permanent_postal_code = models.CharField(
-        max_length=5
-    )
-    permanent_country = models.CharField(
-        max_length=40
-    )
+#     permanent_address = models.TextField()
+#     permanent_city = models.CharField(
+#         max_length=40
+#     )
+#     permanent_state = models.CharField(
+#         "State/Province/Region", max_length=150)
+#     permanent_postal_code = models.CharField(
+#         max_length=5
+#     )
+#     permanent_country = models.CharField(
+#         max_length=40
+#     )
 
-    def __str__(self):
-        """
-        :return: the id
-        """
-        return self.id
+#     def __str__(self):
+#         """
+#         :return: the id
+#         """
+#         return self.id
 
-    class Meta:
-        """docstring for meta"""
-        verbose_name_plural = "Student"
+#     class Meta:
+#         """docstring for meta"""
+#         verbose_name_plural = "Student"
 
 
 # --------------------------- Qualtrics Database ---------------------------
