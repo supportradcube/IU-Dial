@@ -59,6 +59,7 @@ class Student(models.Model):
     currently_enrolled = models.BooleanField(default=False)
     pending_enrollment_request = models.BooleanField(default=False)
 
+    student_name = models.CharField(max_length=80)
     pending_course_request_date = models.DateField()
     course_choice = models.CharField(max_length=255)
     second_course_choice = models.CharField(max_length=255)
