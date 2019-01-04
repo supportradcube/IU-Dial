@@ -79,7 +79,7 @@ DATABASES = {
         # 'USER': 'admin',
         # 'PASSWORD': 'admin',
         'USER': 'root',
-        'PASSWORD': 'root',
+        'PASSWORD': 'YES',
         'HOST': "",
         'PORT': ""
     }
