@@ -15,7 +15,7 @@ class MyUserManager(BaseUserManager):
 
 class MyUser(AbstractBaseUser):
     """docstring for MyUser"""
-    email = models.EmailField(max_length=255, unique=True)
+    email = models.EmailField(max_length=40, unique=True)
     is_superuser = models.BooleanField(
         'Super User', default=False
     )
@@ -26,7 +26,7 @@ class MyUser(AbstractBaseUser):
         auto_now_add=True
     )
     objects = MyUserManager()
-    USERNAME_FIELD = 'email'
+    # USERNAME_FIELD = 'email'
 
     def __str__(self):
         """
@@ -34,18 +34,18 @@ class MyUser(AbstractBaseUser):
         """
         return self.email
 
-# --------------------------------- Student ---------------------------------
+# ----------------------------- Student Module ------------------------------
 
 
 class Student(models.Model):
 
-    username = models.CharField(max_length=80)
+    username = models.CharField(max_length=40)
     uid = models.CharField(
         max_length=20, null=True, blank=True
     )
     first_name = models.CharField(max_length=40)
     last_name = models.CharField(max_length=40)
-    campus_of_enrollment = models.CharField(max_length=255)
+    campus_of_enrollment = models.CharField(max_length=100)
     STUDENT_TYPE = (
         ("Graduate", "Graduate"),
         ("Certification", "Certification")
@@ -54,27 +54,26 @@ class Student(models.Model):
         max_length=13, choices=STUDENT_TYPE
     )
     dc_partner = models.CharField(
-        max_length=255
+        max_length=100
     )
     currently_enrolled = models.BooleanField(default=False)
     pending_enrollment_request = models.BooleanField(default=False)
 
-    student_name = models.CharField(max_length=80)
+    student_name = models.CharField(max_length=40)
     pending_course_request_date = models.DateField()
-    course_choice = models.CharField(max_length=255)
-    second_course_choice = models.CharField(max_length=255)
+    course_choice = models.CharField(max_length=50)
+    second_course_choice = models.CharField(max_length=50)
     credit_hours_earned = models.PositiveIntegerField()
     campus_affilation = models.CharField(
-        max_length=255
+        max_length=100
     )
-
     date_of_birth = models.DateField()
     citizenship = models.CharField(max_length=40)
     gender = models.CharField(
         max_length=6
     )
     gender_identity = models.CharField(
-        max_length=255
+        max_length=100
     )
     phone_number = models.CharField(
         max_length=20
@@ -88,7 +87,7 @@ class Student(models.Model):
         max_length=10, choices=CONTACT_METHOD
     )
     email = models.EmailField(
-        max_length=255
+        max_length=40
     )
 
     # former names
@@ -96,19 +95,37 @@ class Student(models.Model):
     former_name = models.BooleanField(default=False)
 
     former_name_1 = models.CharField(
-        max_length=80
+        max_length=40
     )
     former_name_2 = models.CharField(
-        max_length=80
+        max_length=40
     )
     former_name_3 = models.CharField(
-        max_length=80
+        max_length=40
     )
     former_name_4 = models.CharField(
-        max_length=80
+        max_length=40
     )
     former_name_5 = models.CharField(
-        max_length=80
+        max_length=40
+    )
+
+    def __str__(self):
+        """
+        :return: the id
+        """
+        return self.id
+
+    class Meta:
+        """docstring for meta"""
+        verbose_name_plural = "Student"
+
+
+class Address(models.Model):
+
+    student = models.ForeignKey(
+        Student, on_delete=models.CASCADE,
+        related_name="student_address"
     )
 
     # current address
@@ -118,7 +135,7 @@ class Student(models.Model):
         max_length=40
     )
     state = models.CharField(
-        "State/Province/Region", max_length=150
+        "State/Province/Region", max_length=40
     )
     postal_code = models.CharField(
         max_length=12
@@ -126,7 +143,7 @@ class Student(models.Model):
     country = models.CharField(
         max_length=40
     )
-    residency_in_indiana = models.CharField(max_length=50)
+    residency_in_indiana = models.CharField(max_length=40)
     is_permanent_mailing_address = models.BooleanField(
         default=False
     )
@@ -148,13 +165,91 @@ class Student(models.Model):
 
     def __str__(self):
         """
-        :return: the id
+        :return: the student
         """
-        return self.id
+        return self.student
+
+
+class EducatorRole(models.Model):
+    student = models.ForeignKey(
+        Student, on_delete=models.CASCADE, related_name="role"
+    )
+    role = models.TextField()
+
+
+class InstituteAffilation(models.Model):
+    student = models.ForeignKey(
+        Student, on_delete=models.CASCADE, related_name="affilation"
+    )
+    institute = models.CharField(max_length=100)
+
+
+class IUEducationDetails(models.Model):
+
+    student = models.ForeignKey(
+        Student, on_delete=models.CASCADE, related_name="iu_education_details")
+
+    qualtrics_application_id = models.CharField(max_length=40)
+    qualtrics_completion_date = models.DateField()
+    requested_start_date = models.DateField()
+    # dc_partner = models.CharField(max_length=100)
+    # currently_enrolled = models.BooleanField(default=False)
+    required_teaching_experience = models.BooleanField(default=False)
+    highest_degree = models.CharField(max_length=100)
+    state_licensure = models.BooleanField(default=False)
+    previous_classwork = models.BooleanField(default=False)
+    previous_name = models.CharField(max_length=80)
+
+    educator_role = models.ManyToManyField(
+        EducatorRole, related_name="educator_role"
+    )
+    institution_affilation = models.ManyToManyField(
+        InstituteAffilation, related_name="institution_affolation"
+    )
+
+    def __str__(self):
+        """
+        :return: the student
+        """
+        return self.student
 
     class Meta:
         """docstring for meta"""
-        verbose_name_plural = "Student"
+        verbose_name_plural = "Education Details"
+
+
+class OtherInformation(models.Model):
+    student = models.ForeignKey(
+        Student, on_delete=models.CASCADE,
+        related_name="veteran_details"
+    )
+    veteran_member = models.BooleanField(default=False)
+    VETERAN_MEMBER = (
+        ("No", "No"),
+        ("Spouse", "Spouse"),
+        ("Parent/Guardian", "Parent/Guardian")
+    )
+    veteran_family_member = models.CharField(
+        max_length=40, choices=VETERAN_MEMBER
+    )
+    educational_benefits = models.BooleanField(default=False)
+
+    formal_disciplinary_action = models.BooleanField(default=False)
+    legal_charges = models.BooleanField(default=False)
+    pending_criminal_charges = models.BooleanField(default=False)
+    restraining_order = models.BooleanField(
+        "Injury to Person/Property", default=False
+    )
+
+    def __str__(self):
+        """
+        :return: the student
+        """
+        return self.student
+
+    class Meta:
+        """docstring for meta"""
+        verbose_name_plural = "Veteran/Legal Details"
 
 
 # --------------------------- Qualtrics Database ---------------------------
@@ -297,27 +392,6 @@ class Student(models.Model):
 #     class Meta:
 #         """docstring for meta"""
 #         verbose_name_plural = "Student IU Details"
-
-
-# class VeteranDetails(models.Model):
-#     qualtrics_detail = models.ForeignKey(
-#         Qualtrics, on_delete=models.CASCADE,
-#         related_name="veteran_details"
-#     )
-#     veteran_member = models.BooleanField(default=False)
-#     VETERAN_MEMBER = (
-#         ("No", "No"),
-#         ("Spouse", "Spouse"),
-#         ("Parent/Guardian", "Parent/Guardian")
-#     )
-#     veteran_family_member = models.CharField(
-#         max_length=40, choices=VETERAN_MEMBER
-#     )
-#     educational_benefits = models.BooleanField(default=False)
-
-#     class Meta:
-#         """docstring for meta"""
-#         verbose_name_plural = "Veteran Details"
 
 
 # class CurrentAddress(models.Model):
