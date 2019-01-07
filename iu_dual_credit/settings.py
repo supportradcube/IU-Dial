@@ -81,7 +81,7 @@ DATABASES = {
         'PASSWORD': 'admin',
         # for staging
         # 'USER': 'root',
-        'HOST': "localhost",
+        # 'HOST': "localhost",
         'PORT': ""
     }
 }
