@@ -1,6 +1,8 @@
+import uuid
 from django.db import models
 from languages.fields import LanguageField
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
+from django.contrib.auth.models import PermissionsMixin
 
 
 class MyUserManager(BaseUserManager):
@@ -8,16 +10,20 @@ class MyUserManager(BaseUserManager):
         user = self.model(email=email)
         user.set_password(password)
         user.is_superuser = True
+        user.is_staff = True
         user.is_active = True
         user.save(using=self._db)
         return user
 
 
-class MyUser(AbstractBaseUser):
+class MyUser(AbstractBaseUser, PermissionsMixin):
     """docstring for MyUser"""
     email = models.EmailField(max_length=40, unique=True)
     is_superuser = models.BooleanField(
         'Super User', default=False
+    )
+    is_staff = models.BooleanField(
+        'Staff User', default=False
     )
     is_active = models.BooleanField(
         'Active', default=False
@@ -26,7 +32,7 @@ class MyUser(AbstractBaseUser):
         auto_now_add=True
     )
     objects = MyUserManager()
-    # USERNAME_FIELD = 'email'
+    USERNAME_FIELD = 'email'
 
     def __str__(self):
         """
@@ -34,11 +40,23 @@ class MyUser(AbstractBaseUser):
         """
         return self.email
 
+    def get_short_name(self):
+        "Returns the short name for the user."
+        return self.email
+
+    class Meta:
+        """docstring for meta"""
+        verbose_name_plural = "User Management"
+
+
 # ----------------------------- Student Module ------------------------------
 
 
 class Student(models.Model):
 
+    uuid = models.UUIDField(
+        default=uuid.uuid4, editable=False
+    )
     username = models.CharField(max_length=40)
     uid = models.CharField(
         max_length=20, null=True, blank=True
@@ -114,7 +132,7 @@ class Student(models.Model):
         """
         :return: the id
         """
-        return self.id
+        return str(self.id)
 
     class Meta:
         """docstring for meta"""
@@ -167,7 +185,7 @@ class Address(models.Model):
         """
         :return: the student
         """
-        return self.student
+        return str(self.student)
 
 
 class EducatorRole(models.Model):

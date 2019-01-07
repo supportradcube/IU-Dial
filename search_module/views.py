@@ -7,14 +7,16 @@ class StudentSearchView(View):
     """Landing page / Search screen View"""
 
     def get(self, request):
-        return render(request, 'search_screen.html')
+        students = Student.objects.all()
+        return render(request, 'search_screen.html', {'students': students, })
 
 
 class StudentDetailsView(View):
     """Student Details View"""
 
-    def get(self, request):
-        return render(request, 'student_details.html')
+    def get(self, request, student_id):
+        student = Student.objects.get(uuid=student_id)
+        return render(request, 'student_details.html', {'student': student, })
 
 
 class CourseDetailsView(View):

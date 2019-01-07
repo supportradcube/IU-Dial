@@ -11,32 +11,32 @@
         <div class="col-md-6">
           <div class="margin: 0 auto;">
             <ul class="mb0 listing">
-              <li><label>Student Name:</label><span>Jane Doe</li>
-              <li><label>Username:</label><span>jdoe</span></li>
+              <li><label>Student Name:</label><span>{{student.student_name}}</li>
+              <li><label>Username:</label><span>{{student.username}}</span></li>
             </ul>
             <ul class="mb0 listing">
               <li class="d-flex justify-content-between align-items-center"><label>UID:</label><span style="width: 50%;"><input
-                    type="text" class="form-control" id="uid" aria-describedby="emailHelp"></li>
-              <li><label>Date of Birth:</label><span>02/21/1985</span></li>
+                    type="text" class="form-control" id="uid" aria-describedby="emailHelp" {% if student.uid %} value="{{student.uid}}"{% endif %}></li>
+              <li><label>Date of Birth:</label><span>{{student.date_of_birth}}</span></li>
             </ul>
             <ul class="mb0 listing">
-              <li><label>Citizenship:</label><span>U.S. Citizen</span></li>
-              <li><label>Student Type:</label><span>Graduate Certificate</span></li>
+              <li><label>Citizenship:</label><span>{{student.citizenship}}</span></li>
+              <li><label>Student Type:</label><span>{{student.student_type}}</span></li>
             </ul>
           </div>
         </div>
         <div class="col-md-6">
           <div class="margin: 0 auto;">
             <ul class="mb0 listing">
-              <li><label>Legal Sex:</label><span>Female</li>
+              <li><label>Legal Sex:</label><span>{{student.gender}}</li>
               <li><label>Gender Identity:</label><span>N/A</span></li>
             </ul>
             <ul class="mb0 listing">
-              <li><label>Phone Number:</label><span>(317) 317-3177</a></li>
-              <li><label>Contact Method:</label><span>Text, Call</span></li>
+              <li><label>Phone Number:</label><span>{{student.phone_number}}</a></li>
+              <li><label>Contact Method:</label><span>{{student.contact_method}}</span></li>
             </ul>
             <ul class="mb0 listing">
-              <li><label>Email:</label><span>jane.doe@gmail.com</span></li>
+              <li><label>Email:</label><span>{{student.email}}</span></li>
             </ul>
           </div>
         </div>
@@ -53,33 +53,39 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>Stephanie Guilizzoni</td>
+                  <td>{{student.former_name_1}}</td>
                 </tr>
                 <tr>
-                  <td>Stephanie Botton</td>
+                  <td>{{student.former_name_2}}</td>
                 </tr>
                 <tr>
-                  <td>Steph Marcovellie</td>
+                  <td>{{student.former_name_3}}</td>
                 </tr>
+                <tr>
+                    <td>{{student.former_name_4}}</td>
+                </tr>
+                <tr>
+                    <td>{{student.former_name_5}}</td>
+                  </tr>
               </tbody>
             </table>
           </div>
-          <p>Documents sent under another Name: <span>Yes</span></p>
+          <p>Documents sent under another Name: <span>{% if student.former_name %}Yes{% else %}No{% endif %}</span></p>
         </div>
         <div class="col-md-6 mt20">
           <div class="margin: 0 auto;">
             <ul class="mb0 listing">
+              {% for address in student.student_address.all %}
               <li><label style="margin-bottom:5px;">Current Mailing Address: </label><br>
-                <span style="width:300%;">1234 Main St Anderson, Indiana 46013,United States</span>
-                <!-- <span>1234 Main St Anderson, Indiana 46013,United States</span> -->
+                <span style="width:300%;">{{address.address}}, {{address.city}}, {{address.state}}, {{address.postal_code}},{{address.country}}</span>
               </li><br>
               <li><label style="margin-bottom:5px;">Permanent Mailing Address:</label> <br>
-                <span style="width:300%;">1234 Main St Anderson, Indiana 46013,United States</span>
-                <!-- <span>1234 Main St Anderson, Indiana 46013,United States</span> -->
+                <span style="width:300%;">{{address.permanent_address}}, {{address.permanent_city}}, {{address.permanent_state}}, {{address.permanent_postal_code}},{{address.permanent_country}}</span>
               </li><br>
               <li><label style="margin-bottom:5px;">Residency in Indiana:</label><br>
-                <span style="width:300%;">More than 12 months</span>
+                <span style="width:300%;">{{address.residency_in_indiana}}</span>
               </li>
+              {% endfor %}
             </ul>
           </div>
         </div>

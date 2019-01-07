@@ -283,90 +283,20 @@
                            </tr>
                         </thead>
                         <tbody>
-                           <tr id="student-details_{{student.id}}">
-                              <td scope="row">Mark Alex</td>
-                              <td>1000645</td>
-                              <td>Graduate</td>
-                              <td>Ivy Tech</td>
-                              <td>10/01/2018</td>
-                              <td>L500</td>
-                              <td>BIO512</td>
-                              <td>27</td>
-                              <td>email@email.com</td>
-                              <td>IU Bloomington</td>
+                           {% for student in students %}
+                           <tr class="student-details" id="{{student.uuid}}">
+                              <td scope="row">{{student.student_name}}</td>
+                              <td>{% if student.uid == None %}-{% else %}{{student.uid}}{% endif %}</td>
+                              <td>{{student.student_type}}</td>
+                              <td>{{student.dc_partner}}</td>
+                              <td>{{student.pending_course_request_date|date:'d/m/Y'}}</td>
+                              <td>{{student.course_choice}}</td>
+                              <td>{{student.second_course_choice}}</td>
+                              <td>{{student.credit_hours_earned}}</td>
+                              <td>{{student.email}}</td>
+                              <td>{{student.campus_affilation}}</td>
                            </tr>
-                           <tr id="student-details_{{student.id}}">
-                              <td scope="row">Mark Alex</td>
-                              <td>1000645</td>
-                              <td>Indiana University</td>
-                              <td>Ivy Tech</td>
-                              <td>10/01/2018</td>
-                              <td>L500</td>
-                              <td>BIO512</td>
-                              <td>27</td>
-                              <td>email@email.com</td>
-                              <td>IU Bloomington</td>
-                           </tr>
-                           <tr id="student-details_{{student.id}}">
-                              <td scope="row">Mark Alex</td>
-                              <td>1000645</td>
-                              <td>Graduate</td>
-                              <td>Ivy Tech</td>
-                              <td>10/01/2018</td>
-                              <td>L500</td>
-                              <td>BIO512</td>
-                              <td>27</td>
-                              <td>email@email.com</td>
-                              <td>IU Bloomington</td>
-                           </tr>
-                           <tr id="student-details_{{student.id}}">
-                              <td scope="row">Mark Alex</td>
-                              <td>1000645</td>
-                              <td>Trine University</td>
-                              <td>Ivy Tech</td>
-                              <td>10/01/2018</td>
-                              <td>L500</td>
-                              <td>BIO512</td>
-                              <td>27</td>
-                              <td>email@email.com</td>
-                              <td>IU Bloomington</td>
-                           </tr>
-                           <tr id="student-details_{{student.id}}">
-                              <td scope="row">Mark Alex</td>
-                              <td>1000645</td>
-                              <td>Graduate</td>
-                              <td>Ivy Tech</td>
-                              <td>10/01/2018</td>
-                              <td>L500</td>
-                              <td>BIO512</td>
-                              <td>27</td>
-                              <td>email@email.com</td>
-                              <td>IU Bloomington</td>
-                           </tr>
-                           <tr id="student-details_{{student.id}}">
-                              <td scope="row">Mark Alex</td>
-                              <td>1000645</td>
-                              <td>Graduate</td>
-                              <td>Ivy Tech</td>
-                              <td>10/01/2018</td>
-                              <td>L500</td>
-                              <td>BIO512</td>
-                              <td>27</td>
-                              <td>email@email.com</td>
-                              <td>IU Bloomington</td>
-                           </tr>
-                           <tr id="student-details_{{student.id}}">
-                              <td scope="row">Mark Alex</td>
-                              <td>1000645</td>
-                              <td>Graduate</td>
-                              <td>Ivy Tech</td>
-                              <td>10/01/2018</td>
-                              <td>L500</td>
-                              <td>BIO512</td>
-                              <td>27</td>
-                              <td>email@email.com</td>
-                              <td>IU Bloomington</td>
-                           </tr>
+                           {% endfor %}
                         </tbody>
                      </table>
                </div>
@@ -525,14 +455,10 @@
 </div>
 <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
 <script>
-   $("#student-details").click(function () {
-      window.location = "/student-details";
-   });
-   $("#course-details").click(function () {
-      window.location = "/course-details";
-   });
-   $("#enrollment-details").click(function () {
-      window.location = "/enrollment-details";
+
+   $('tr').bind('click', function () {
+      student_id = this.id;
+      window.location = "/student-details/"+student_id
    });
 </script>
 {% endblock %}
