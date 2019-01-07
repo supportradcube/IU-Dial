@@ -19,6 +19,16 @@ class StudentDetailsView(View):
         return render(request, 'student_details.html', {'student': student, })
 
 
+class UpdateStudentUidView(View):
+    """Student Uid Update View"""
+
+    def post(self, request, student_id):
+        student = Student.objects.get(uuid=student_id)
+        student.uid = request.POST['uid']
+        student.save()
+        return render(request, 'student_details.html', {'student': student, })
+
+
 class CourseDetailsView(View):
     """Course Details View"""
 

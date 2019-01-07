@@ -14,9 +14,12 @@
               <li><label>Student Name:</label><span>{{student.student_name}}</li>
               <li><label>Username:</label><span>{{student.username}}</span></li>
             </ul>
+<form method="POST" action="{% url 'search_module:update-uid' student.uuid %}">
+  {% csrf_token %}
             <ul class="mb0 listing">
               <li class="d-flex justify-content-between align-items-center"><label>UID:</label><span style="width: 50%;"><input
-                    type="text" class="form-control" id="uid" aria-describedby="emailHelp" {% if student.uid %} value="{{student.uid}}"{% endif %}></li>
+                    type="text" name="uid" class="form-control" id="uid" aria-describedby="emailHelp" required {% if student.uid %} value="{{student.uid}}"
+                    {% endif %}></li>
               <li><label>Date of Birth:</label><span>{{student.date_of_birth}}</span></li>
             </ul>
             <ul class="mb0 listing">
@@ -42,6 +45,7 @@
         </div>
         <div class="col-md-6 mt20">
           <div style="box-shadow: 0px 0px 10px #ccc">
+              {% if student.former_name %}
             <div class="red">
               <h5>Former Name(s)</h5>
             </div>
@@ -52,23 +56,34 @@
                 </tr>
               </thead>
               <tbody>
+                {% if student.former_name_1 %}
                 <tr>
                   <td>{{student.former_name_1}}</td>
                 </tr>
+                {% endif %}
+                {% if student.former_name_2 %}
                 <tr>
                   <td>{{student.former_name_2}}</td>
                 </tr>
+                {% endif %}
+                {% if student.former_name_3 %}
                 <tr>
                   <td>{{student.former_name_3}}</td>
                 </tr>
+                {% endif %}
+                {% if student.former_name_4 %}
                 <tr>
-                    <td>{{student.former_name_4}}</td>
+                  <td>{{student.former_name_4}}</td>
                 </tr>
+                {% endif %}
+                {% if student.former_name_5 %}
                 <tr>
-                    <td>{{student.former_name_5}}</td>
-                  </tr>
+                  <td>{{student.former_name_5}}</td>
+                </tr>
+                {% endif %}
               </tbody>
             </table>
+            {% endif %}
           </div>
           <p>Documents sent under another Name: <span>{% if student.former_name %}Yes{% else %}No{% endif %}</span></p>
         </div>
@@ -77,10 +92,12 @@
             <ul class="mb0 listing">
               {% for address in student.student_address.all %}
               <li><label style="margin-bottom:5px;">Current Mailing Address: </label><br>
-                <span style="width:300%;">{{address.address}}, {{address.city}}, {{address.state}}, {{address.postal_code}},{{address.country}}</span>
+                <span style="width:300%;">{{address.address}}, {{address.city}}, {{address.state}},
+                  {{address.postal_code}},{{address.country}}</span>
               </li><br>
               <li><label style="margin-bottom:5px;">Permanent Mailing Address:</label> <br>
-                <span style="width:300%;">{{address.permanent_address}}, {{address.permanent_city}}, {{address.permanent_state}}, {{address.permanent_postal_code}},{{address.permanent_country}}</span>
+                <span style="width:300%;">{{address.permanent_address}}, {{address.permanent_city}},
+                  {{address.permanent_state}}, {{address.permanent_postal_code}},{{address.permanent_country}}</span>
               </li><br>
               <li><label style="margin-bottom:5px;">Residency in Indiana:</label><br>
                 <span style="width:300%;">{{address.residency_in_indiana}}</span>
@@ -90,8 +107,9 @@
           </div>
         </div>
         <div class="d-flex align-items-center justify-content-center" style="margin: 0 auto">
-          <button type="submit" class="btn btn-primary btn-red">Save</button>
+          <button type="submit" style="margin-top: 10px;" class="btn btn-primary btn-red">Save</button>
         </div>
+      </form>
       </div>
     </div>
   </div>

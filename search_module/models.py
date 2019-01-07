@@ -113,19 +113,19 @@ class Student(models.Model):
     former_name = models.BooleanField(default=False)
 
     former_name_1 = models.CharField(
-        max_length=40
+        max_length=40, null=True, blank=True
     )
     former_name_2 = models.CharField(
-        max_length=40
+        max_length=40, null=True, blank=True
     )
     former_name_3 = models.CharField(
-        max_length=40
+        max_length=40, null=True, blank=True
     )
     former_name_4 = models.CharField(
-        max_length=40
+        max_length=40, null=True, blank=True
     )
     former_name_5 = models.CharField(
-        max_length=40
+        max_length=40, null=True, blank=True
     )
 
     def __str__(self):
