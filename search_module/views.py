@@ -48,6 +48,7 @@ class AddCommentView(View):
 
     def post(self, request):
         print(request.POST)
+        pass
 
 
 # ------------------------ Course Module -----------------------------------
