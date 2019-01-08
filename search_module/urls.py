@@ -9,10 +9,12 @@ app_name = 'search_module'
 
 urlpatterns = [
 
-    url(r'^$', views.StudentSearchView.as_view(), name='search'),
+    url(r'^$', views.SearchScreenView.as_view(), name='search'),
 
     # Student Module
 
+    url(r'^student-search$', views.StudentSearchView.as_view(), name='student-search'
+        ),
     url(r'^student-details/(?P<student_id>[0-9a-f-]+)$', views.StudentDetailsView.as_view(), name='student-details'
         ),
     url(r'^update-uid/(?P<student_id>[0-9a-f-]+)$', views.UpdateStudentUidView.as_view(), name='update-uid'
