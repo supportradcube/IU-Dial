@@ -75,10 +75,10 @@ WSGI_APPLICATION = 'iu_dual_credit.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dual_credit_db',
+        'NAME': 'dual_credit_db1',
         # localhost
-        'USER': 'admin',
-        'PASSWORD': 'admin',
+        'USER': 'root',
+        'PASSWORD': 'rootpassword',
         # for staging
         # 'USER': 'root',
         'HOST': "localhost",

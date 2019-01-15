@@ -175,7 +175,7 @@ class Address(models.Model):
     permanent_state = models.CharField(
         "State/Province/Region", max_length=150)
     permanent_postal_code = models.CharField(
-        max_length=5
+        max_length=6
     )
     permanent_country = models.CharField(
         max_length=40
