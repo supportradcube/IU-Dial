@@ -425,7 +425,7 @@ class OtherInformation(models.Model):
 #         "State/Province/Region", max_length=150
 #     )
 #     postal_code = models.CharField(
-#         max_length=12
+#         max_length=6
 #     )
 #     country = models.CharField(
 #         max_length=40
@@ -550,13 +550,13 @@ class OtherInformation(models.Model):
 # # ---------------------- Grant Enrollemt Data -------------------------------
 
 
-# class GrantEnrollmentData(models.Model):
+class GrantEnrollmentData(models.Model):
 
-#     class_number = models.PositiveIntegerField()
-#     course_subject_code = models.CharField(max_length=10)
-#     university_id = models.CharField(max_length=10)
-#     academic_term_code = models.CharField(max_length=4)
-#     grant_id = models.PositiveIntegerField()
+    class_number = models.PositiveIntegerField()
+    course_subject_code = models.CharField(max_length=10)
+    university_id = models.CharField(max_length=10)
+    academic_term_code = models.CharField(max_length=4)
+    grant_id = models.PositiveIntegerField()
 
 # # ---------------------------- Grant Data -----------------------------------
 
@@ -570,17 +570,17 @@ class OtherInformation(models.Model):
 #     amount_total = models.FloatField()
 
 
-# class Course(models.Model):
+class Course(models.Model):
 
-#     grant_en_data = models.ForeignKey(
-#         GrantEnrollmentData, on_delete=models.CASCADE,
-#         related_name="course_detail"
-#     )
-#     course_id = models.CharField(max_length=5)
-#     course_desc = models.CharField(max_length=255)
-#     # course_subject_code = models.CharField(max_length=10)
-#     course_catlog_number = models.PositiveIntegerField()
-#     course_official_grade_code = models.CharField(max_length=4)
+    grant_en_data = models.ForeignKey(
+        GrantEnrollmentData, on_delete=models.CASCADE,
+        related_name="course_detail"
+    )
+    course_id = models.CharField(max_length=5)
+    course_desc = models.CharField(max_length=255)
+    course_subject_code = models.CharField(max_length=10)
+    course_catlog_number = models.PositiveIntegerField()
+    course_official_grade_code = models.CharField(max_length=4)
 
 
 # class Instructor(models.Model):

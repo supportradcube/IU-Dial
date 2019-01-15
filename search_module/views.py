@@ -8,8 +8,7 @@ class SearchScreenView(View):
     """Landing page / Search screen View"""
 
     def get(self, request):
-        students = Student.objects.all()
-        return render(request, 'search_screen.html', {'students': students, })
+        return render(request, 'search_screen.html')
 
 # ------------------------ Student Module -----------------------------------
 
@@ -19,10 +18,30 @@ class StudentSearchView(View):
 
     def post(self, request):
         print(request.POST)
-        students = Student.objects.filter(Q(username__icontains=request.POST['username']) | Q(uid__icontains=request.POST['uid']) | Q(
-            first_name__icontains=request.POST['first_name']) | Q(last_name__icontains=request.POST['last_name']) | Q(campus_of_enrollment__icontains=request.POST['enrollment_campus']) | Q(student_type__icontains=request.POST['student_type']) | Q(dc_partner__icontains=request.POST['dc_partner']))
+        students=Student.objects.all()
+    
+        # students = Student.objects.filter(first_name__startswith=request.POST['first_name'])
+    
+        students = Student.objects.filter(Q(username__startswith=request.POST['username']) | Q(uid__startswith=request.POST['uid']) | Q(
+            first_name__startswith=request.POST['first_name']) | Q(last_name__startswith=request.POST['last_name']) | Q(campus_of_enrollment__startswith=request.POST['enrollment_campus']) | Q(student_type__startswith=request.POST['student_type']) | Q(dc_partner__startswith=request.POST['dc_partner']))
         print("Search Results : ", students)
-        return render(request, 'search_screen.html', {'students': students, })
+        return render(request, 'search_screen.html', {'students': students })
+       
+       
+# class StudentSearchView(View):
+#     def get(request):
+#         students = Student.objects.all()
+#         search=Student(request.POST)
+#         if search.is_valid():
+#             if search.cleaned_data["first_name"]:
+#                students = Student.filter(first_name__startswith=form.cleaned_data["first_name"])
+#             elif search.cleaned_data["last_name"]:
+#                students = Student.filter(last_name__startswith=form.cleaned_data["last_name"])
+#             elif search.cleaned_data["username"]:
+#                students = Student.filter(first_name__startswith=form.cleaned_data["username"])
+#         print("Search Results : ", students)  
+#         return render(request, 'search_screen.html', {'students': students })
+
 
 
 class StudentDetailsView(View):
@@ -30,7 +49,7 @@ class StudentDetailsView(View):
 
     def get(self, request, student_id):
         student = Student.objects.get(uuid=student_id)
-        return render(request, 'student_details.html', {'student': student, })
+        return render(request, 'student_details.html', {'student': student} )
 
 
 class UpdateStudentUidView(View):
@@ -68,3 +87,9 @@ class EnrollmentDetailsView(View):
 
     def get(self, request):
         return render(request, 'enrollment_details.html')
+
+
+
+
+
+
