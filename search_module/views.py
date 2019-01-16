@@ -84,7 +84,3 @@ class EnrollmentDetailsView(View):
 
     def get(self, request):
         return render(request, 'enrollment_details.html')
-         
-
-
-

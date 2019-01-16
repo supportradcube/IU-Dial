@@ -72,19 +72,38 @@ WSGI_APPLICATION = 'iu_dual_credit.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'dual_credit_db1',
+#         # localhost
+#         'USER': 'root',
+#         'PASSWORD': 'rootpassword',
+#         # for staging
+#         # 'USER': 'root',
+#         'HOST': "localhost",
+#         'PORT': ""
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dual_credit_db1',
-        # localhost
-        'USER': 'root',
-        'PASSWORD': 'rootpassword',
-        # for staging
-        # 'USER': 'root',
-        'HOST': "localhost",
-        'PORT': ""
-    }
-}
+     'default': {
+         'ENGINE': 'django.db.backends.mysql',
+-        'NAME': 'dual_credit_db',
++        'NAME': 'dual_credit_db_11Jan19',
+         # localhost
+-        'USER': 'admin',
+-        'PASSWORD': 'admin',
++        'USER': 'dual_credit',
++        'PASSWORD': 'Cred_123@123',
+         # for staging
+         # 'USER': 'root',
+-        'HOST': "localhost",
+-        'PORT': ""
++        'HOST': "52.221.54.107",
++        'PORT': "3306"
+     }
+ }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
