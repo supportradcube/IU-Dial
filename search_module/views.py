@@ -18,29 +18,22 @@ class StudentSearchView(View):
 
     def post(self, request):
         print(request.POST)
-        students=Student.objects.all()
+        students = Student.objects.all()
+        # import pdb
+        # pdb.set_trace()
+        students = students.filter(first_name__startswith=request.POST['first_name'])
+        students = students.filter(last_name__startswith=request.POST['last_name'])
+        students = students.filter(username__contains=request.POST['username']) 
+        students = students.filter(campus_of_enrollment__contains=request.POST["enrollment_campus"]) 
+        students = students.filter(uid__contains=request.POST['uid']) 
+        # students = students.filter(dc_partner__startswith=request.POST['dc_partner']) 
+            
     
-        # students = Student.objects.filter(first_name__startswith=request.POST['first_name'])
-    
-        students = Student.objects.filter(Q(username__startswith=request.POST['username']) | Q(uid__startswith=request.POST['uid']) | Q(
-            first_name__startswith=request.POST['first_name']) | Q(last_name__startswith=request.POST['last_name']) | Q(campus_of_enrollment__startswith=request.POST['enrollment_campus']) | Q(student_type__startswith=request.POST['student_type']) | Q(dc_partner__startswith=request.POST['dc_partner']))
+        # students = Student.objects.filter(Q(username__contains=request.POST['username']) | Q(uid__search=request.POST['uid']) | Q(
+        # first_name__startswith=request.POST['first_name']) | Q(last_name__startswith=request.POST['last_name']) | Q(campus_of_enrollment__contains=request.POST['enrollment_campus']) | Q(student_type__search=request.POST['student_type']) | Q(dc_partner__search=request.POST['dc_partner']))
         print("Search Results : ", students)
-        return render(request, 'search_screen.html', {'students': students })
+        return render(request, 'search_screen.html', {'students': students})
        
-       
-# class StudentSearchView(View):
-#     def get(request):
-#         students = Student.objects.all()
-#         search=Student(request.POST)
-#         if search.is_valid():
-#             if search.cleaned_data["first_name"]:
-#                students = Student.filter(first_name__startswith=form.cleaned_data["first_name"])
-#             elif search.cleaned_data["last_name"]:
-#                students = Student.filter(last_name__startswith=form.cleaned_data["last_name"])
-#             elif search.cleaned_data["username"]:
-#                students = Student.filter(first_name__startswith=form.cleaned_data["username"])
-#         print("Search Results : ", students)  
-#         return render(request, 'search_screen.html', {'students': students })
 
 
 
