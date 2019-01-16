@@ -66,8 +66,8 @@ class Student(models.Model):
 
     # CHOICE_ENROLL = (
     #     ("123-123-123", "123-123-123"),
-    #     ("111-111-111", "111-111-111")
-    # )
+    #     ("111-111-111", "111-111-111")                
+    # )                                                  
     campus_of_enrollment = models.CharField(max_length=100)
     
     STUDENT_TYPE = (
@@ -103,7 +103,7 @@ class Student(models.Model):
         max_length=20
     )
     CONTACT_METHOD = (
-        ("Text", "Text"),
+        ("Text", "Text"),                                                              
         ("Call", "Call"),
         ("Text,Call", "Text,Call")
     )
@@ -151,9 +151,9 @@ class Address(models.Model):
         Student, on_delete=models.CASCADE,
         related_name="student_address"
     )
-
+                        
     # current address
-
+                         
     address = models.TextField()
     city = models.CharField(
         max_length=40
@@ -241,7 +241,7 @@ class IUEducationDetails(models.Model):
         """docstring for meta"""
         verbose_name_plural = "Education Details"
 
-
+                                                         
 class OtherInformation(models.Model):
     student = models.ForeignKey(
         Student, on_delete=models.CASCADE,
@@ -252,7 +252,7 @@ class OtherInformation(models.Model):
         ("No", "No"),
         ("Spouse", "Spouse"),
         ("Parent/Guardian", "Parent/Guardian")
-    )
+    )                           
     veteran_family_member = models.CharField(
         max_length=40, choices=VETERAN_MEMBER
     )
@@ -263,8 +263,8 @@ class OtherInformation(models.Model):
     pending_criminal_charges = models.BooleanField(default=False)
     restraining_order = models.BooleanField(
         "Injury to Person/Property", default=False
-    )
-
+    )                                                           
+                       
     def __str__(self):
         """
         :return: the student
@@ -277,7 +277,7 @@ class OtherInformation(models.Model):
 
 
 # --------------------------- Qualtrics Database ---------------------------
-
+         
 
 # class Qualtrics(models.Model):
 
@@ -556,13 +556,13 @@ class OtherInformation(models.Model):
 # # ---------------------- Grant Enrollemt Data -------------------------------
 
 
-# class GrantEnrollmentData(models.Model):
+class GrantEnrollmentData(models.Model):
 
-#     class_number = models.PositiveIntegerField()
-#     course_subject_code = models.CharField(max_length=10)
-#     university_id = models.CharField(max_length=10)
-#     academic_term_code = models.CharField(max_length=4)
-#     grant_id = models.PositiveIntegerField()
+    class_number = models.PositiveIntegerField()
+    course_subject_code = models.CharField(max_length=10)
+    university_id = models.CharField(max_length=10)
+    academic_term_code = models.CharField(max_length=4)
+    grant_id = models.PositiveIntegerField()
 
 # # ---------------------------- Grant Data -----------------------------------
 
@@ -576,18 +576,17 @@ class OtherInformation(models.Model):
 #     amount_total = models.FloatField()
 
 
-# class Course(models.Model):
+class Course(models.Model):
 
-#     grant_en_data = models.ForeignKey(
-#         GrantEnrollmentData, on_delete=models.CASCADE,
-#         related_name="course_detail"
-#     )
-#     course_id = models.CharField(max_length=5)
-#     course_desc = models.CharField(max_length=255)
-#     course_subject_code = models.CharField(max_length=10)
-#     course_catlog_number = models.PositiveIntegerField()
-#     course_official_grade_code = models.CharField(max_length=4)
-
+    grant_en_data = models.ForeignKey(
+        GrantEnrollmentData, on_delete=models.CASCADE,
+        related_name="course_detail"
+    )
+    course_id = models.CharField(max_length=5)
+    course_desc = models.CharField(max_length=255)
+    course_subject_code = models.CharField(max_length=10)
+    course_catlog_number = models.PositiveIntegerField()    
+    course_official_grade_code = models.CharField(max_length=4)        
 
 # class Instructor(models.Model):
 

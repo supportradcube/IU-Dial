@@ -42,3 +42,17 @@ class StudentAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Student, StudentAdmin)
+
+
+class CourseAdmin(admin.ModelAdmin):
+    
+    def Action(self, obj):
+        list_display_links = None
+        inlines = [StudentAddressInline, ]
+        list_display = ['username', 'Action']
+        return mark_safe("<a class='button btn' style='color:white; ' href='/admin/search_module/Course/{}/change/'>View/Edit</a>".format(obj.id))
+
+admin.site.register(Course,CourseAdmin)
+
+class GrantEnrollmentDataAdmin(admin.ModelAdmin):
+   admin.site.register(GrantEnrollmentData,CourseAdmin) 
