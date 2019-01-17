@@ -53,7 +53,7 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
 
 
 class Student(models.Model):
-
+    
     uuid = models.UUIDField(
         default=uuid.uuid4, editable=False
     )
@@ -63,13 +63,8 @@ class Student(models.Model):
     )
     first_name = models.CharField(max_length=40)
     last_name = models.CharField(max_length=40)
-
-    # CHOICE_ENROLL = (
-    #     ("123-123-123", "123-123-123"),
-    #     ("111-111-111", "111-111-111")                
-    # )                                                  
+                                              
     campus_of_enrollment = models.CharField(max_length=100)
-    
     STUDENT_TYPE = (
         ("Graduate", "Graduate"),
         ("Certification", "Certification")
@@ -588,14 +583,14 @@ class Course(models.Model):
     course_catlog_number = models.PositiveIntegerField()    
     course_official_grade_code = models.CharField(max_length=4)        
 
-# class Instructor(models.Model):
+class Instructor(models.Model):
 
-#     grant_en_data = models.ForeignKey(
-#         GrantEnrollmentData, on_delete=models.CASCADE,
-#         related_name="instructor_detail"
-#     )
-#     class_inst_name = models.CharField(max_length=80)
-#     class_inst_gds_email = models.EmailField(max_length=255)
+    grant_en_data = models.ForeignKey(
+        GrantEnrollmentData, on_delete=models.CASCADE,
+        related_name="instructor_detail"
+    )
+    class_inst_name = models.CharField(max_length=80)
+    class_inst_gds_email = models.EmailField(max_length=255)
 
 # # ------------------------- Application Data --------------------------------
 
