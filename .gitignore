@@ -1,4 +1,4 @@
-/env
+/py3env
 /db.json
 /db.sqlite3
 __pycache__

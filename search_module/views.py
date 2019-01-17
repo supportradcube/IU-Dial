@@ -8,7 +8,8 @@ class SearchScreenView(View):
     """Landing page / Search screen View"""
 
     def get(self, request):
-        return render(request, 'search_screen.html')
+        students = Student.objects.all()
+        return render(request, 'search_screen.html' ,{'students':students})
 
 # ------------------------ Student Module -----------------------------------
 
@@ -27,18 +28,11 @@ class StudentSearchView(View):
         students = students.filter(campus_of_enrollment__icontains=request.POST["enrollment_campus"]) 
         students = students.filter(uid__icontains=request.POST['uid'])
 
-        # students = students.filter(
-        #     Q(first_name__icontains=request.POST.get['first_name']) | 
-        #     Q(last_name__icontains=request.POST.get['last_name']) | 
-        #     Q(username__icontains=request.POST.get['username']) |
-        #     Q(campus_of_enrollment__icontains=request.POST.get['enrollment_campus']) |
-        #     Q(uid__icontains=request.POST.get['uid'] )).distinct()
-
         print("Search Results : ", students)
         return render(request, 'search_screen.html', {'students': students})
                                  
         # students = Student.objects.filter(Q(username__contains=request.POST['username']) | Q(uid__search=request.POST['uid']) | Q(
-        # first_name__startswith=request.POST['first_name']) | Q(last_name__startswith=request.POST['last_name']) | Q(campus_of_enrollment__contains=request.POST['enrollment_campus']) | Q(student_type__search=request.POST['student_type']) | Q(dc_partner__search=request.POST['dc_partner']))
+        # first_name__startswith=request.POST['first_name']) | Q(last_name__startswith=request.POST['last_name']) | Q(campus_of_enrollment__contains=request.POST['enrollment_campus']) | Q(student_type__search=request.POST['student_type']) | Q(dc_partner__search=request.POST['dc_partner'])).order_by()
                 
                                          
 class StudentDetailsView(View):
