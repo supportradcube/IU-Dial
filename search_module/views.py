@@ -28,10 +28,16 @@ class StudentSearchView(View):
             students = students.filter(campus_of_enrollment__icontains=request.POST['enrollment_campus'])
         if request.POST['student_type'] != 'Student Type':   
             students = students.filter(student_type__icontains=request.POST['student_type'])
-       
+        if request.POST['dc_partner'] != 'Multiselect':
+            students =students.filter(dc_partner__icontains=request.POST['dc_partner'])
+        if 'currently_enrolled' in request.POST and request.POST['currently_enrolled']:
+            students = students.filter(currently_enrolled='True') 
+
+        if 'pending_enrollment' in request.POST and request.POST['pending_enrollment']:
+            students = students.filter(pending_enrollment='True') 
         return render(request, 'search_screen.html', {'students': students})
                                  
-  
+                                                                                                 
                                          
 class StudentDetailsView(View):
     """Student Details View"""
