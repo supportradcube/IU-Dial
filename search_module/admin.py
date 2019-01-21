@@ -56,3 +56,7 @@ admin.site.register(Course,CourseAdmin)
 
 class GrantEnrollmentDataAdmin(admin.ModelAdmin):
    admin.site.register(GrantEnrollmentData,CourseAdmin) 
+
+class IUEducationDetailsAdmin(admin.ModelAdmin):
+    list_display= ['']
+admin.site.register(IUEducationDetails)

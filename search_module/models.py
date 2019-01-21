@@ -192,14 +192,14 @@ class EducatorRole(models.Model):
     student = models.ForeignKey(
         Student, on_delete=models.CASCADE, related_name="role"
     )
-    role = models.TextField()
+    role = models.TextField(max_length=500)
 
 
 class InstituteAffilation(models.Model):
     student = models.ForeignKey(
         Student, on_delete=models.CASCADE, related_name="affilation"
     )
-    institute = models.CharField(max_length=100)
+    institute = models.CharField(max_length=500)
 
 
 class IUEducationDetails(models.Model):
@@ -217,6 +217,8 @@ class IUEducationDetails(models.Model):
     state_licensure = models.BooleanField(default=False)
     previous_classwork = models.BooleanField(default=False)
     previous_name = models.CharField(max_length=80)
+    educator_role = models.CharField(max_length=200)
+    institution_affilation = models.CharField(max_length=200)
 
     educator_role = models.ManyToManyField(
         EducatorRole, related_name="educator_role"
