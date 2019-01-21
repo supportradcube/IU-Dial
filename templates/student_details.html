@@ -134,36 +134,25 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="p20">
-                    
+                    {% for edu in educationdetails %}
                     <ul class="mb0 listing">
-              
-                       
-                      <li><label>Qualtrics Application ID:</label><span>{{student.qualtrics_application_id }}</span></li>
-                      <li><label>Qualtrics Completion Date:</label><span>{{student.qualtrics_completion_date}}</span></li>
-                    </ul>  
-                    <ul class="mb0 listing">
-                      <li><label>Requested Start Date:</label><span>01/10/2019</span></li>
-                      <li><label>DC Partner:</label><span>Arsenal Tech High School</span></li>
+                      <li><label>Qualtrics Application ID:</label><span>{{ edu.qualtrics_application_id }}</span></li>
+                      <li><label>Qualtrics Completion Date:</label><span>{{ edu.qualtrics_completion_date }}</span></li>
+                      <li><label>Requested Start Date:</label><span>{{edu.requested_start_date }}</span></li>
+                      <li><label>DC Partner:</label><span>{{edu.dc_partner}}</span></li>
+                      <li><label>Required Teaching in Subject Area:</label><span>{{ edu.required_teaching_experience }}</span></li>
                     </ul>
-                    <ul class="mb0 listing">
-                      <li><label>Required Teaching in Subject Area:</label><span>Yes</span></li>
-                    </ul>
+                   
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div clas s="p20">
                     <ul class="mb0 listing">
-                      <li><label>Highest Degree Earned:</label><span>Masters</span></li>
-                      <li><label>State Licensure:</label><span>Yes</span></li>
-                    </ul>
-                    <ul class="mb0 listing">
-                      <li><label>Currently Enrolled at IU:</label><span>No</span></li>
-                      <li><label>Previous Classwork through IU:</label><span>Yes</span></li>
-                    </ul>
-                    <ul class="mb0 listing">
-                      <li><label>Previous Name:</label><span>Stephanie Smith</span></li>
-                 
-
+                      <li><label>Highest Degree Earned:</label><span>{{edu.highest_degree }}</span></li>
+                      <li><label>State Licensure:</label><span>{{ edu.state_licensure }}</span></li>
+                      <li><label>Currently Enrolled at IU:</label><span>{{ edu.currently_enrolled }}</span></li>
+                      <li><label>Previous Classwork through IU:</label><span>{{ edu.previous_classwork }}</span></li>
+                      <li><label>Previous Name:</label><span>{{ edu.previous_name }}</span></li>
                     </ul>
                   </div>
                 </div>
@@ -180,11 +169,9 @@
                           </tr>
                         </thead>
                         <tbody>
+                        
                           <tr>
-                            <td>Instructor in Indiana University's Advance College</td>
-                          </tr>
-                          <tr>
-                            <td>Instructor at a community college</td>
+                            <td>{{ edu.educator_role }}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -205,11 +192,10 @@
                         </thead>
                         <tbody>
                           <tr>
-                            <td>Indiana Tech</td>
+                            <td>{{ edu.institution_affilation }}</td>
                           </tr>
-                          <tr>
-                            <td>Ivy Tech Community College</td>
-                          </tr>
+                         
+                          {% endfor %}
                         </tbody>
                       </table>
                     </div>

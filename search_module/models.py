@@ -188,18 +188,18 @@ class Address(models.Model):
         return str(self.student)
 
 
-class EducatorRole(models.Model):
-    student = models.ForeignKey(
-        Student, on_delete=models.CASCADE, related_name="role"
-    )
-    role = models.TextField(max_length=500)
+# class EducatorRole(models.Model):
+#     student = models.ForeignKey(
+#         Student, on_delete=models.CASCADE, related_name="role"
+#     )
+#     role = models.TextField()
 
 
-class InstituteAffilation(models.Model):
-    student = models.ForeignKey(
-        Student, on_delete=models.CASCADE, related_name="affilation"
-    )
-    institute = models.CharField(max_length=500)
+# class InstituteAffilation(models.Model):
+#     student = models.ForeignKey(
+#         Student, on_delete=models.CASCADE, related_name="affilation"
+#     )
+#     institute = models.CharField(max_length=100)
 
 
 class IUEducationDetails(models.Model):
@@ -217,21 +217,20 @@ class IUEducationDetails(models.Model):
     state_licensure = models.BooleanField(default=False)
     previous_classwork = models.BooleanField(default=False)
     previous_name = models.CharField(max_length=80)
-    educator_role = models.CharField(max_length=200)
-    institution_affilation = models.CharField(max_length=200)
-
-    educator_role = models.ManyToManyField(
-        EducatorRole, related_name="educator_role"
-    )
-    institution_affilation = models.ManyToManyField(
-        InstituteAffilation, related_name="institution_affolation"
-    )
+    # educator_role = models.TextField(max_length=500)
+    # institution_affilation= models.CharField(max_length=200)
+    # educator_role = models.ManyToManyField(
+    #     EducatorRole, related_name="educator_role"
+    # )
+    # institution_affilation = models.ManyToManyField(
+    #     InstituteAffilation, related_name="institution_affolation"
+    # )
 
     def __str__(self):
         """
         :return: the student
         """
-        return self.student
+        return str(self.previous_name)
 
     class Meta:
         """docstring for meta"""

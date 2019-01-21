@@ -44,8 +44,8 @@ class StudentDetailsView(View):
 
     def get(self, request, student_id):
         student = Student.objects.get(uuid=student_id)
-        education = IUEducationDetails.objects.all()
-        return render(request, 'student_details.html', {'student': student, 'education':education} )
+        educationdetails = IUEducationDetails.objects.all()
+        return render(request, 'student_details.html', {'student': student, 'educationdetails':educationdetails } )
 
                                                                                                                                                                                                                   
 class UpdateStudentUidView(View):

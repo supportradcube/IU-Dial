@@ -35,7 +35,7 @@ class StudentAddressInline(admin.TabularInline):
 class StudentAdmin(admin.ModelAdmin):
     list_display_links = None
     inlines = [StudentAddressInline, ]
-    list_display = ['username', 'Action']
+    list_display = ['username','Action']
 
     def Action(self, obj):
         return mark_safe("<a class='button btn' style='color:white; ' href='/admin/search_module/student/{}/change/'>View/Edit</a>".format(obj.id))
@@ -58,5 +58,12 @@ class GrantEnrollmentDataAdmin(admin.ModelAdmin):
    admin.site.register(GrantEnrollmentData,CourseAdmin) 
 
 class IUEducationDetailsAdmin(admin.ModelAdmin):
-    list_display= ['']
+    list_display_links = None
+    list_display= ['qualtrics_application_id','Action']
+
 admin.site.register(IUEducationDetails)
+
+
+# class  EducatorRoleAdmin(admin.ModelAdmin):
+#    admin.site.register(EducatorRole,EducatorRoleAdmin)
+
