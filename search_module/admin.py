@@ -67,3 +67,10 @@ admin.site.register(IUEducationDetails)
 # class  EducatorRoleAdmin(admin.ModelAdmin):
 #    admin.site.register(EducatorRole,EducatorRoleAdmin)
 
+class OtherInformationAdmin(admin.ModelAdmin):
+    link_display =['student','Action']
+admin.site.register(OtherInformation,OtherInformationAdmin)
+
+class CommentsAdmin(admin.ModelAdmin):
+    admin.site.register(Comments)
+

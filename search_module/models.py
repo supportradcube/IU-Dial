@@ -264,7 +264,7 @@ class OtherInformation(models.Model):
         """
         :return: the student
         """
-        return self.student
+        return str(self.student)
 
     class Meta:
         """docstring for meta"""
@@ -532,11 +532,18 @@ class OtherInformation(models.Model):
 #         verbose_name_plural = "Other Details"
 
 
-# class Comments(models.Model):
+class Comments(models.Model):
 
-#     comment = models.CharField(max_length=255)
-#     username = models.CharField(max_length=80)
-#     created_at = models.DateField(auto_now_add=True)
+    comment = models.CharField(max_length=255)
+    username = models.CharField(max_length=80)
+    created_at = models.DateField(auto_now_add=True)
+
+def __str__(self):
+    
+    return str(self.username)
+
+
+
 
 
 # class Enrollemts(models.Model):

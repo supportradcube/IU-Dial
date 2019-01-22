@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.views import View
 from .models import *
-from django.db.models import Q
 
 
 class SearchScreenView(View):
@@ -45,7 +44,8 @@ class StudentDetailsView(View):
     def get(self, request, student_id):
         student = Student.objects.get(uuid=student_id)
         educationdetails = IUEducationDetails.objects.all()
-        return render(request, 'student_details.html', {'student': student, 'educationdetails':educationdetails } )
+        otherinformation = OtherInformation.objects.all()
+        return render(request, 'student_details.html', {'student': student, 'educationdetails':educationdetails, 'otherinformation':otherinformation} )
 
                                                                                                                                                                                                                   
 class UpdateStudentUidView(View):
@@ -62,8 +62,9 @@ class AddCommentView(View):
     """Add Comment"""
 
     def post(self, request):
-        print(request.POST)
-        pass
+        comment = Comments.objects.all()
+        return render(request, 'student_details.html', {'comment':comment})
+        
 
 
 # ------------------------ Course Module -----------------------------------
@@ -83,3 +84,9 @@ class EnrollmentDetailsView(View):
 
     def get(self, request):
         return render(request, 'enrollment_details.html')
+
+# class OthersInformationView(View):
+#     """Others Information"""
+#     def get(self,request):
+#     otherinformation = OtherInformation.objects.all() 
+#     return render(request, 'student_details.html', {'otherinformation':otherinformation} )
