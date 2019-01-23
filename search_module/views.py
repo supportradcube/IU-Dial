@@ -88,5 +88,6 @@ class EnrollmentDetailsView(View):
 # class OthersInformationView(View):
 #     """Others Information"""
 #     def get(self,request):
-#     otherinformation = OtherInformation.objects.all() 
-#     return render(request, 'student_details.html', {'otherinformation':otherinformation} )
+#         othersinformation = OtherInformation.objects.all()
+#         return render(request, 'student_details.html', {'othersinformation':othersinformation })
+   
