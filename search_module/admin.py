@@ -65,13 +65,18 @@ admin.site.register(GrantEnrollmentData,CourseAdmin)
 
 class IUEducationDetailsAdmin(admin.ModelAdmin):
     list_display_links = None
-    list_display= ['qualtrics_application_id']
+    list_display= ['qualtrics_application_id','Action']
 
-admin.site.register(IUEducationDetails)
+    def Action(self, obj):
+        return mark_safe("<a class='button btn' style='color:white; ' href='/admin/search_module/iueducationdetails/{}/change/'>View/Edit</a>".format(obj.id))
 
+admin.site.register(IUEducationDetails,IUEducationDetailsAdmin)
 
-# class  EducatorRoleAdmin(admin.ModelAdmin):
-#    admin.site.register(EducatorRole,EducatorRoleAdmin)
+class EducatorRoleAdmin(admin.ModelAdmin):
+    admin.site.register(EducatorRole)
+
+class InstituteAffilationAdmin(admin.ModelAdmin):
+    admin.site.register(InstituteAffilation)
 
 #-------------------------------------------------others information----------------------------------------#
 
@@ -107,9 +112,14 @@ class RecipientDetailsAdmin(admin.ModelAdmin):
 
 #--------------------------------------------------Student details-----------------------------------------#
 
-class StudentDetailsAdmin(StudentDetails):
+class StudentDetailsAdmin(admin.ModelAdmin):
+    list_display_links = None
     link_display =['first_name','Action']
-admin.site.register(StudentDetails)
+
+    def Action(self, obj):
+        return mark_safe("<a class='button btn' style='color:white; ' href='/admin/search_module/studentdetails/{}/change/'>View/Edit</a>".format(obj.id))
+
+admin.site.register(StudentDetails, StudentDetailsAdmin)
 
 
 #----------------------------------------------------campus------------------------------------------------#
@@ -121,3 +131,41 @@ class CampusAdmin(admin.ModelAdmin):
         return mark_safe("<a class='button btn' style='color:white;' href='admin/search_module/campus/{}/change/'>View/Edit</a>".format(obj.id))
     
 admin.site.register(Campus,CampusAdmin)
+
+#----------------------------------------------Student IU Details--------------------------------------------#
+class IUStudentDetailsAdmin(admin.ModelAdmin):
+    list_display_links = None
+    list_display = ['first_name','Action']
+
+    def Action(self, obj):
+        return mark_safe("<a class='button btn' style='color:white; ' href='/admin/search_module/iustudentdetails/{}/change/'>View/Edit</a>".format(obj.id))
+
+admin.site.register(IUStudentDetails,IUStudentDetailsAdmin)
+
+#------------------------------------------------CurrentAddress-----------------------------------------#
+
+class CurrentAddressAdmin(admin.ModelAdmin):
+    list_display_links = None
+    list_display = ['city','Action']
+
+    def Action(self, obj):
+        return mark_safe("<a class='button btn' style='color:white; ' href='/admin/search_module/currentaddress/{}/change/'>View/Edit</a>".format(obj.id))
+
+admin.site.register(CurrentAddress, CurrentAddressAdmin)
+
+#-------------------------------------------------PermanentAddress--------------------------------------#
+
+class PermanentAddressAdmin(admin.ModelAdmin):
+    list_display_links = None
+    list_display = ['city','Action']
+
+    def Action(self, obj):
+        return mark_safe("<a class='button btn' style='color:white; ' href='/admin/search_module/permanentaddress/{}/change/'>View/Edit</a>".format(obj.id))
+
+admin.site.register(PermanentAddress, PermanentAddressAdmin)
+
+class EnrollmentDataAdmin(admin.ModelAdmin):
+    list_display_links = None
+    list_display = ['first_name']
+
+admin.site.register(EnrollmentData)
