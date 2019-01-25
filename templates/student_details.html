@@ -136,12 +136,11 @@
                   <div class="p20">
                    
                     <ul class="mb0 listing">
-                        {% for edu in educationdetails %}
-                      <li><label>Qualtrics Application ID:</label><span>{{ edu.qualtrics_application_id }}</span></li>
-                      <li><label>Qualtrics Completion Date:</label><span>{{ edu.qualtrics_completion_date }}</span></li>
-                      <li><label>Requested Start Date:</label><span>{{edu.requested_start_date }}</span></li>
-                      <li><label>DC Partner:</label><span>{{edu.dc_partner}}</span></li>
-                      <li><label>Required Teaching in Subject Area:</label><span>{{ edu.required_teaching_experience }}</span></li>
+                      <li><label>Qualtrics Application ID:</label><span>{{ educationdetails.qualtrics_application_id }}</span></li>
+                      <li><label>Qualtrics Completion Date:</label><span>{{ educationdetails.qualtrics_completion_date }}</span></li>
+                      <li><label>Requested Start Date:</label><span>{{educationdetails.requested_start_date }}</span></li>
+                      <li><label>DC Partner:</label><span>{{educationdetails.dc_partner}}</span></li>
+                      <li><label>Required Teaching in Subject Area:</label><span>{{ educationdetails.required_teaching_experience }}</span></li>
                     </ul>
                    
                   </div>
@@ -149,11 +148,11 @@
                 <div class="col-md-6">
                   <div clas s="p20">
                     <ul class="mb0 listing">
-                      <li><label>Highest Degree Earned:</label><span>{{edu.highest_degree }}</span></li>
-                      <li><label>State Licensure:</label><span>{{ edu.state_licensure }}</span></li>
-                      <li><label>Currently Enrolled at IU:</label><span>{{ edu.currently_enrolled }}</span></li>
-                      <li><label>Previous Classwork through IU:</label><span>{{ edu.previous_classwork }}</span></li>
-                      <li><label>Previous Name:</label><span>{{ edu.previous_name }}</span></li>
+                      <li><label>Highest Degree Earned:</label><span>{{educationdetails.highest_degree }}</span></li>
+                      <li><label>State Licensure:</label><span>{{ educationdetails.state_licensure }}</span></li>
+                      <li><label>Currently Enrolled at IU:</label><span>{{ educationdetails.currently_enrolled }}</span></li>
+                      <li><label>Previous Classwork through IU:</label><span>{{ educationdetails.previous_classwork }}</span></li>
+                      <li><label>Previous Name:</label><span>{{ educationdetails.previous_name }}</span></li>
                     </ul>
                   </div>
                 </div>
@@ -172,7 +171,7 @@
                         <tbody>
                         
                           <tr>
-                            <td>{{ edu.educator_role }}</td>
+                            <td><span>{{ educationdetails.educator_role }}</span></td>
                           </tr>
                         </tbody>
                       </table>
@@ -193,10 +192,8 @@
                         </thead>
                         <tbody>
                           <tr>
-                            <td>{{ edu.institution_affilation }}</td>
+                            <td>{{ educationdetails.institution_affilation }}</td>
                           </tr>
-                         
-                          {% endfor %}
                         </tbody>
                       </table>
                     </div>
@@ -208,33 +205,32 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="p20">
-                    {% for edu in educationdetails %}
                     <ul class="mb0 listing">
-                      <li><label>Qualtrics Application ID:</label><span>{{edu.qualtrics_application_id}}</span></li>
-                      <li><label>Qualtrics Completion Date:</label><span>{{edu.qualtrics_completion_date}}</span></li>
+                      <li><label>Qualtrics Application ID:</label><span>{{educationdetails.qualtrics_application_id}}</span></li>
+                      <li><label>Qualtrics Completion Date:</label><span>{{educationdetails.qualtrics_completion_date}}</span></li>
                     </ul>
                    
                     <ul class="mb0 listing">
-                      <li><label>Requested Start Date:</label><span>01/10/2019</span></li>
-                      <li><label>DC Partner:</label><span>Arsenal Tech High School</span></li>
+                      <li><label>Requested Start Date:</label><span>{{ educationdetails.requested_start_date }}</span></li>
+                      <li><label>DC Partner:</label><span>{{educationdetails.dc_partner}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>Required Teaching in Subject Area:</label><span>Yes</span></li>
+                      <li><label>Required Teaching in Subject Area:</label><span>{{educationdetails.required_teaching_experience}}</span></li>
                     </ul>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="p20">
                     <ul class="mb0 listing">
-                      <li><label>Highest Degree Earned:</label><span>Masters</span></li>
-                      <li><label>State Licensure:</label><span>Yes</span></li>
+                      <li><label>Highest Degree Earned:</label><span>{{educationdetails.highest_degree}}</span></li>
+                      <li><label>State Licensure:</label><span>{{educationdetails.}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>Currently Enrolled at IU:</label><span>No</span></li>
-                      <li><label>Previous Classwork through IU:</label><span>Yes</span></li>
+                      <li><label>Currently Enrolled at IU:</label><span>{{educationdetails.currently_enrolled}}</span></li>
+                      <li><label>Previous Classwork through IU:</label><span>{{educationdetails.previous_classwork }}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>Previous Name:</label><span>Stephanie Smith</span></li>
+                      <li><label>Previous Name:</label><span>{{educationdetails.previous_name}}</span></li>
                     </ul>
                   </div>
                 </div>
@@ -252,10 +248,7 @@
                         </thead>
                         <tbody>
                           <tr>
-                            <td>Instructor in Indiana University's Advance College</td>
-                          </tr>
-                          <tr>
-                            <td>Instructor at a community college</td>
+                            <td>{{educationdetails.educator_role}}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -276,14 +269,10 @@
                         </thead>
                         <tbody>
                           <tr>
-                            <td>Indiana Tech</td>
-                          </tr>
-                          <tr>
-                            <td>Ivy Tech Community College</td>
+                            <td>{{educationdetails.institution_affilation}}</td>
                           </tr>
                         </tbody>
                       </table>
-                       {% endfor %}
                     </div>
                   </div>
                 </div>
@@ -294,30 +283,31 @@
                 <div class="col-md-6">
                   <div class="p20">
                     <ul class="mb0 listing">
-                      <li><label>Qualtrics Application ID:</label><span>R_3qpvI9bldJxSte0</span></li>
-                      <li><label>Qualtrics Completion Date:</label><span>09/10/2018</span></li>
+                      <li><label>Qualtrics Application ID:</label><span>{{educationdetails.qualtrics_application_id}}</span></li>
+                      <li><label>Qualtrics Completion Date:</label><span>{{educationdetails.qualtrics_completion_date}}</span></li>
+                    </ul>
+                   
+                    <ul class="mb0 listing">
+                      <li><label>Requested Start Date:</label><span>{{ educationdetails.requested_start_date }}</span></li>
+                      <li><label>DC Partner:</label><span>{{educationdetails.dc_partner}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>Requested Start Date:</label><span>01/10/2019</span></li>
-                      <li><label>DC Partner:</label><span>Arsenal Tech High School</span></li>
-                    </ul>
-                    <ul class="mb0 listing">
-                      <li><label>Required Teaching in Subject Area:</label><span>Yes</span></li>
+                      <li><label>Required Teaching in Subject Area:</label><span>{{educationdetails.required_teaching_experience}}</span></li>
                     </ul>
                   </div>
                 </div>
-                <div class="p">
-                  <div class="col-20">
+                <div class="col-md-6">
+                  <div class="p20">
                     <ul class="mb0 listing">
-                      <li><label>Highest Degree Earned:</label><span>Masters</span></li>
-                      <li><label>State Licensure:</label><span>Yes</span></li>
+                      <li><label>Highest Degree Earned:</label><span>{{educationdetails.highest_degree}}</span></li>
+                      <li><label>State Licensure:</label><span>{{educationdetails.}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>Currently Enrolled at IU:</label><span>No</span></li>
-                      <li><label>Previous Classwork through IU:</label><span>Yes</span></li>
+                      <li><label>Currently Enrolled at IU:</label><span>{{educationdetails.currently_enrolled}}</span></li>
+                      <li><label>Previous Classwork through IU:</label><span>{{educationdetails.previous_classwork }}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>Previous Name:</label><span>Stephanie Smith</span></li>
+                      <li><label>Previous Name:</label><span>{{educationdetails.previous_name}}</span></li>
                     </ul>
                   </div>
                 </div>
@@ -335,10 +325,7 @@
                         </thead>
                         <tbody>
                           <tr>
-                            <td>Instructor in Indiana University's Advance College</td>
-                          </tr>
-                          <tr>
-                            <td>Instructor at a community college</td>
+                            <td>{{educationdetails.educator_role}}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -359,10 +346,7 @@
                         </thead>
                         <tbody>
                           <tr>
-                            <td>Indiana Tech</td>
-                          </tr>
-                          <tr>
-                            <td>Ivy Tech Community College</td>
+                            <td>{{educationdetails.institution_affilation}}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -376,30 +360,31 @@
                 <div class="col-md-6">
                   <div class="p20">
                     <ul class="mb0 listing">
-                      <li><label>Qualtrics Application ID:</label><span>R_3qpvI9bldJxSte0</span></li>
-                      <li><label>Qualtrics Completion Date:</label><span>09/10/2018</span></li>
+                      <li><label>Qualtrics Application ID:</label><span>{{educationdetails.qualtrics_application_id}}</span></li>
+                      <li><label>Qualtrics Completion Date:</label><span>{{educationdetails.qualtrics_completion_date}}</span></li>
+                    </ul>
+                   
+                    <ul class="mb0 listing">
+                      <li><label>Requested Start Date:</label><span>{{ educationdetails.requested_start_date }}</span></li>
+                      <li><label>DC Partner:</label><span>{{educationdetails.dc_partner}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>Requested Start Date:</label><span>01/10/2019</span></li>
-                      <li><label>DC Partner:</label><span>Arsenal Tech High School</span></li>
-                    </ul>
-                    <ul class="mb0 listing">
-                      <li><label>Required Teaching in Subject Area:</label><span>Yes</span></li>
+                      <li><label>Required Teaching in Subject Area:</label><span>{{educationdetails.required_teaching_experience}}</span></li>
                     </ul>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="p20">
                     <ul class="mb0 listing">
-                      <li><label>Highest Degree Earned:</label><span>Masters</span></li>
-                      <li><label>State Licensure:</label><span>Yes</span></li>
+                      <li><label>Highest Degree Earned:</label><span>{{educationdetails.highest_degree}}</span></li>
+                      <li><label>State Licensure:</label><span>{{educationdetails.}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>Currently Enrolled at IU:</label><span>No</span></li>
-                      <li><label>Previous Classwork through IU:</label><span>Yes</span></li>
+                      <li><label>Currently Enrolled at IU:</label><span>{{educationdetails.currently_enrolled}}</span></li>
+                      <li><label>Previous Classwork through IU:</label><span>{{educationdetails.previous_classwork }}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>Previous Name:</label><span>Stephanie Smith</span></li>
+                      <li><label>Previous Name:</label><span>{{educationdetails.previous_name}}</span></li>
                     </ul>
                   </div>
                 </div>
@@ -417,10 +402,7 @@
                         </thead>
                         <tbody>
                           <tr>
-                            <td>Instructor in Indiana University's Advance College</td>
-                          </tr>
-                          <tr>
-                            <td>Instructor at a community college</td>
+                            <td>{{educationdetails.educator_role}}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -441,10 +423,7 @@
                         </thead>
                         <tbody>
                           <tr>
-                            <td>Indiana Tech</td>
-                          </tr>
-                          <tr>
-                            <td>Ivy Tech Community College</td>
+                            <td>{{educationdetails.institution_affilation}}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -479,27 +458,24 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="p20">
-                      <!-- {% for ot in otherinformation  %} -->
                     <ul class="mb0 listing">
                       <li><label>Veteran/Active Military:</label><span>{{otherinformation.veteran_member|safe}}</span></li>
                       <li><label>Family Military History:</label><span>{{otherinformation.veteran_family_member}}</span></li>
                     </ul>
-                    <!-- {% endfor %} -->
-
                     <ul class="mb0 listing">
-                      <li><label>VA/DoD Educational Benefits:</label><span>{{other.educational_benefits}}</span></li>
+                      <li><label>VA/DoD Educational Benefits:</label><span>{{otherinformation.educational_benefits}}</span></li>
                     </ul>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="p20">
                     <ul class="mb0 listing">
-                      <li><label>High School Disciplinary Action:</label><span>{{other.formal_disciplinary_action }}</span></li>
-                      <li><label>State Licensure:</label><span>{{other.}}</span></li>
+                      <li><label>High School Disciplinary Action:</label><span>{{otherinformation.formal_disciplinary_action }}</span></li>
+                      <li><label>State Licensure:</label><span>{{otherinformation.state_Licensure}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>Currently Enrolled at IU:</label><span>{{other.}}</span></li>
-                      <li><label>Previous Classwork through IU:</label><span>{{other.}}</span></li>
+                      <li><label>Currently Enrolled at IU:</label><span>{{otherinformation.currently_enroll}}</span></li>
+                      <li><label>Previous Classwork through IU:</label><span>{{otherinformation.previous_classwork}}</span></li>
                     </ul>
                   </div>
                 </div>
@@ -510,23 +486,23 @@
                 <div class="col-md-6">
                   <div class="p20">
                     <ul class="mb0 listing">
-                      <li><label>Veteran/Active Military:</label><span>Yes</span></li>
-                      <li><label>Family Military History:</label><span>Spouse</span></li>
+                      <li><label>Veteran/Active Military:</label><span>{{otherinformation.veteran_member}}</span></li>
+                      <li><label>Family Military History:</label><span>{{otherinformation.veteran_family_member}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>VA/DoD Educational Benefits:</label><span>Yes</span></li>
+                      <li><label>VA/DoD Educational Benefits:</label><span>{{otherinformation.educational_benefits}}</span></li>
                     </ul>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="p20">
                     <ul class="mb0 listing">
-                      <li><label>High School Disciplinary Action:</label><span>No</span></li>
-                      <li><label>State Licensure:</label><span>Yes</span></li>
+                      <li><label>High School Disciplinary Action:</label><span>{{otherinformation.formal_disciplinary_action}}</span></li>
+                      <li><label>State Licensure:</label><span>{{otherinformation.state_Licensure}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>Currently Enrolled at IU:</label><span>No</span></li>
-                      <li><label>Previous Classwork through IU:</label><span>Yes</span></li>
+                      <li><label>Currently Enrolled at IU:</label><span>{{otherinformation.currently_enroll}}</span></li>
+                      <li><label>Previous Classwork through IU:</label><span>{{otherinformation.previous_classwork}}</span></li>
                     </ul>
                   </div>
                 </div>
@@ -537,23 +513,23 @@
                 <div class="col-md-6">
                   <div class="p20">
                     <ul class="mb0 listing">
-                      <li><label>Veteran/Active Military:</label><span>Yes</span></li>
-                      <li><label>Family Military History:</label><span>Spouse</span></li>
+                      <li><label>Veteran/Active Military:</label><span>{{otherinformation.veteran_member}}</span></li>
+                      <li><label>Family Military History:</label><span>{{otherinformation.veteran_family_member}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>VA/DoD Educational Benefits:</label><span>Yes</span></li>
+                      <li><label>VA/DoD Educational Benefits:</label><span>{{otherinformation.educational_benefits}}</span></li>
                     </ul>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="p20">
                     <ul class="mb0 listing">
-                      <li><label>High School Disciplinary Action:</label><span>No</span></li>
-                      <li><label>State Licensure:</label><span>Yes</span></li>
+                      <li><label>High School Disciplinary Action:</label><span>{{otherinformation.formal_disciplinary_action}}</span></li>
+                      <li><label>State Licensure:</label><span>{{otherinformation.state_Licensure}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>Currently Enrolled at IU:</label><span>No</span></li>
-                      <li><label>Previous Classwork through IU:</label><span>Yes</span></li>
+                      <li><label>Currently Enrolled at IU:</label><span>{{otherinformation.currently_enroll}}</span></li>
+                      <li><label>Previous Classwork through IU:</label><span>{{otherinformation.previous_classwork}}</span></li>
                     </ul>
                   </div>
                 </div>
@@ -564,23 +540,23 @@
                 <div class="col-md-6">
                   <div class="p20">
                     <ul class="mb0 listing">
-                      <li><label>Veteran/Active Military:</label><span>Yes</span></li>
-                      <li><label>Family Military History:</label><span>Spouse</span></li>
+                      <li><label>Veteran/Active Military:</label><span>{{otherinformation.veteran_member}}</span></li>
+                      <li><label>Family Military History:</label><span>{{otherinformation.veteran_family_member}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>VA/DoD Educational Benefits:</label><span>Yes</span></li>
+                      <li><label>VA/DoD Educational Benefits:</label><span>{{otherinformation.educational_benefits}}</span></li>
                     </ul>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="p20">
                     <ul class="mb0 listing">
-                      <li><label>High School Disciplinary Action:</label><span>No</span></li>
-                      <li><label>State Licensure:</label><span>Yes</span></li>
+                      <li><label>High School Disciplinary Action:</label><span>{{otherinformation.formal_disciplinary_action}}</span></li>
+                      <li><label>State Licensure:</label><span>{{otherinformation.state_Licensure}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>Currently Enrolled at IU:</label><span>No</span></li>
-                      <li><label>Previous Classwork through IU:</label><span>Yes</span></li>
+                      <li><label>Currently Enrolled at IU:</label><span>{{otherinformation.currently_enroll}}</span></li>
+                      <li><label>Previous Classwork through IU:</label><span>{{otherinformation.previous_classwork}}</span></li>
                     </ul>
                   </div>
                 </div>
@@ -613,7 +589,7 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>Instructor in Indiana University's Advance College</td>
+                  <td>{{enrollments.course}}</td>
                   <td>Instructor in Indiana University's Advance College</td>
                   <td>Instructor in Indiana University's Advance College</td>
                   <td>Instructor in Indiana University's Advance College</td>

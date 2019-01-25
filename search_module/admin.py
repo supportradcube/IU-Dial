@@ -5,6 +5,7 @@ from django.contrib.auth.models import Group
 admin.site.unregister(Group)
 
 
+
 class UserAdmin(admin.ModelAdmin):
     list_display_links = None
     list_display = ['email', 'is_superuser', 'Action']
@@ -65,7 +66,9 @@ admin.site.register(GrantEnrollmentData,CourseAdmin)
 
 class IUEducationDetailsAdmin(admin.ModelAdmin):
     list_display_links = None
-    list_display= ['qualtrics_application_id','Action']
+    list_display= ['qualtrics_application_id','Student','Action']
+    def Student(self,obj):
+        return obj.student.first_name
 
     def Action(self, obj):
         return mark_safe("<a class='button btn' style='color:white; ' href='/admin/search_module/iueducationdetails/{}/change/'>View/Edit</a>".format(obj.id))
@@ -144,28 +147,52 @@ admin.site.register(IUStudentDetails,IUStudentDetailsAdmin)
 
 #------------------------------------------------CurrentAddress-----------------------------------------#
 
-class CurrentAddressAdmin(admin.ModelAdmin):
-    list_display_links = None
-    list_display = ['city','Action']
+# class CurrentAddressAdmin(admin.ModelAdmin):
+#     list_display_links = None
+#     list_display = ['city','Action']
 
-    def Action(self, obj):
-        return mark_safe("<a class='button btn' style='color:white; ' href='/admin/search_module/currentaddress/{}/change/'>View/Edit</a>".format(obj.id))
+#     def Action(self, obj):
+#         return mark_safe("<a class='button btn' style='color:white; ' href='/admin/search_module/currentaddress/{}/change/'>View/Edit</a>".format(obj.id))
 
-admin.site.register(CurrentAddress, CurrentAddressAdmin)
+# admin.site.register(CurrentAddress, CurrentAddressAdmin)
 
 #-------------------------------------------------PermanentAddress--------------------------------------#
 
-class PermanentAddressAdmin(admin.ModelAdmin):
-    list_display_links = None
-    list_display = ['city','Action']
+# class PermanentAddressAdmin(admin.ModelAdmin):
+#     list_display_links = None
+#     list_display = ['city','Action']
 
-    def Action(self, obj):
-        return mark_safe("<a class='button btn' style='color:white; ' href='/admin/search_module/permanentaddress/{}/change/'>View/Edit</a>".format(obj.id))
+#     def Action(self, obj):
+#         return mark_safe("<a class='button btn' style='color:white; ' href='/admin/search_module/permanentaddress/{}/change/'>View/Edit</a>".format(obj.id))
 
-admin.site.register(PermanentAddress, PermanentAddressAdmin)
+# admin.site.register(PermanentAddress, PermanentAddressAdmin)
+
+#----------------------------------------------Instructor------------------------------------------------#
 
 class EnrollmentDataAdmin(admin.ModelAdmin):
     list_display_links = None
     list_display = ['first_name']
 
 admin.site.register(EnrollmentData)
+
+#-----------------------------------------------Instructor--------------------------------------------#
+class InstructorAdmin(admin.ModelAdmin):
+    list_display_links = None
+    list_display = ['class_inst_name','Action']
+
+    def Action(self, obj):
+         return mark_safe("<a class='button btn' style='color:white; ' href='/admin/search_module/permanentaddress/{}/change/'>View/Edit</a>".format(obj.id))
+
+admin.site.register(Instructor, InstructorAdmin)
+
+
+#-----------------------------StudentEnrollmentHistery------------------------------------------------3
+
+class StudentEnrollmentHisteryAdmin(admin.ModelAdmin):
+    list_display_links = None
+    list_display = ['course','student_enrollment','Action']
+
+    def Action(self, obj):
+        return mark_safe("<a class='button btn' style='color:white; ' href='/admin/search_module/studentenrollmenthistery/{}/change/'>View/Edit</a>".format(obj.id))
+
+admin.site.register(StudentEnrollmentHistery, StudentEnrollmentHisteryAdmin)

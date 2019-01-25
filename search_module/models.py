@@ -250,7 +250,7 @@ class OtherInformation(models.Model):
     VETERAN_MEMBER = (
         ("No", "No"),
         ("Spouse", "Spouse"),
-        ("Parent/Guardian", "Parent/Guardian")
+        ("Parent/Guardian", "Parent/Guardian")  
     )                           
     veteran_family_member = models.CharField(
         max_length=40, choices=VETERAN_MEMBER
@@ -259,6 +259,11 @@ class OtherInformation(models.Model):
 
     formal_disciplinary_action = models.BooleanField(default=False)
     legal_charges = models.BooleanField(default=False)
+    state_Licensure = models.BooleanField(default=False)
+    currently_enroll = models.BooleanField(default=False)
+    previous_classwork = models.BooleanField(default=False)
+
+
     pending_criminal_charges = models.BooleanField(default=False)
     restraining_order = models.BooleanField(
         "Injury to Person/Property", default=False
@@ -425,85 +430,175 @@ class IUStudentDetails(models.Model):
         """docstring for meta"""
         verbose_name_plural = "Student IU Details"
 
-#--------------------------------------CurrentAddress-------------------------------------------#
 
-class CurrentAddress(models.Model):
-
+class FormerName(models.Model):
     qualtrics_detail = models.ForeignKey(
         Qualtrics, on_delete=models.CASCADE,
-        related_name="current_address")
-    address = models.TextField()
-    city = models.CharField(
-        max_length=40
+        related_name="former_name"
     )
-    state = models.CharField(
-        "State/Province/Region", max_length=150
+    former_name = models.BooleanField(default=False)
+
+    former_name_1 = models.CharField(
+        max_length=80
     )
-    postal_code = models.CharField(
-        max_length=6
+    former_name_2 = models.CharField(
+        max_length=80
     )
-    country = models.CharField(
-        max_length=40
+    former_name_3 = models.CharField(
+        max_length=80
     )
-    residency_in_indiana = models.CharField(max_length=50)
-    is_permanent_mailing_address = models.BooleanField(
-        default=False
+    former_name_4 = models.CharField(
+        max_length=80
+    )
+    former_name_5 = models.CharField(
+        max_length=80
     )
     def __str__(self):
-        return str(self.city)
+         """Returns the strings"""
+         return str(self.Qualtrics)
+
+
+
+
+class Comments(models.Model):
+
+    comment = models.CharField(max_length=255)
+    username = models.CharField(max_length=80)
+    created_at = models.DateField(auto_now_add=True)
+
+def __str__(self):
+    
+    return str(self.username)
+
+class Meta:
+    verbose_name_plural = "Comments"
+
+
+
+
+
+# # ---------------------- Grant Enrollemt Data -------------------------------
+
+
+class GrantEnrollmentData(models.Model):
+
+    class_number = models.PositiveIntegerField()
+    course_subject_code = models.CharField(max_length=10)
+    university_id = models.CharField(max_length=10)
+    academic_term_code = models.CharField(max_length=4)
+    grant_id = models.PositiveIntegerField()
+    
+    def __str__(self):
+        return str(self.course_subject_code)
+    
+    class Meta:
+        verbose_name_plural = 'EnrollmentData'
+
+# # ---------------------------- Grant Data -----------------------------------
+
+
+class Campus(models.Model):
+
+    campus_id = models.CharField(max_length=10)
+    campus = models.CharField(max_length=10)
+    grant_name = models.CharField(max_length=10)
+    account = models.CharField(max_length=10)
+    amount_total = models.FloatField()
+
+    def __str__(self):
+        """return campus fields"""
+        return str(self.campus)
+    
+    class Meta:
+        verbose_name_plural = 'campus'
+
+
+class Course(models.Model):
+
+    grant_en_data = models.ForeignKey(
+        GrantEnrollmentData, on_delete=models.CASCADE,
+        related_name="course_detail"
+    )
+    course_id = models.CharField(max_length=5)
+    course_desc = models.CharField(max_length=255)
+    course_subject_code = models.CharField(max_length=10)
+    course_catlog_number = models.PositiveIntegerField()    
+    course_official_grade_code = models.CharField(max_length=4)        
+
+class Instructor(models.Model):
+
+    grant_en_data = models.ForeignKey(
+        GrantEnrollmentData, on_delete=models.CASCADE,
+        related_name="instructor_detail"
+    )
+    class_inst_name = models.CharField(max_length=80)
+    class_inst_gds_email = models.EmailField(max_length=255)
+
+
+
+
+# # ------------------------- Enrollemt Data ----------------------------------
+
+
+class EnrollmentData(models.Model):
+
+    grant_en_data = models.ForeignKey(
+        GrantEnrollmentData, on_delete=models.CASCADE,
+        related_name="enrollment_grant"
+    )
+    course_details = models.ForeignKey(
+        Course, on_delete=models.CASCADE,
+        related_name="enrollment_course_detail"
+    )
+    instructor_details = models.ForeignKey(
+        Instructor, on_delete=models.CASCADE,
+        related_name="enrollment_instructor_detail"
+    )
+    student_enrollment = models.ForeignKey(
+        Student, on_delete=models.CASCADE,
+    )
+    course_enroll = models.ForeignKey(
+        Course, on_delete=models.CASCADE,
+    )
+    firt_name = models.CharField(max_length=20)
+    last_name = models.CharField(max_length=20)
+    course_number = models.CharField(max_length=20)
+    class_number = models.CharField(max_length=20)
+    campus_of_enrollment = models.CharField(max_length=20)
+    term = models.CharField(max_length=255)
+    grant = models.CharField(max_length=255)
+    uid = models.CharField(
+        max_length=20, null=True, blank=True
+    )
+    
+    def __str__(self):
+        return str(self.first_name)
+
+    class Meta:
+     """return EnrollField fields"""
+    verbose_name_plural = 'Enrollment Data'
+
+#---------------------------student enrollment histery data-------------------------------#
+
+class StudentEnrollmentHistery(models.Model):
+    st_en_data = models.ForeignKey(Student, on_delete=models.CASCADE,
+    related_name='student_enrollment_history'
+    )
+    course = models.CharField(max_length=200)
+    class_student = models.CharField(max_length=200)
+    term = models.CharField(max_length=200)
+    student_funding = models.CharField(max_length=200)
+    student_enrollment = models.CharField(max_length=200)
+    student_grade = models.CharField(max_length=100)
+    credit_house = models.PositiveIntegerField()
+
+    def __str__(self):
+        return str(self.course)
 
     class Meta:
         """docstring for meta"""
-        verbose_name_plural = "Current Address"
+        verbose_name_plural = 'Student Enrollment Histery'
 
-#-----------------------------------------------------PermanentAddress---------------------------------------#
-
-class PermanentAddress(models.Model):
-
-    qualtrics_detail = models.ForeignKey(
-        Qualtrics, on_delete=models.CASCADE,
-        related_name="permanent_address"
-    )
-    address = models.TextField()
-    city = models.CharField(
-        max_length=40
-    )
-    state = models.CharField(
-        "State/Province/Region", max_length=150)
-    postal_code = models.CharField(
-        max_length=6
-    )
-    country = models.CharField(
-        max_length=40
-    )
-
-    class Meta:
-        """docstring for meta"""
-        verbose_name_plural = "Permanent Address"
-
-
-# class FormerName(models.Model):
-#     qualtrics_detail = models.ForeignKey(
-#         Qualtrics, on_delete=models.CASCADE,
-#         related_name="former_name"
-#     )
-#     former_name = models.BooleanField(default=False)
-
-#     former_name_1 = models.CharField(
-#         max_length=80
-#     )
-#     former_name_2 = models.CharField(
-#         max_length=80
-#     )
-#     former_name_3 = models.CharField(
-#         max_length=80
-#     )
-#     former_name_4 = models.CharField(
-#         max_length=80
-#     )
-#     former_name_5 = models.CharField(
-#         max_length=80
-#     )
 
 
 # class LegalDetails(models.Model):
@@ -549,84 +644,6 @@ class PermanentAddress(models.Model):
 #         verbose_name_plural = "Other Details"
 
 
-class Comments(models.Model):
-
-    comment = models.CharField(max_length=255)
-    username = models.CharField(max_length=80)
-    created_at = models.DateField(auto_now_add=True)
-
-def __str__(self):
-    
-    return str(self.username)
-
-class Meta:
-    verbose_name_plural = "Comments"
-
-
-
-
-
-# class Enrollemts(models.Model):
-
-#     term = models.CharField(max_length=255)
-#     course = models.CharField(max_length=255)
-#     funding = models.CharField(max_length=255)
-#     username = models.CharField(max_length=80)
-#     created_at = models.DateField(auto_now_add=True)
-
-
-# # ---------------------- Grant Enrollemt Data -------------------------------
-
-
-class GrantEnrollmentData(models.Model):
-
-    class_number = models.PositiveIntegerField()
-    course_subject_code = models.CharField(max_length=10)
-    university_id = models.CharField(max_length=10)
-    academic_term_code = models.CharField(max_length=4)
-    grant_id = models.PositiveIntegerField()
-
-
-# # ---------------------------- Grant Data -----------------------------------
-
-
-class Campus(models.Model):
-
-    campus_id = models.CharField(max_length=10)
-    campus = models.CharField(max_length=10)
-    grant_name = models.CharField(max_length=10)
-    account = models.CharField(max_length=10)
-    amount_total = models.FloatField()
-
-    def __str__(self):
-        """return campus fields"""
-        return str(self.campus)
-    
-    class Meta:
-        verbose_name_plural = 'campus'
-
-
-class Course(models.Model):
-
-    grant_en_data = models.ForeignKey(
-        GrantEnrollmentData, on_delete=models.CASCADE,
-        related_name="course_detail"
-    )
-    course_id = models.CharField(max_length=5)
-    course_desc = models.CharField(max_length=255)
-    course_subject_code = models.CharField(max_length=10)
-    course_catlog_number = models.PositiveIntegerField()    
-    course_official_grade_code = models.CharField(max_length=4)        
-
-class Instructor(models.Model):
-
-    grant_en_data = models.ForeignKey(
-        GrantEnrollmentData, on_delete=models.CASCADE,
-        related_name="instructor_detail"
-    )
-    class_inst_name = models.CharField(max_length=80)
-    class_inst_gds_email = models.EmailField(max_length=255)
-
 # # ------------------------- Application Data --------------------------------
 
 
@@ -653,43 +670,58 @@ class Instructor(models.Model):
 #     )
 
 
-# # ------------------------- Enrollemt Data ----------------------------------
+#--------------------------------------CurrentAddress-------------------------------------------#
 
 
-class EnrollmentData(models.Model):
+    # qualtrics_detail = models.ForeignKey(
+    #     Qualtrics, on_delete=models.CASCADE,
+    #     related_name="current_address")
+    # address = models.TextField()
+    # city = models.CharField(
+    #     max_length=40
+    # )
+    # state = models.CharField(
+    #     "State/Province/Region", max_length=150
+    # )
+    # postal_code = models.CharField(
+    #     max_length=6
+    # )
+    # country = models.CharField(
+    #     max_length=40
+    # )
+    # residency_in_indiana = models.CharField(max_length=50)
+    # is_permanent_mailing_address = models.BooleanField(
+    #     default=False
+    # )
+    # def __str__(self):
+    #     return str(self.city)
 
-    grant_en_data = models.ForeignKey(
-        GrantEnrollmentData, on_delete=models.CASCADE,
-        related_name="enrollment_grant"
-    )
-    course_details = models.ForeignKey(
-        Course, on_delete=models.CASCADE,
-        related_name="enrollment_course_detail"
-    )
-    instructor_details = models.ForeignKey(
-        Instructor, on_delete=models.CASCADE,
-        related_name="enrollment_instructor_detail"
-    )
-    student_enrollment = models.ForeignKey(
-        Student, on_delete=models.CASCADE,
-    )
-    course_enroll = models.ForeignKey(
-        Course, on_delete=models.CASCADE,
-    )
-    firt_name = models.CharField(max_length=20)
-    last_name = models.CharField(max_length=20)
-    course_number = models.CharField(max_length=20)
-    class_number = models.CharField(max_length=20)
-    campus_of_enrollment = models.CharField(max_length=20)
-    term = models.CharField(max_length=255)
-    grant = models.CharField(max_length=255)
-    uid = models.CharField(
-        max_length=20, null=True, blank=True
-    )
-    
-    def __str__(self):
-        return str(self.first_name)
+    # class Meta:
+    #     """docstring for meta"""
+    #     verbose_name_plural = "Current Address"
 
-    class Meta:
-     """return EnrollField fields"""
-    verbose_name_plural = 'Enrollment Data'
+#-----------------------------------------------------PermanentAddress---------------------------------------#
+
+# class PermanentAddress(models.Model):
+
+#     qualtrics_detail = models.ForeignKey(
+#         Qualtrics, on_delete=models.CASCADE,
+#         related_name="permanent_address"
+#     )
+#     address = models.TextField()
+#     city = models.CharField(
+#         max_length=40
+#     )
+#     state = models.CharField(
+#         "State/Province/Region", max_length=150)
+#     postal_code = models.CharField(
+#         max_length=6
+#     )
+#     country = models.CharField(
+#         max_length=40
+#     )
+
+#     class Meta:
+#         """docstring for meta"""
+#         verbose_name_plural = "Permanent Address"
+

@@ -43,8 +43,10 @@ class StudentDetailsView(View):
 
     def get(self, request, student_id):
         student = Student.objects.get(uuid=student_id)
-        educationdetails = IUEducationDetails.objects.all()
-        otherinformation = OtherInformation.objects.all()
+
+        educationdetails = IUEducationDetails.objects.get(student=student)
+        otherinformation = OtherInformation.objects.get(student=student)
+        # enrollments = StudentEnrollmentHistery.objects.all()
         return render(request, 'student_details.html', {'student': student, 'educationdetails':educationdetails, 'otherinformation':otherinformation} )
 
                                                                                                                                                                                                                   
@@ -84,9 +86,3 @@ class EnrollmentDetailsView(View):
 
     def get(self, request):
         return render(request, 'enrollment_details.html')
-
-# class OthersInformationView(View):
-#     """Others Information"""
-#     def get(self,request):
-#         othersinformation = OtherInformation.objects.all()
-#         return render(request, 'student_details.html', {'othersinformation':othersinformation })
