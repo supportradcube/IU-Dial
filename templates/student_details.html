@@ -20,7 +20,7 @@
               <li class="d-flex justify-content-between align-items-center"><label>UID:</label><span style="width: 50%;"><input
                     type="text" name="uid" class="form-control" id="uid" aria-describedby="emailHelp" required {% if student.uid %} value="{{student.uid}}"
                     {% endif %}></li>
-              <li><label>Date of Birth:</label><span>{{student.date_of_birth}}</span></li>
+              <li><label>Date of Birth:</label><span>{{student.date_of_birth|date:'d/m/Y'}}</span></li>
             </ul>
             <ul class="mb0 listing">
               <li><label>Citizenship:</label><span>{{student.citizenship}}</span></li>
@@ -120,13 +120,13 @@
           <nav>
             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
               <a class="nav-item nav-link active show" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
-                aria-controls="nav-home" aria-selected="true">Student Education 2018</a>
+                aria-controls="nav-home" aria-selected="true">Student Education 2019</a>
               <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                aria-controls="nav-profile" aria-selected="false">Student Education 2017</a>
+                aria-controls="nav-profile" aria-selected="false">Student Education 2018</a>
               <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
-                aria-controls="nav-contact" aria-selected="false">Student Education 2016</a>
+                aria-controls="nav-contact" aria-selected="false">Student Education 2017</a>
               <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab"
-                aria-controls="nav-about" aria-selected="false">Student Education 2015</a>
+                aria-controls="nav-about" aria-selected="false">Student Education 2016</a>
             </div>
           </nav>
           <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
@@ -136,11 +136,15 @@
                   <div class="p20">
                    
                     <ul class="mb0 listing">
-                      <li><label>Qualtrics Application ID:</label><span>{{ educationdetails.qualtrics_application_id }}</span></li>
-                      <li><label>Qualtrics Completion Date:</label><span>{{ educationdetails.qualtrics_completion_date }}</span></li>
-                      <li><label>Requested Start Date:</label><span>{{educationdetails.requested_start_date }}</span></li>
-                      <li><label>DC Partner:</label><span>{{educationdetails.dc_partner}}</span></li>
-                      <li><label>Required Teaching in Subject Area:</label><span>{{ educationdetails.required_teaching_experience }}</span></li>
+                      {% if educationdetails2019 %}
+                      <li><label>Qualtrics Application ID:</label><span>{{ educationdetails2019.qualtrics_application_id }}</span></li>
+                      <li><label>Qualtrics Completion Date:</label><span>{{ educationdetails2019.qualtrics_completion_date|date:'d/m/Y' }}</span></li>
+                      <li><label>Requested Start Date:</label><span>{{educationdetails2019.requested_start_date|date:'d/m/Y' }}</span></li>
+                      <li><label>DC Partner:</label><span>{{educationdetails2019.dc_partner}}</span></li>
+                      <li><label>Required Teaching in Subject Area:</label><span>{{ educationdetails2019.required_teaching_experience }}</span></li>
+                      {% else %}
+                      No Records Found 
+                      {% endif %}
                     </ul>
                    
                   </div>
@@ -148,11 +152,11 @@
                 <div class="col-md-6">
                   <div clas s="p20">
                     <ul class="mb0 listing">
-                      <li><label>Highest Degree Earned:</label><span>{{educationdetails.highest_degree }}</span></li>
-                      <li><label>State Licensure:</label><span>{{ educationdetails.state_licensure }}</span></li>
-                      <li><label>Currently Enrolled at IU:</label><span>{{ educationdetails.currently_enrolled }}</span></li>
-                      <li><label>Previous Classwork through IU:</label><span>{{ educationdetails.previous_classwork }}</span></li>
-                      <li><label>Previous Name:</label><span>{{ educationdetails.previous_name }}</span></li>
+                      <li><label>Highest Degree Earned:</label><span>{{educationdetails2019.highest_degree }}</span></li>
+                      <li><label>State Licensure:</label><span>{{ educationdetails2019.state_licensure }}</span></li>
+                      <li><label>Currently Enrolled at IU:</label><span>{{ educationdetails2019.currently_enrolled }}</span></li>
+                      <li><label>Previous Classwork through IU:</label><span>{{ educationdetails2019.previous_classwork }}</span></li>
+                      <li><label>Previous Name:</label><span>{{ educationdetails2019.previous_name }}</span></li>
                     </ul>
                   </div>
                 </div>
@@ -171,7 +175,7 @@
                         <tbody>
                         
                           <tr>
-                            <td><span>{{ educationdetails.educator_role }}</span></td>
+                            <td><span>{{ educationdetails2019.educator_role }}</span></td>
                           </tr>
                         </tbody>
                       </table>
@@ -192,13 +196,14 @@
                         </thead>
                         <tbody>
                           <tr>
-                            <td>{{ educationdetails.institution_affilation }}</td>
+                            <td>{{ educationdetails2019.institution_affilation }}</td>
                           </tr>
                         </tbody>
                       </table>
                     </div>
                   </div>
                 </div>
+                       
               </div>
             </div>
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
@@ -206,31 +211,31 @@
                 <div class="col-md-6">
                   <div class="p20">
                     <ul class="mb0 listing">
-                      <li><label>Qualtrics Application ID:</label><span>{{educationdetails.qualtrics_application_id}}</span></li>
-                      <li><label>Qualtrics Completion Date:</label><span>{{educationdetails.qualtrics_completion_date}}</span></li>
+                      <li><label>Qualtrics Application ID:</label><span>{{educationdetails2018.qualtrics_application_id}}</span></li>
+                      <li><label>Qualtrics Completion Date:</label><span>{{educationdetails2018.qualtrics_completion_date|date:'d/m/Y'}}</span></li>
                     </ul>
                    
                     <ul class="mb0 listing">
-                      <li><label>Requested Start Date:</label><span>{{ educationdetails.requested_start_date }}</span></li>
-                      <li><label>DC Partner:</label><span>{{educationdetails.dc_partner}}</span></li>
+                      <li><label>Requested Start Date:</label><span>{{ educationdetails2018.requested_start_date|date:'d/m/Y' }}</span></li>
+                      <li><label>DC Partner:</label><span>{{educationdetails2018.dc_partner}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>Required Teaching in Subject Area:</label><span>{{educationdetails.required_teaching_experience}}</span></li>
+                      <li><label>Required Teaching in Subject Area:</label><span>{{educationdetails2018.required_teaching_experience}}</span></li>
                     </ul>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="p20">
                     <ul class="mb0 listing">
-                      <li><label>Highest Degree Earned:</label><span>{{educationdetails.highest_degree}}</span></li>
-                      <li><label>State Licensure:</label><span>{{educationdetails.}}</span></li>
+                      <li><label>Highest Degree Earned:</label><span>{{educationdetails2018.highest_degree}}</span></li>
+                      <li><label>State Licensure:</label><span>{{educationdetails2018.state_licensure}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>Currently Enrolled at IU:</label><span>{{educationdetails.currently_enrolled}}</span></li>
-                      <li><label>Previous Classwork through IU:</label><span>{{educationdetails.previous_classwork }}</span></li>
+                      <li><label>Currently Enrolled at IU:</label><span>{{educationdetails2018.currently_enrolled}}</span></li>
+                      <li><label>Previous Classwork through IU:</label><span>{{educationdetails2018.previous_classwork }}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>Previous Name:</label><span>{{educationdetails.previous_name}}</span></li>
+                      <li><label>Previous Name:</label><span>{{educationdetails2018.previous_name}}</span></li>
                     </ul>
                   </div>
                 </div>
@@ -248,7 +253,7 @@
                         </thead>
                         <tbody>
                           <tr>
-                            <td>{{educationdetails.educator_role}}</td>
+                            <td>{{educationdetails2018.educator_role}}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -269,7 +274,7 @@
                         </thead>
                         <tbody>
                           <tr>
-                            <td>{{educationdetails.institution_affilation}}</td>
+                            <td>{{educationdetails2018.institution_affilation}}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -283,31 +288,31 @@
                 <div class="col-md-6">
                   <div class="p20">
                     <ul class="mb0 listing">
-                      <li><label>Qualtrics Application ID:</label><span>{{educationdetails.qualtrics_application_id}}</span></li>
-                      <li><label>Qualtrics Completion Date:</label><span>{{educationdetails.qualtrics_completion_date}}</span></li>
+                      <li><label>Qualtrics Application ID:</label><span>{{educationdetails2017.qualtrics_application_id}}</span></li>
+                      <li><label>Qualtrics Completion Date:</label><span>{{educationdetails2017.qualtrics_completion_date|date:'d/m/Y'}}</span></li>
                     </ul>
                    
                     <ul class="mb0 listing">
-                      <li><label>Requested Start Date:</label><span>{{ educationdetails.requested_start_date }}</span></li>
-                      <li><label>DC Partner:</label><span>{{educationdetails.dc_partner}}</span></li>
+                      <li><label>Requested Start Date:</label><span>{{ educationdetails2017.requested_start_date|date:'d/m/Y' }}</span></li>
+                      <li><label>DC Partner:</label><span>{{educationdetails2017.dc_partner}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>Required Teaching in Subject Area:</label><span>{{educationdetails.required_teaching_experience}}</span></li>
+                      <li><label>Required Teaching in Subject Area:</label><span>{{educationdetails2017.required_teaching_experience}}</span></li>
                     </ul>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="p20">
                     <ul class="mb0 listing">
-                      <li><label>Highest Degree Earned:</label><span>{{educationdetails.highest_degree}}</span></li>
-                      <li><label>State Licensure:</label><span>{{educationdetails.}}</span></li>
+                      <li><label>Highest Degree Earned:</label><span>{{educationdetails2017.highest_degree}}</span></li>
+                      <li><label>State Licensure:</label><span>{{educationdetails2017.state_licensure}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>Currently Enrolled at IU:</label><span>{{educationdetails.currently_enrolled}}</span></li>
-                      <li><label>Previous Classwork through IU:</label><span>{{educationdetails.previous_classwork }}</span></li>
+                      <li><label>Currently Enrolled at IU:</label><span>{{educationdetails2017.currently_enrolled}}</span></li>
+                      <li><label>Previous Classwork through IU:</label><span>{{educationdetails2017.previous_classwork }}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>Previous Name:</label><span>{{educationdetails.previous_name}}</span></li>
+                      <li><label>Previous Name:</label><span>{{educationdetails2017.previous_name}}</span></li>
                     </ul>
                   </div>
                 </div>
@@ -325,7 +330,7 @@
                         </thead>
                         <tbody>
                           <tr>
-                            <td>{{educationdetails.educator_role}}</td>
+                            <td>{{educationdetails2017.educator_role}}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -346,7 +351,7 @@
                         </thead>
                         <tbody>
                           <tr>
-                            <td>{{educationdetails.institution_affilation}}</td>
+                            <td>{{educationdetails2017.institution_affilation}}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -360,31 +365,31 @@
                 <div class="col-md-6">
                   <div class="p20">
                     <ul class="mb0 listing">
-                      <li><label>Qualtrics Application ID:</label><span>{{educationdetails.qualtrics_application_id}}</span></li>
-                      <li><label>Qualtrics Completion Date:</label><span>{{educationdetails.qualtrics_completion_date}}</span></li>
+                      <li><label>Qualtrics Application ID:</label><span>{{educationdetails2016.qualtrics_application_id}}</span></li>
+                      <li><label>Qualtrics Completion Date:</label><span>{{educationdetails2016.qualtrics_completion_date|date:'d/m/Y'}}</span></li>
                     </ul>
                    
                     <ul class="mb0 listing">
-                      <li><label>Requested Start Date:</label><span>{{ educationdetails.requested_start_date }}</span></li>
-                      <li><label>DC Partner:</label><span>{{educationdetails.dc_partner}}</span></li>
+                      <li><label>Requested Start Date:</label><span>{{ educationdetails2016.requested_start_date|date:'d/m/Y' }}</span></li>
+                      <li><label>DC Partner:</label><span>{{educationdetails2016.dc_partner}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>Required Teaching in Subject Area:</label><span>{{educationdetails.required_teaching_experience}}</span></li>
+                      <li><label>Required Teaching in Subject Area:</label><span>{{educationdetails2016.required_teaching_experience}}</span></li>
                     </ul>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="p20">
                     <ul class="mb0 listing">
-                      <li><label>Highest Degree Earned:</label><span>{{educationdetails.highest_degree}}</span></li>
-                      <li><label>State Licensure:</label><span>{{educationdetails.}}</span></li>
+                      <li><label>Highest Degree Earned:</label><span>{{educationdetails2016.highest_degree}}</span></li>
+                      <li><label>State Licensure:</label><span>{{educationdetails2016.state_licensure}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>Currently Enrolled at IU:</label><span>{{educationdetails.currently_enrolled}}</span></li>
-                      <li><label>Previous Classwork through IU:</label><span>{{educationdetails.previous_classwork }}</span></li>
+                      <li><label>Currently Enrolled at IU:</label><span>{{educationdetails2016.currently_enrolled}}</span></li>
+                      <li><label>Previous Classwork through IU:</label><span>{{educationdetails2016.previous_classwork }}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>Previous Name:</label><span>{{educationdetails.previous_name}}</span></li>
+                      <li><label>Previous Name:</label><span>{{educationdetails2016.previous_name}}</span></li>
                     </ul>
                   </div>
                 </div>
@@ -402,7 +407,7 @@
                         </thead>
                         <tbody>
                           <tr>
-                            <td>{{educationdetails.educator_role}}</td>
+                            <td>{{educationdetails2016.educator_role}}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -423,7 +428,7 @@
                         </thead>
                         <tbody>
                           <tr>
-                            <td>{{educationdetails.institution_affilation}}</td>
+                            <td>{{educationdetails2016.institution_affilation}}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -444,13 +449,13 @@
           <nav>
             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
               <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home1" role="tab"
-                aria-controls="nav-home" aria-selected="false">Other Information 2018</a>
+                aria-controls="nav-home" aria-selected="false">Other Information 2019</a>
               <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile1" role="tab"
-                aria-controls="nav-profile" aria-selected="false">Other Information 2017</a>
+                aria-controls="nav-profile" aria-selected="false">Other Information 2018</a>
               <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact1" role="tab"
-                aria-controls="nav-contact" aria-selected="false">Other Information 2016</a>
+                aria-controls="nav-contact" aria-selected="false">Other Information 2017</a>
               <a class="nav-item nav-link active show" id="nav-about-tab" data-toggle="tab" href="#nav-about1" role="tab"
-                aria-controls="nav-about" aria-selected="true"> Other Information 2015</a>
+                aria-controls="nav-about" aria-selected="true"> Other Information 2016</a>
             </div>
           </nav>
           <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
@@ -590,12 +595,12 @@
               <tbody>
                 <tr>
                   <td>{{enrollments.course}}</td>
-                  <td>Instructor in Indiana University's Advance College</td>
-                  <td>Instructor in Indiana University's Advance College</td>
-                  <td>Instructor in Indiana University's Advance College</td>
-                  <td>Instructor in Indiana University's Advance College</td>
-                  <td>Instructor in Indiana University's Advance College</td>
-                  <td>Instructor in Indiana University's Advance College</td>
+                  <td>{{enrollments.}}</td>
+                  <td>{{enrollments.}}</td>
+                  <td>{{enrollments.}}</td>
+                  <td>{{enrollments.}}</td>
+                  <td>{{enrollments.}}</td>
+                  <td>{{enrollments.}}</td>
                 </tr>
                 <tr>
                   <td>Instructor at a community college</td>
@@ -669,9 +674,14 @@
             <label for="email">Term</label>
             <select class="browser-default custom-select">
               <option selected>Open this select menu</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
             </select>
           </div>
           <div class="form-group ml-3">
@@ -717,11 +727,11 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>4188 (Fall 2018)</td>
-                    <td>L501</td>
-                    <td>IDOE</td>
-                    <td>08/02/2018</td>
-                    <td>sbarranc</td>
+                    <td>{{enrollments.term}}</td>
+                    <td>{{enrollments.course}}</td>
+                    <td>{{enrollments.student_funding}}</td>
+                    <td>{{enrollments.}}</td>
+                    <td>{{enrollments.}}</td>
                     <td><a style="color:grey;" href="#delete_enrollment_modal" data-target="#delete_enrollment_modal"
                         data-toggle="modal" data-dismiss="modal"><i class="fa fa-trash" aria-hidden="true"></i></a>
                     </td>
@@ -763,7 +773,7 @@
             <tr>
               <td>{{com.comment}}</td>
               <td>{{com.username}}</td>
-              <td>{{com.created_at}}</td>
+              <td>{{com.created_at|date:'d/m/Y'}}</td>
             </tr>
             {% endfor %}
             
@@ -809,8 +819,11 @@
     </div>
   </div>
 </div>
-
-
+<a style="text-decoration:none; color:#fff;" href="javascript:history.go(-1)">
+  <button style="padding-top:5px; font-size: 16px;margin-left:40px; color: #fff;" type="submit"  class="btn btn-primary btn-red">Back
+  </button>
+</a>
+<!-- <button><a href="javascript:history.go(-1)">Back</a></button></div> -->
 <!---------------------------- Modal end ----------------------------------->
 
 {% endblock %}

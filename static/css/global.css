@@ -482,4 +482,7 @@ line-height:20px;font-size:18px;z-index:9;}
 .sliderCommonStyle .slick-next:before{border-right:1px solid #4e4e4e;transform: rotate(-45deg);}
 .sliderCommonStyle .slick-next:before{left:6px;}
 .sliderCommonStyle .slick-arrow {border:1px solid #ddd;background:#fff;width:30px; height: 30px; }
+.btn-red:hover{
+	color:#741c01 !important;
+}
 

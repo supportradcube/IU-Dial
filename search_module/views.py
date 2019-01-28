@@ -43,11 +43,19 @@ class StudentDetailsView(View):
 
     def get(self, request, student_id):
         student = Student.objects.get(uuid=student_id)
+        educationdetails2019 = IUEducationDetails.objects.filter(student=student,requested_start_date__year='2019').first() 
+        educationdetails2018 =IUEducationDetails.objects.filter(student=student,requested_start_date__year='2018').first() 
+        educationdetails2017 =IUEducationDetails.objects.filter(student=student,requested_start_date__year='2017').first() 
+        educationdetails2016 =IUEducationDetails.objects.filter(student=student,requested_start_date__year='2016').first() 
+        # otherinformation2019 = OtherInformation.objects.filter(created_at__year='2019').first() 
+        # otherinformation2018 = OtherInformation.objects.filter(created_at__year='2018').first() 
+        # otherinformation2017 = OtherInformation.objects.filter(created_at__year='2017') 
+        # otherinformation2016 = OtherInformation.objects.filter(created_at__year='2016')
 
-        educationdetails = IUEducationDetails.objects.get(student=student)
-        otherinformation = OtherInformation.objects.get(student=student)
-        # enrollments = StudentEnrollmentHistery.objects.all()
-        return render(request, 'student_details.html', {'student': student, 'educationdetails':educationdetails, 'otherinformation':otherinformation} )
+
+        return render(request, 'student_details.html', {'student': student, 'educationdetails2019':educationdetails2019,
+        'educationdetails2018':educationdetails2018,'educationdetails2017':educationdetails2017,'educationdetails2016':educationdetails2016})
+        # 'otherinformation2019':otherinformation2019,'otherinformation2018':otherinformation2018,'otherinformation2017':otherinformation2017,'otherinformation2016':otherinformation2016} )
 
                                                                                                                                                                                                                   
 class UpdateStudentUidView(View):
@@ -64,7 +72,7 @@ class AddCommentView(View):
     """Add Comment"""
 
     def post(self, request):
-        comment = Comments.objects.all()
+        comment = Comments.objects.get()
         return render(request, 'student_details.html', {'comment':comment})
         
 

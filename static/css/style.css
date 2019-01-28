@@ -404,3 +404,9 @@ nav>div a.nav-item.nav-link {
 	display: block;
 	margin-bottom: -20px;
 }
+.btn-red:hover a{
+	color:#741c01 !important;
+}
+.table tr:hover{
+	cursor: -webkit-grab;
+}

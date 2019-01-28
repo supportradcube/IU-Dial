@@ -262,8 +262,6 @@ class OtherInformation(models.Model):
     state_Licensure = models.BooleanField(default=False)
     currently_enroll = models.BooleanField(default=False)
     previous_classwork = models.BooleanField(default=False)
-
-
     pending_criminal_charges = models.BooleanField(default=False)
     restraining_order = models.BooleanField(
         "Injury to Person/Property", default=False
@@ -466,12 +464,12 @@ class Comments(models.Model):
     username = models.CharField(max_length=80)
     created_at = models.DateField(auto_now_add=True)
 
-def __str__(self):
+    def __str__(self):
     
-    return str(self.username)
+        return self.username
 
-class Meta:
-    verbose_name_plural = "Comments"
+    class Meta:
+        verbose_name_plural = "Comments"
 
 
 
@@ -492,7 +490,7 @@ class GrantEnrollmentData(models.Model):
         return str(self.course_subject_code)
     
     class Meta:
-        verbose_name_plural = 'EnrollmentData'
+        verbose_name_plural = 'Grant Enrollment Datasssss'
 
 # # ---------------------------- Grant Data -----------------------------------
 
@@ -570,6 +568,12 @@ class EnrollmentData(models.Model):
     uid = models.CharField(
         max_length=20, null=True, blank=True
     )
+    course = models.CharField(max_length=200,default=False)
+    class_student = models.CharField(max_length=200,default=False)
+    student_funding = models.CharField(max_length=200,default=False)
+    student_enrollment = models.CharField(max_length=200,default=False)
+    student_grade = models.CharField(max_length=100,default=False)
+    credit_house = models.PositiveIntegerField(default=False)
     
     def __str__(self):
         return str(self.first_name)
@@ -584,12 +588,12 @@ class StudentEnrollmentHistery(models.Model):
     st_en_data = models.ForeignKey(Student, on_delete=models.CASCADE,
     related_name='student_enrollment_history'
     )
-    course = models.CharField(max_length=200)
-    class_student = models.CharField(max_length=200)
-    term = models.CharField(max_length=200)
-    student_funding = models.CharField(max_length=200)
-    student_enrollment = models.CharField(max_length=200)
-    student_grade = models.CharField(max_length=100)
+    course = models.CharField(max_length=200,default=False)
+    class_student = models.CharField(max_length=200,default=False)
+    term = models.CharField(max_length=200,default=False)
+    student_funding = models.CharField(max_length=200,default=False)
+    student_enrollment = models.CharField(max_length=200,default=False)
+    student_grade = models.CharField(max_length=100,null=True)
     credit_house = models.PositiveIntegerField()
 
     def __str__(self):

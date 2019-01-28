@@ -95,7 +95,8 @@ admin.site.register(OtherInformation, OtherInformationAdmin)
 #------------------------------------------------comments--------------------------------------------------#
 
 class CommentsAdmin(admin.ModelAdmin):
-    admin.site.register(Comments)
+    list_display = ['username']
+admin.site.register(Comments,CommentsAdmin)
 
 #------------------------------------------------qualtrics--------------------------------------------------#
 
@@ -188,11 +189,11 @@ admin.site.register(Instructor, InstructorAdmin)
 
 #-----------------------------StudentEnrollmentHistery------------------------------------------------3
 
-class StudentEnrollmentHisteryAdmin(admin.ModelAdmin):
-    list_display_links = None
-    list_display = ['course','student_enrollment','Action']
+# class StudentEnrollmentHisteryAdmin(admin.ModelAdmin):
+#     list_display_links = None
+#     list_display = ['course','student_enrollment','Action']
 
-    def Action(self, obj):
-        return mark_safe("<a class='button btn' style='color:white; ' href='/admin/search_module/studentenrollmenthistery/{}/change/'>View/Edit</a>".format(obj.id))
+#     def Action(self, obj):
+#         return mark_safe("<a class='button btn' style='color:white; ' href='/admin/search_module/studentenrollmenthistery/{}/change/'>View/Edit</a>".format(obj.id))
 
-admin.site.register(StudentEnrollmentHistery, StudentEnrollmentHisteryAdmin)
+# admin.site.register(StudentEnrollmentHistery, StudentEnrollmentHisteryAdmin)
