@@ -30,5 +30,7 @@ urlpatterns = [
     url(r'^enrollment-details$', views.EnrollmentDetailsView.as_view(),
         name='enrollment-details'),
 
-#     url(r'^othersinformation$', views.OthersInformationView.as_view(), name='others_informations')    
+#     url(r'^othersinformation$', views.OthersInformationView.as_view(), name='others_informations')  
+
+
 ]

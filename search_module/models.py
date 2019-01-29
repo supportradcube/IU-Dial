@@ -3,7 +3,7 @@ from django.db import models
 from languages.fields import LanguageField
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
-
+from django.utils  import timezone
 
 class MyUserManager(BaseUserManager):
     def create_superuser(self, email, password):
@@ -240,8 +240,9 @@ class IUEducationDetails(models.Model):
         """docstring for meta"""
         verbose_name_plural = "Education Details"
 
+from datetime import datetime 
                                                          
-class OtherInformation(models.Model):
+class ExtraInformation(models.Model):
     student = models.ForeignKey(
         Student, on_delete=models.CASCADE,
         related_name="veteran_details"
@@ -263,9 +264,10 @@ class OtherInformation(models.Model):
     currently_enroll = models.BooleanField(default=False)
     previous_classwork = models.BooleanField(default=False)
     pending_criminal_charges = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
     restraining_order = models.BooleanField(
         "Injury to Person/Property", default=False
-    )                                                           
+    )                                                 
                        
     def __str__(self):
         """
@@ -274,8 +276,9 @@ class OtherInformation(models.Model):
         return str(self.student)
 
     class Meta:
+        managed = False
         """docstring for meta"""
-        verbose_name_plural = "Others Information"
+        verbose_name_plural = "Extra Info"
 
 
 # --------------------------- Qualtrics Database ---------------------------
@@ -618,34 +621,34 @@ class StudentEnrollmentHistery(models.Model):
 #     response = models.CharField(max_length=255)
 
 
-# class OtherDetails(models.Model):
-#     qualtrics_detail = models.ForeignKey(
-#         Qualtrics, on_delete=models.CASCADE,
-#         related_name="other_details")
-#     source = models.CharField(max_length=255)
-#     program_type = models.CharField(max_length=255)
-#     program_id = models.CharField(max_length=255)
-#     user = models.CharField(max_length=255)
+class OtherDetails(models.Model):
+    qualtrics_detail = models.ForeignKey(
+        Qualtrics, on_delete=models.CASCADE,
+        related_name="other_details")
+    source = models.CharField(max_length=255)
+    program_type = models.CharField(max_length=255)
+    program_id = models.CharField(max_length=255)
+    user = models.CharField(max_length=255)
 
-#     access_zip = models.CharField(max_length=5)
-#     access_country = models.CharField(max_length=20)
-#     access_date = models.DateField()
-#     access_time = models.TimeField()
-#     INQUIRY_TYPE = (
-#         ("Complete", "Complete"),
-#         ("INP", "INP"),
-#         ("NOCON", "NOCON")
-#     )
-#     inquiry_type = models.CharField(max_length=10, choices=INQUIRY_TYPE)
-#     q_r_del = models.CharField(max_length=5)
-#     audience = models.CharField(max_length=255)
-#     date = models.DateField()
-#     mobile_device = models.BooleanField(default=False)
-#     topics = models.CharField(max_length=10)
+    access_zip = models.CharField(max_length=5)
+    access_country = models.CharField(max_length=20)
+    access_date = models.DateField()
+    access_time = models.TimeField()
+    INQUIRY_TYPE = (
+        ("Complete", "Complete"),
+        ("INP", "INP"),
+        ("NOCON", "NOCON")
+    )
+    inquiry_type = models.CharField(max_length=10, choices=INQUIRY_TYPE)
+    q_r_del = models.CharField(max_length=5)
+    audience = models.CharField(max_length=255)
+    date = models.DateField()
+    mobile_device = models.BooleanField(default=False)
+    topics = models.CharField(max_length=10)
 
-#     class Meta:
-#         """docstring for meta"""
-#         verbose_name_plural = "Other Details"
+    class Meta:
+        """docstring for meta"""
+        verbose_name_plural = "Other Details"
 
 
 # # ------------------------- Application Data --------------------------------

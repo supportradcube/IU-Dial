@@ -46,16 +46,13 @@ class StudentDetailsView(View):
         educationdetails2019 = IUEducationDetails.objects.filter(student=student,requested_start_date__year='2019').first() 
         educationdetails2018 =IUEducationDetails.objects.filter(student=student,requested_start_date__year='2018').first() 
         educationdetails2017 =IUEducationDetails.objects.filter(student=student,requested_start_date__year='2017').first() 
-        educationdetails2016 =IUEducationDetails.objects.filter(student=student,requested_start_date__year='2016').first() 
-        # otherinformation2019 = OtherInformation.objects.filter(created_at__year='2019').first() 
-        # otherinformation2018 = OtherInformation.objects.filter(created_at__year='2018').first() 
-        # otherinformation2017 = OtherInformation.objects.filter(created_at__year='2017') 
-        # otherinformation2016 = OtherInformation.objects.filter(created_at__year='2016')
-
+        educationdetails2016 =IUEducationDetails.objects.filter(student=student,requested_start_date__year='2016').first()
+      
+        enrollment = StudentEnrollmentHistery.objects.first()
+        comment = Comments.objects.first()
 
         return render(request, 'student_details.html', {'student': student, 'educationdetails2019':educationdetails2019,
-        'educationdetails2018':educationdetails2018,'educationdetails2017':educationdetails2017,'educationdetails2016':educationdetails2016})
-        # 'otherinformation2019':otherinformation2019,'otherinformation2018':otherinformation2018,'otherinformation2017':otherinformation2017,'otherinformation2016':otherinformation2016} )
+        'educationdetails2018':educationdetails2018,'educationdetails2017':educationdetails2017,'educationdetails2016':educationdetails2016, 'enrollment':enrollment,'comment':comment})
 
                                                                                                                                                                                                                   
 class UpdateStudentUidView(View):
@@ -68,12 +65,12 @@ class UpdateStudentUidView(View):
         return render(request, 'student_details.html', {'student': student, })
             
 
-class AddCommentView(View):
-    """Add Comment"""
+# class AddCommentView(View):
+#     """Add Comment"""
 
-    def post(self, request):
-        comment = Comments.objects.get()
-        return render(request, 'student_details.html', {'comment':comment})
+#     def post(self, request):
+#         comment = Comments.objects.get()
+#         return render(request, 'student_details.html', {'comment':comment})
         
 
 

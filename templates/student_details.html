@@ -133,18 +133,16 @@
             <div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
               <div class="row">
                 <div class="col-md-6">
+                    {% if educationdetails2019 %}
                   <div class="p20">
-                   
+                     
                     <ul class="mb0 listing">
-                      {% if educationdetails2019 %}
+                    
                       <li><label>Qualtrics Application ID:</label><span>{{ educationdetails2019.qualtrics_application_id }}</span></li>
                       <li><label>Qualtrics Completion Date:</label><span>{{ educationdetails2019.qualtrics_completion_date|date:'d/m/Y' }}</span></li>
                       <li><label>Requested Start Date:</label><span>{{educationdetails2019.requested_start_date|date:'d/m/Y' }}</span></li>
                       <li><label>DC Partner:</label><span>{{educationdetails2019.dc_partner}}</span></li>
                       <li><label>Required Teaching in Subject Area:</label><span>{{ educationdetails2019.required_teaching_experience }}</span></li>
-                      {% else %}
-                      No Records Found 
-                      {% endif %}
                     </ul>
                    
                   </div>
@@ -157,9 +155,15 @@
                       <li><label>Currently Enrolled at IU:</label><span>{{ educationdetails2019.currently_enrolled }}</span></li>
                       <li><label>Previous Classwork through IU:</label><span>{{ educationdetails2019.previous_classwork }}</span></li>
                       <li><label>Previous Name:</label><span>{{ educationdetails2019.previous_name }}</span></li>
+                      {% else %}
+                      No Records Found 
+                      {% endif %}
                     </ul>
+                   
                   </div>
                 </div>
+                      
+                     
                 <div class="col-md-6 mt20">
                   <div class="p20">
                     <div style="box-shadow: 0px 0px 10px #ccc">
@@ -175,11 +179,11 @@
                         <tbody>
                         
                           <tr>
-                            <td><span>{{ educationdetails2019.educator_role }}</span></td>
+                            <td>{{ educationdetails2019.educator_role }}</td>
                           </tr>
                         </tbody>
                       </table>
-                    </div>
+                    </div> 
                   </div>
                 </div>
                 <div class="col-md-6 mt20">
@@ -211,19 +215,19 @@
                 <div class="col-md-6">
                   <div class="p20">
                     <ul class="mb0 listing">
+                        {% if educationdetails2018 %}
                       <li><label>Qualtrics Application ID:</label><span>{{educationdetails2018.qualtrics_application_id}}</span></li>
                       <li><label>Qualtrics Completion Date:</label><span>{{educationdetails2018.qualtrics_completion_date|date:'d/m/Y'}}</span></li>
-                    </ul>
-                   
-                    <ul class="mb0 listing">
                       <li><label>Requested Start Date:</label><span>{{ educationdetails2018.requested_start_date|date:'d/m/Y' }}</span></li>
                       <li><label>DC Partner:</label><span>{{educationdetails2018.dc_partner}}</span></li>
+                      <li><label>Required Teaching in Subject Area:</label><span>{{educationdetails2018.required_teaching_experience}}</span></li>            
                     </ul>
-                    <ul class="mb0 listing">
-                      <li><label>Required Teaching in Subject Area:</label><span>{{educationdetails2018.required_teaching_experience}}</span></li>
-                    </ul>
+                    {% else %}
+                    <h2>Record not found</h>    
+                    {% endif %} 
                   </div>
                 </div>
+               
                 <div class="col-md-6">
                   <div class="p20">
                     <ul class="mb0 listing">
@@ -288,6 +292,7 @@
                 <div class="col-md-6">
                   <div class="p20">
                     <ul class="mb0 listing">
+                        {% if educationdetails2017 %}
                       <li><label>Qualtrics Application ID:</label><span>{{educationdetails2017.qualtrics_application_id}}</span></li>
                       <li><label>Qualtrics Completion Date:</label><span>{{educationdetails2017.qualtrics_completion_date|date:'d/m/Y'}}</span></li>
                     </ul>
@@ -298,6 +303,9 @@
                     </ul>
                     <ul class="mb0 listing">
                       <li><label>Required Teaching in Subject Area:</label><span>{{educationdetails2017.required_teaching_experience}}</span></li>
+                      {% else %}
+                      <h2>Record not found</h>    
+                      {% endif %}
                     </ul>
                   </div>
                 </div>
@@ -365,6 +373,7 @@
                 <div class="col-md-6">
                   <div class="p20">
                     <ul class="mb0 listing">
+                        {% if educationdetails2016 %}
                       <li><label>Qualtrics Application ID:</label><span>{{educationdetails2016.qualtrics_application_id}}</span></li>
                       <li><label>Qualtrics Completion Date:</label><span>{{educationdetails2016.qualtrics_completion_date|date:'d/m/Y'}}</span></li>
                     </ul>
@@ -375,6 +384,9 @@
                     </ul>
                     <ul class="mb0 listing">
                       <li><label>Required Teaching in Subject Area:</label><span>{{educationdetails2016.required_teaching_experience}}</span></li>
+                      {% else %}
+                      <h2>Record not found</h>    
+                      {% endif %}
                     </ul>
                   </div>
                 </div>
@@ -464,23 +476,27 @@
                 <div class="col-md-6">
                   <div class="p20">
                     <ul class="mb0 listing">
-                      <li><label>Veteran/Active Military:</label><span>{{otherinformation.veteran_member|safe}}</span></li>
-                      <li><label>Family Military History:</label><span>{{otherinformation.veteran_family_member}}</span></li>
+                      {% if otherinformation2019 %}
+                      <li><label>Veteran/Active Military:</label><span>{{otherinformation2019.veteran_member|safe}}</span></li>
+                      <li><label>Family Military History:</label><span>{{otherinformation2019.veteran_family_member}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>VA/DoD Educational Benefits:</label><span>{{otherinformation.educational_benefits}}</span></li>
+                      <li><label>VA/DoD Educational Benefits:</label><span>{{otherinformation2019.educational_benefits}}</span></li>
                     </ul>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="p20">
                     <ul class="mb0 listing">
-                      <li><label>High School Disciplinary Action:</label><span>{{otherinformation.formal_disciplinary_action }}</span></li>
-                      <li><label>State Licensure:</label><span>{{otherinformation.state_Licensure}}</span></li>
+                      <li><label>High School Disciplinary Action:</label><span>{{otherinformation2019.formal_disciplinary_action }}</span></li>
+                      <li><label>State Licensure:</label><span>{{otherinformation2019.state_Licensure}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>Currently Enrolled at IU:</label><span>{{otherinformation.currently_enroll}}</span></li>
-                      <li><label>Previous Classwork through IU:</label><span>{{otherinformation.previous_classwork}}</span></li>
+                      <li><label>Currently Enrolled at IU:</label><span>{{otherinformation2019.currently_enroll}}</span></li>
+                      <li><label>Previous Classwork through IU:</label><span>{{otherinformation2019.previous_classwork}}</span></li>
+                    {% else %}
+                    <h4>Record not Found</h4>
+                    {% endif %}
                     </ul>
                   </div>
                 </div>
@@ -491,23 +507,27 @@
                 <div class="col-md-6">
                   <div class="p20">
                     <ul class="mb0 listing">
-                      <li><label>Veteran/Active Military:</label><span>{{otherinformation.veteran_member}}</span></li>
-                      <li><label>Family Military History:</label><span>{{otherinformation.veteran_family_member}}</span></li>
+                      {% if otherinformation2018 %}
+                      <li><label>Veteran/Active Military:</label><span>{{otherinformation2018.veteran_details.veteran_member}}</span></li>
+                      <li><label>Family Military History:</label><span>{{otherinformation2018.veteran_family_member}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>VA/DoD Educational Benefits:</label><span>{{otherinformation.educational_benefits}}</span></li>
+                      <li><label>VA/DoD Educational Benefits:</label><span>{{otherinformation2018.educational_benefits}}</span></li>
                     </ul>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="p20">
                     <ul class="mb0 listing">
-                      <li><label>High School Disciplinary Action:</label><span>{{otherinformation.formal_disciplinary_action}}</span></li>
-                      <li><label>State Licensure:</label><span>{{otherinformation.state_Licensure}}</span></li>
+                      <li><label>High School Disciplinary Action:</label><span>{{otherinformation2018.formal_disciplinary_action}}</span></li>
+                      <li><label>State Licensure:</label><span>{{otherinformation2018.state_Licensure}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>Currently Enrolled at IU:</label><span>{{otherinformation.currently_enroll}}</span></li>
-                      <li><label>Previous Classwork through IU:</label><span>{{otherinformation.previous_classwork}}</span></li>
+                      <li><label>Currently Enrolled at IU:</label><span>{{otherinformation2018.currently_enroll}}</span></li>
+                      <li><label>Previous Classwork through IU:</label><span>{{otherinformation2018.previous_classwork}}</span></li>
+                      {% else %}
+                      <h4>Record not Found</h4>
+                      {% endif %}
                     </ul>
                   </div>
                 </div>
@@ -518,23 +538,27 @@
                 <div class="col-md-6">
                   <div class="p20">
                     <ul class="mb0 listing">
-                      <li><label>Veteran/Active Military:</label><span>{{otherinformation.veteran_member}}</span></li>
-                      <li><label>Family Military History:</label><span>{{otherinformation.veteran_family_member}}</span></li>
+                       {% if otherinformation2017 %}
+                      <li><label>Veteran/Active Military:</label><span>{{otherinformation2017.veteran_member}}</span></li>
+                      <li><label>Family Military History:</label><span>{{otherinformation2017.veteran_family_member}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>VA/DoD Educational Benefits:</label><span>{{otherinformation.educational_benefits}}</span></li>
+                      <li><label>VA/DoD Educational Benefits:</label><span>{{otherinformation2017.educational_benefits}}</span></li>
                     </ul>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="p20">
                     <ul class="mb0 listing">
-                      <li><label>High School Disciplinary Action:</label><span>{{otherinformation.formal_disciplinary_action}}</span></li>
-                      <li><label>State Licensure:</label><span>{{otherinformation.state_Licensure}}</span></li>
+                      <li><label>High School Disciplinary Action:</label><span>{{otherinformation2017.formal_disciplinary_action}}</span></li>
+                      <li><label>State Licensure:</label><span>{{otherinformation2017.state_Licensure}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>Currently Enrolled at IU:</label><span>{{otherinformation.currently_enroll}}</span></li>
-                      <li><label>Previous Classwork through IU:</label><span>{{otherinformation.previous_classwork}}</span></li>
+                      <li><label>Currently Enrolled at IU:</label><span>{{otherinformation2017.currently_enroll}}</span></li>
+                      <li><label>Previous Classwork through IU:</label><span>{{otherinformation2017.previous_classwork}}</span></li>
+                      {% else %}
+                      <h4>Record not Found</h4>
+                      {% endif %}
                     </ul>
                   </div>
                 </div>
@@ -545,23 +569,27 @@
                 <div class="col-md-6">
                   <div class="p20">
                     <ul class="mb0 listing">
-                      <li><label>Veteran/Active Military:</label><span>{{otherinformation.veteran_member}}</span></li>
-                      <li><label>Family Military History:</label><span>{{otherinformation.veteran_family_member}}</span></li>
+                      {% if otherinformation2016 %}
+                      <li><label>Veteran/Active Military:</label><span>{{otherinformation2016.veteran_member}}</span></li>
+                      <li><label>Family Military History:</label><span>{{otherinformation2016.veteran_family_member}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>VA/DoD Educational Benefits:</label><span>{{otherinformation.educational_benefits}}</span></li>
+                      <li><label>VA/DoD Educational Benefits:</label><span>{{otherinformation2016.educational_benefits}}</span></li>
                     </ul>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="p20">
                     <ul class="mb0 listing">
-                      <li><label>High School Disciplinary Action:</label><span>{{otherinformation.formal_disciplinary_action}}</span></li>
-                      <li><label>State Licensure:</label><span>{{otherinformation.state_Licensure}}</span></li>
+                      <li><label>High School Disciplinary Action:</label><span>{{otherinformation2016.formal_disciplinary_action}}</span></li>
+                      <li><label>State Licensure:</label><span>{{otherinformation2016.state_Licensure}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
-                      <li><label>Currently Enrolled at IU:</label><span>{{otherinformation.currently_enroll}}</span></li>
-                      <li><label>Previous Classwork through IU:</label><span>{{otherinformation.previous_classwork}}</span></li>
+                      <li><label>Currently Enrolled at IU:</label><span>{{otherinformation2016.currently_enroll}}</span></li>
+                      <li><label>Previous Classwork through IU:</label><span>{{otherinformation2016.previous_classwork}}</span></li>
+                      {% else %}
+                      <h4>Record not Found</h4>
+                      {% endif %}
                     </ul>
                   </div>
                 </div>
@@ -594,22 +622,13 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>{{enrollments.course}}</td>
-                  <td>{{enrollments.}}</td>
-                  <td>{{enrollments.}}</td>
-                  <td>{{enrollments.}}</td>
-                  <td>{{enrollments.}}</td>
-                  <td>{{enrollments.}}</td>
-                  <td>{{enrollments.}}</td>
-                </tr>
-                <tr>
-                  <td>Instructor at a community college</td>
-                  <td>Instructor in Indiana University's Advance College</td>
-                  <td>Instructor in Indiana University's Advance College</td>
-                  <td>Instructor in Indiana University's Advance College</td>
-                  <td>Instructor in Indiana University's Advance College</td>
-                  <td>Instructor in Indiana University's Advance College</td>
-                  <td>Instructor in Indiana University's Advance College</td>
+                  <td>{{enrollment.course}}</td>
+                  <td>{{enrollment.class_student}}</td>
+                  <td>{{enrollment.term}}</td>
+                  <td>{{enrollment.student_funding}}</td>
+                  <td>{{enrollment.student_enrollment}}</td>
+                  <td>{{enrollment.student_grade}}</td>
+                  <td>{{enrollment.credit_house}}</td>
                 </tr>
               </tbody>
             </table>
@@ -669,7 +688,8 @@
         <h5>Enrollments</h5>
       </div>
       <div class="d-flex justify-content-center flex-wrap">
-        <form class="form-inline">
+        <form class="form-inline" action="'' method="post">
+          {% csrf_token %}
           <div class="form-group">
             <label for="email">Term</label>
             <select class="browser-default custom-select">
@@ -677,11 +697,6 @@
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
             </select>
           </div>
           <div class="form-group ml-3">
@@ -769,15 +784,13 @@
             </tr>
           </thead>
           <tbody>
-            {% for com in comment %}
+
             <tr>
-              <td>{{com.comment}}</td>
-              <td>{{com.username}}</td>
-              <td>{{com.created_at|date:'d/m/Y'}}</td>
+              <td>{{comment.created_at|date:'d/m/Y'}}</td>
+              <td>{{comment.comment}}</td>
+              <td>{{comment.username}}</td>
             </tr>
-            {% endfor %}
-            
-          </tbody>
+            </tbody>
         </table>
         <div class="container">
           <form method="POST" action="">
