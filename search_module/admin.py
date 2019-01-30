@@ -88,15 +88,15 @@ class InstituteAffilationAdmin(admin.ModelAdmin):
 
 #-------------------------------------------------others information----------------------------------------#
 
-class OtherInformationAdmin(admin.ModelAdmin):
+class OthersInfoDataAdmin(admin.ModelAdmin):
     link_display_link = None
     link_display = ['veteran_member','Action']
     link_filter = ['veteran_member']
 
     def Action(self, obj):
-        return mark_safe("<a class='button btn' style='color:white; ' href='/admin/search_module/otherinformation/{}/change/'>View/Edit</a>".format(obj.id))
+        return mark_safe("<a class='button btn' style='color:white; ' href='/admin/search_module/othersdata/{}/change/'>View/Edit</a>".format(obj.id))
 
-admin.site.register(ExtraInformation, OtherInformationAdmin)
+admin.site.register(OthersInfoData, OthersInfoDataAdmin)
 
 #------------------------------------------------comments--------------------------------------------------#
 
@@ -209,3 +209,5 @@ class StudentEnrollmentHisteryAdmin(admin.ModelAdmin):
         return mark_safe("<a class='button btn' style='color:white; ' href='/admin/search_module/studentenrollmenthistery/{}/change/'>View/Edit</a>".format(obj.id))
 
 admin.site.register(StudentEnrollmentHistery, StudentEnrollmentHisteryAdmin)
+
+admin.site.register(Enrollment)

@@ -224,7 +224,7 @@ class IUEducationDetails(models.Model):
     previous_classwork = models.BooleanField(default=False)
     previous_name = models.CharField(max_length=80)
     educator_role = models.ManyToManyField(
-        EducatorRole, related_name="educator_role"
+        EducatorRole, related_name="educator_role",default=""
     )
     institution_affilation = models.ManyToManyField(
         InstituteAffilation, related_name="institution_affolation"
@@ -240,45 +240,6 @@ class IUEducationDetails(models.Model):
         """docstring for meta"""
         verbose_name_plural = "Education Details"
 
-from datetime import datetime 
-                                                         
-class ExtraInformation(models.Model):
-    student = models.ForeignKey(
-        Student, on_delete=models.CASCADE,
-        related_name="veteran_details"
-    )
-    veteran_member = models.BooleanField(default=False)
-    VETERAN_MEMBER = (
-        ("No", "No"),
-        ("Spouse", "Spouse"),
-        ("Parent/Guardian", "Parent/Guardian")  
-    )                           
-    veteran_family_member = models.CharField(
-        max_length=40, choices=VETERAN_MEMBER
-    )
-    educational_benefits = models.BooleanField(default=False)
-
-    formal_disciplinary_action = models.BooleanField(default=False)
-    legal_charges = models.BooleanField(default=False)
-    state_Licensure = models.BooleanField(default=False)
-    currently_enroll = models.BooleanField(default=False)
-    previous_classwork = models.BooleanField(default=False)
-    pending_criminal_charges = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    restraining_order = models.BooleanField(
-        "Injury to Person/Property", default=False
-    )                                                 
-                       
-    def __str__(self):
-        """
-        :return: the student
-        """
-        return str(self.student)
-
-    class Meta:
-        managed = False
-        """docstring for meta"""
-        verbose_name_plural = "Extra Info"
 
 
 # --------------------------- Qualtrics Database ---------------------------
@@ -462,7 +423,8 @@ class FormerName(models.Model):
 
 
 class Comments(models.Model):
-
+    user = models.ForeignKey(Student,on_delete=models.CASCADE,
+    verbose_name= "student_comment")
     comment = models.CharField(max_length=255)
     username = models.CharField(max_length=80)
     created_at = models.DateField(auto_now_add=True)
@@ -591,11 +553,11 @@ class StudentEnrollmentHistery(models.Model):
     st_en_data = models.ForeignKey(Student, on_delete=models.CASCADE,
     related_name='student_enrollment_history'
     )
-    course = models.CharField(max_length=200,default=False)
-    class_student = models.CharField(max_length=200,default=False)
-    term = models.CharField(max_length=200,default=False)
-    student_funding = models.CharField(max_length=200,default=False)
-    student_enrollment = models.CharField(max_length=200,default=False)
+    course = models.CharField(max_length=200)
+    class_student = models.CharField(max_length=200)
+    term = models.CharField(max_length=200)
+    student_funding = models.CharField(max_length=200)
+    student_enrollment = models.CharField(max_length=200)
     student_grade = models.CharField(max_length=100,null=True)
     credit_house = models.PositiveIntegerField()
 
@@ -605,6 +567,31 @@ class StudentEnrollmentHistery(models.Model):
     class Meta:
         """docstring for meta"""
         verbose_name_plural = 'Student Enrollment Histery'
+
+
+#-----------------------------------------------Enrollment--------------------------------------------#
+
+class Enrollment(models.Model):
+    TERMS = (
+        ("one","one"),
+        ("two","two"),
+        ("three","three")
+    )
+    term = models.CharField(max_length=100,choices=TERMS)
+
+    course = models.CharField(max_length=100)
+    funding = models.CharField(max_length=100)
+    date_created = models.DateField(default="")
+    username = models.CharField(max_length=100)
+
+    def __str__(self):
+        """return the username"""
+        return str(self.username)
+
+    class Meta:
+        """docstring for Meta"""
+        verbose_name_plural = "Enrollment Add/Delete"
+    
 
 
 
@@ -649,6 +636,37 @@ class OtherDetails(models.Model):
     class Meta:
         """docstring for meta"""
         verbose_name_plural = "Other Details"
+
+
+class OthersInfoData(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name= 'student_data'
+    )
+    veteran_member = models.BooleanField(default=False)
+    VETERAN_MEMBER = (
+        ("No", "No"),
+        ("Spouse", "Spouse"),
+        ("Parent/Guardian", "Parent/Guardian")  
+    )                         
+    veteran_family_member = models.CharField(
+        max_length=40, choices=VETERAN_MEMBER
+    )
+    date_field = models.DateField(default="")  
+    educational_benefits = models.BooleanField(default=False)
+    formal_disciplinary_action = models.BooleanField(default=False)
+    legal_charges = models.BooleanField(default=False)
+    state_Licensure = models.BooleanField(default=False)
+    currently_enroll = models.BooleanField(default=False)
+    previous_classwork = models.BooleanField(default=False)
+    pending_criminal_charges = models.BooleanField(default=False)
+    restraining_order = models.BooleanField(
+        "Injury to Person/Property", default=False
+    )         
+
+    def __str__(self):
+        return str(self.veteran_family_member)
+
+    class Meta:
+        verbose_name_plural = 'Others information Data'
 
 
 # # ------------------------- Application Data --------------------------------

@@ -31,6 +31,6 @@ urlpatterns = [
         name='enrollment-details'),
 
 #     url(r'^othersinformation$', views.OthersInformationView.as_view(), name='others_informations')  
-
+url(r'^add-enrollment/(?P<student_id>[0-9a-f-]+)$', views.AddEnrollmentView.as_view()),
 
 ]

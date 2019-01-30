@@ -47,12 +47,16 @@ class StudentDetailsView(View):
         educationdetails2018 =IUEducationDetails.objects.filter(student=student,requested_start_date__year='2018').first() 
         educationdetails2017 =IUEducationDetails.objects.filter(student=student,requested_start_date__year='2017').first() 
         educationdetails2016 =IUEducationDetails.objects.filter(student=student,requested_start_date__year='2016').first()
-      
-        enrollment = StudentEnrollmentHistery.objects.first()
-        comment = Comments.objects.first()
+        othersdata2019 = OthersInfoData.objects.filter(student=student,date_field__year='2019').first()
+        othersdata2018 = OthersInfoData.objects.filter(student=student,date_field__year='2018').first()
+        othersdata2017 = OthersInfoData.objects.filter(student=student,date_field__year='2017').first()
+        othersdata2016 = OthersInfoData.objects.filter(student=student,date_field__year='2016').first()
+        enrollment = StudentEnrollmentHistery.objects.filter(st_en_data=student).first()
+        comment = Comments.objects.filter(user=student.id)
 
         return render(request, 'student_details.html', {'student': student, 'educationdetails2019':educationdetails2019,
-        'educationdetails2018':educationdetails2018,'educationdetails2017':educationdetails2017,'educationdetails2016':educationdetails2016, 'enrollment':enrollment,'comment':comment})
+        'educationdetails2018':educationdetails2018,'educationdetails2017':educationdetails2017,'educationdetails2016':educationdetails2016, 'enrollment':enrollment,'comment':comment,
+        'othersdata2019':othersdata2019,'othersdata2018':othersdata2018,'othersdata2017':othersdata2017,'othersdata2016':othersdata2016})
 
                                                                                                                                                                                                                   
 class UpdateStudentUidView(View):
@@ -91,3 +95,14 @@ class EnrollmentDetailsView(View):
 
     def get(self, request):
         return render(request, 'enrollment_details.html')
+
+
+
+class AddEnrollmentView(View):
+    """ add enrollment view """
+
+    def post(self,request,uuid):
+        enrollment = Enrollment.objects.filter(student=student)
+
+
+        # return redirect("student-details")
