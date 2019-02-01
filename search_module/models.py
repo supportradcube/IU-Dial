@@ -572,14 +572,22 @@ class StudentEnrollmentHistery(models.Model):
 #-----------------------------------------------Enrollment--------------------------------------------#
 
 class Enrollment(models.Model):
+    user = models.ForeignKey(Student,on_delete=models.CASCADE,
+    verbose_name= "student_enrollment")
+
     TERMS = (
         ("one","one"),
         ("two","two"),
         ("three","three")
     )
     term = models.CharField(max_length=100,choices=TERMS)
-
-    course = models.CharField(max_length=100)
+    COURSE = (
+        ("B.tech","B.tech"),
+        ("MBA","MBA"),
+        ("BBA","BBA"),
+        ("BA","BA")
+    )
+    course = models.CharField(max_length=100,choices=COURSE)
     funding = models.CharField(max_length=100)
     date_created = models.DateField(default="")
     username = models.CharField(max_length=100)

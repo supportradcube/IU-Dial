@@ -29,8 +29,9 @@ urlpatterns = [
 
     url(r'^enrollment-details$', views.EnrollmentDetailsView.as_view(),
         name='enrollment-details'),
+  
+    url(r'^add-enrollment/(?P<student_id>[0-9a-f-]+)$', views.AddEnrollmentView.as_view(), name='add-enrollment'),
 
-#     url(r'^othersinformation$', views.OthersInformationView.as_view(), name='others_informations')  
-url(r'^add-enrollment/(?P<student_id>[0-9a-f-]+)$', views.AddEnrollmentView.as_view()),
 
-]
+    url(r'^add-comment/(?P<student_id>[0-9a-f-]+)$', views.AddCommentView.as_view(), name='comment')
+    ]

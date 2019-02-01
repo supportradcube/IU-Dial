@@ -20,7 +20,7 @@
               <li class="d-flex justify-content-between align-items-center"><label>UID:</label><span style="width: 50%;"><input
                     type="text" name="uid" class="form-control" id="uid" aria-describedby="emailHelp" required {% if student.uid %} value="{{student.uid}}"
                     {% endif %}></li>
-              <li><label>Date of Birth:</label><span>{{student.date_of_birth|date:'m/d/y'}}</span></li>
+              <li><label>Date of Birth:</label><span>{{student.date_of_birth|date:'d/m/y'}}</span></li>
             </ul>
             <ul class="mb0 listing">
               <li><label>Citizenship:</label><span>{{student.citizenship}}</span></li>
@@ -137,8 +137,8 @@
                      
                     <ul class="mb0 listing">
                       <li><label>Qualtrics Application ID:</label><span>{{ educationdetails2019.qualtrics_application_id }}</span></li>
-                      <li><label>Qualtrics Completion Date:</label><span>{{ educationdetails2019.qualtrics_completion_date|date:'m/d/y' }}</span></li>
-                      <li><label>Requested Start Date:</label><span>{{educationdetails2019.requested_start_date|date:'m/d/y' }}</span></li>
+                      <li><label>Qualtrics Completion Date:</label><span>{{ educationdetails2019.qualtrics_completion_date|date:'d/m/y' }}</span></li>
+                      <li><label>Requested Start Date:</label><span>{{educationdetails2019.requested_start_date|date:'d/m/y' }}</span></li>
                       <li><label>DC Partner:</label><span>{{educationdetails2019.dc_partner}}</span></li>
                       <li><label>Required Teaching in Subject Area:</label><span>{{ educationdetails2019.required_teaching_experience }}</span></li>
                     </ul>
@@ -210,8 +210,8 @@
                   <div class="p20">
                     <ul class="mb0 listing">
                       <li><label>Qualtrics Application ID:</label><span>{{educationdetails2018.qualtrics_application_id}}</span></li>
-                      <li><label>Qualtrics Completion Date:</label><span>{{educationdetails2018.qualtrics_completion_date|date:'m/d/y'}}</span></li>
-                      <li><label>Requested Start Date:</label><span>{{ educationdetails2018.requested_start_date|date:'m/d/y' }}</span></li>
+                      <li><label>Qualtrics Completion Date:</label><span>{{educationdetails2018.qualtrics_completion_date|date:'d/m/y'}}</span></li>
+                      <li><label>Requested Start Date:</label><span>{{ educationdetails2018.requested_start_date|date:'d/m/y' }}</span></li>
                       <li><label>DC Partner:</label><span>{{educationdetails2018.dc_partner}}</span></li>
                       <li><label>Required Teaching in Subject Area:</label><span>{{educationdetails2018.required_teaching_experience}}</span></li>            
                     </ul>
@@ -283,11 +283,11 @@
                   <div class="p20">
                     <ul class="mb0 listing">
                       <li><label>Qualtrics Application ID:</label><span>{{educationdetails2017.qualtrics_application_id}}</span></li>
-                      <li><label>Qualtrics Completion Date:</label><span>{{educationdetails2017.qualtrics_completion_date|date:'m/d/y'}}</span></li>
+                      <li><label>Qualtrics Completion Date:</label><span>{{educationdetails2017.qualtrics_completion_date|date:'d/m/y'}}</span></li>
                     </ul>
                    
                     <ul class="mb0 listing">
-                      <li><label>Requested Start Date:</label><span>{{ educationdetails2017.requested_start_date|date:'m/d/y' }}</span></li>
+                      <li><label>Requested Start Date:</label><span>{{ educationdetails2017.requested_start_date|date:'d/m/y' }}</span></li>
                       <li><label>DC Partner:</label><span>{{educationdetails2017.dc_partner}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
@@ -360,11 +360,11 @@
                   <div class="p20">
                     <ul class="mb0 listing">
                       <li><label>Qualtrics Application ID:</label><span>{{educationdetails2016.qualtrics_application_id}}</span></li>
-                      <li><label>Qualtrics Completion Date:</label><span>{{educationdetails2016.qualtrics_completion_date|date:'m/d/y'}}</span></li>
+                      <li><label>Qualtrics Completion Date:</label><span>{{educationdetails2016.qualtrics_completion_date|date:'d/m/y'}}</span></li>
                     </ul>
                    
                     <ul class="mb0 listing">
-                      <li><label>Requested Start Date:</label><span>{{ educationdetails2016.requested_start_date|date:'m/d/y' }}</span></li>
+                      <li><label>Requested Start Date:</label><span>{{ educationdetails2016.requested_start_date|date:'d/m/y' }}</span></li>
                       <li><label>DC Partner:</label><span>{{educationdetails2016.dc_partner}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
@@ -442,13 +442,13 @@
         <div style="box-shadow: 0px 0px 10px #ccc">
           <nav>
             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-              <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home1" role="tab"
+              <a class="nav-item nav-link active show" id="nav-home-tab" data-toggle="tab" href="#nav-home1" role="tab"
                 aria-controls="nav-home" aria-selected="false">Other Information 2019</a>
               <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile1" role="tab"
                 aria-controls="nav-profile" aria-selected="false">Other Information 2018</a>
               <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact1" role="tab"
                 aria-controls="nav-contact" aria-selected="false">Other Information 2017</a>
-              <a class="nav-item nav-link active show" id="nav-about-tab" data-toggle="tab" href="#nav-about1" role="tab"
+              <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about1" role="tab"
                 aria-controls="nav-about" aria-selected="true"> Other Information 2016</a>
             </div>
           </nav>
@@ -670,14 +670,15 @@
             <label for="pwd">Course</label>
             <select class="browser-default custom-select" id="course_bar" name="course_bar">
               <option selected>Open this select menu</option>
-              <option value="1">B.tech</option>
-              <option value="2">MBA</option>
-              <option value="3">BA</option>
+              <option value="B.tech">B.tech</option>
+              <option value="MBA">MBA</option>
+              <option value="BA">BA</option>
+              <option value="BBA">BBA</option>
             </select>
           </div>
           <div class="form-group ml-3">
             <label for="pwd">Funding</label>
-            <select class="browser-default custom-select">
+            <select class="browser-default custom-select" id="funding-bar" name="funding-bar">
               <option selected>Open this select menu</option>
               <option value="1">One</option>
               <option value="2">Two</option>
@@ -708,26 +709,18 @@
                   </tr>
                 </thead>
                 <tbody>
+                  {% for enroll in enrollments %}
                   <tr>
-                    <td>{{enrollments.term}}</td>
-                    <td>{{enrollments.course}}</td>
-                    <td>{{enrollments.student_funding}}</td>
-                    <td>{{enrollments.}}</td>
-                    <td>{{enrollments.}}</td>
+                    <td>{{enroll.term}}</td>
+                    <td>{{enroll.course}}</td>
+                    <td>{{enroll.student_funding}}</td>
+                    <td>{{enroll.}}</td>
+                    <td>{{enroll.}}</td>
                     <td><a style="color:grey;" href="#delete_enrollment_modal" data-target="#delete_enrollment_modal"
                         data-toggle="modal" data-dismiss="modal"><i class="fa fa-trash" aria-hidden="true"></i></a>
                     </td>
                   </tr>
-                  <tr>
-                    <td>4188 (Fall 2018)</td>
-                    <td>L501</td>
-                    <td>IDOE</td>
-                    <td>08/02/2018</td>
-                    <td>sbarranc</td>
-                    <td><a style="color:grey;" href="#delete_enrollment_modal" data-target="#delete_enrollment_modal"
-                        data-toggle="modal" data-dismiss="modal"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                    </td>
-                  </tr>
+                  {% endfor %}
                 </tbody>
               </table>
             </div>
@@ -753,20 +746,25 @@
           <tbody>
              {% for com in comment %}
             <tr>
-              <td>{{com.created_at|date:'m/d/y'}}</td>
+              <td>{{com.created_at|date:'d/m/y'}}</td>
               <td>{{com.comment}}</td>
-              <td>{{com.username}}</td>
+              <td>{{com.user.username}}</td>
             </tr>
             {% endfor %}
             </tbody>
         </table>
         <div class="container">
-          <form method="POST" action="">
+            <!-- {{request.path|slice:"17:"}} -->
+            {% if student.uuid %}
+          <form method="POST" action="{% url 'student_search:comment' student.uuid %}">
+            {% else %}
+            <form method="POST" action="">
+              {% endif %}
             {% csrf_token %}
             <!-- <div class="col-md-12 mt20 mb20 pb20"> -->
             <div style="box-shadow: 0px 0px 10px #ccc;">
               <div class="form-group">
-                <input class="form-control" type="text" placeholder="Add your comment here.." required>
+                <input class="form-control" name='comment' type="text" placeholder="Add your comment here.." required>
               </div>
             </div>
             <!-- </div> -->
@@ -804,7 +802,5 @@
   <button style="padding-top:5px; font-size: 16px;margin-left:40px; color: #fff;" type="submit"  class="btn btn-primary btn-red">Back
   </button>
 </a>
-<!-- <button><a href="javascript:history.go(-1)">Back</a></button></div> -->
 <!---------------------------- Modal end ----------------------------------->
-
 {% endblock %}

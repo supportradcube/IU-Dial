@@ -4,8 +4,6 @@ from django.utils.safestring import mark_safe
 from django.contrib.auth.models import Group
 admin.site.unregister(Group)
 
-
-
 class UserAdmin(admin.ModelAdmin):
     list_display_links = None
     list_display = ['email', 'is_superuser', 'Action']

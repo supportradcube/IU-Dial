@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.views import View
 from .models import *
-
+from .forms import *
+from django.shortcuts import redirect
 
 class SearchScreenView(View):
     """Landing page / Search screen View"""
@@ -66,16 +67,26 @@ class UpdateStudentUidView(View):
         student = Student.objects.get(uuid=student_id)
         student.uid = request.POST['uid']
         student.save()
-        return render(request, 'student_details.html', {'student': student, })
+        return render(request, 'student_details.html', {'student': student})
             
 
-# class AddCommentView(View):
-#     """Add Comment"""
+class AddCommentView(View):
+    """Add Comment"""
+  
+    def post(self, request,student_id):
+        params = request.POST
+        user_id = Student.objects.get(uuid=student_id)
+        comment = Comments.objects.create(user=user_id,comment=params['comment'],username="admin")
+        return redirect('search_module:student-details',student_id)
 
-#     def post(self, request):
-#         comment = Comments.objects.get()
-#         return render(request, 'student_details.html', {'comment':comment})
-        
+class AddEnrollmentView(View):
+    """ add enrollment view """
+
+    def post(self,request,student_id):
+        params = request.POST
+        user_id = Student.objects.get(uuid=student_id)
+        enrollment = Enrollment.objects.filter(user=user_id,term=params['term_bar'],course=params['course_bar'], funding=params['funding-bar'])
+        return redirect('student-details',student_id)
 
 
 # ------------------------ Course Module -----------------------------------
@@ -94,15 +105,4 @@ class EnrollmentDetailsView(View):
     """Enrollment Details View"""
 
     def get(self, request):
-        return render(request, 'enrollment_details.html')
-
-
-
-class AddEnrollmentView(View):
-    """ add enrollment view """
-
-    def post(self,request,uuid):
-        enrollment = Enrollment.objects.filter(student=student)
-
-
-        # return redirect("student-details")
+        return render(request, 'enrollment_details.html')      
