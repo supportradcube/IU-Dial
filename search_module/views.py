@@ -32,7 +32,6 @@ class StudentSearchView(View):
             students =students.filter(dc_partner__icontains=request.POST['dc_partner'])
         if 'currently_enrolled' in request.POST and request.POST['currently_enrolled']:
             students = students.filter(currently_enrolled='True') 
-
         if 'pending_enrollment' in request.POST and request.POST['pending_enrollment']:
             students = students.filter(pending_enrollment='True') 
         return render(request, 'search_screen.html', {'students': students})
@@ -52,11 +51,11 @@ class StudentDetailsView(View):
         othersdata2018 = OthersInfoData.objects.filter(student=student,date_field__year='2018').first()
         othersdata2017 = OthersInfoData.objects.filter(student=student,date_field__year='2017').first()
         othersdata2016 = OthersInfoData.objects.filter(student=student,date_field__year='2016').first()
-        enrollment = StudentEnrollmentHistery.objects.filter(st_en_data=student).first()
+        enrollmenthistory = StudentEnrollmentHistery.objects.filter(st_en_data=student.id)
         comment = Comments.objects.filter(user=student.id)
-
+        enrollment = Enrollment.objects.filter(user=student.id)
         return render(request, 'student_details.html', {'student': student, 'educationdetails2019':educationdetails2019,
-        'educationdetails2018':educationdetails2018,'educationdetails2017':educationdetails2017,'educationdetails2016':educationdetails2016, 'enrollment':enrollment,'comment':comment,
+        'educationdetails2018':educationdetails2018,'educationdetails2017':educationdetails2017,'educationdetails2016':educationdetails2016, 'enrollment':enrollment,'enrollmenthistory':enrollmenthistory, 'comment':comment,
         'othersdata2019':othersdata2019,'othersdata2018':othersdata2018,'othersdata2017':othersdata2017,'othersdata2016':othersdata2016})
 
                                                                                                                                                                                                                   
@@ -83,10 +82,10 @@ class AddEnrollmentView(View):
     """ add enrollment view """
 
     def post(self,request,student_id):
-        params = request.POST
+        params = request.POST   
         user_id = Student.objects.get(uuid=student_id)
-        enrollment = Enrollment.objects.filter(user=user_id,term=params['term_bar'],course=params['course_bar'], funding=params['funding-bar'])
-        return redirect('student-details',student_id)
+        enrollment = Enrollment.objects.create(user=user_id,term=params['term_bar'],course=params['course_bar'], funding=params['funding-bar'], username="admin")
+        return redirect('search_module:student-details',student_id)
 
 
 # ------------------------ Course Module -----------------------------------

@@ -443,19 +443,19 @@ class Comments(models.Model):
 # # ---------------------- Grant Enrollemt Data -------------------------------
 
 
-class GrantEnrollmentData(models.Model):
+# class GrantEnrollmentData(models.Model):
 
-    class_number = models.PositiveIntegerField()
-    course_subject_code = models.CharField(max_length=10)
-    university_id = models.CharField(max_length=10)
-    academic_term_code = models.CharField(max_length=4)
-    grant_id = models.PositiveIntegerField()
+#     class_number = models.PositiveIntegerField()
+#     course_subject_code = models.CharField(max_length=10)
+#     university_id = models.CharField(max_length=10)
+#     academic_term_code = models.CharField(max_length=4)
+#     grant_id = models.PositiveIntegerField()
     
-    def __str__(self):
-        return str(self.course_subject_code)
+#     def __str__(self):
+#         return str(self.course_subject_code)
     
-    class Meta:
-        verbose_name_plural = 'Grant Enrollment Datasssss'
+#     class Meta:
+#         verbose_name_plural = 'Grant Enrollment Datasssss'
 
 # # ---------------------------- Grant Data -----------------------------------
 
@@ -476,26 +476,26 @@ class Campus(models.Model):
         verbose_name_plural = 'campus'
 
 
-class Course(models.Model):
+# class Course(models.Model):
 
-    grant_en_data = models.ForeignKey(
-        GrantEnrollmentData, on_delete=models.CASCADE,
-        related_name="course_detail"
-    )
-    course_id = models.CharField(max_length=5)
-    course_desc = models.CharField(max_length=255)
-    course_subject_code = models.CharField(max_length=10)
-    course_catlog_number = models.PositiveIntegerField()    
-    course_official_grade_code = models.CharField(max_length=4)        
+#     grant_en_data = models.ForeignKey(
+#         GrantEnrollmentData, on_delete=models.CASCADE,
+#         related_name="course_detail"
+#     )
+#     course_id = models.CharField(max_length=5)
+#     course_desc = models.CharField(max_length=255)
+#     course_subject_code = models.CharField(max_length=10)
+#     course_catlog_number = models.PositiveIntegerField()    
+#     course_official_grade_code = models.CharField(max_length=4)        
 
-class Instructor(models.Model):
+# class Instructor(models.Model):
 
-    grant_en_data = models.ForeignKey(
-        GrantEnrollmentData, on_delete=models.CASCADE,
-        related_name="instructor_detail"
-    )
-    class_inst_name = models.CharField(max_length=80)
-    class_inst_gds_email = models.EmailField(max_length=255)
+#     grant_en_data = models.ForeignKey(
+#         GrantEnrollmentData, on_delete=models.CASCADE,
+#         related_name="instructor_detail"
+#     )
+#     class_inst_name = models.CharField(max_length=80)
+#     class_inst_gds_email = models.EmailField(max_length=255)
 
 
 
@@ -505,24 +505,24 @@ class Instructor(models.Model):
 
 class EnrollmentData(models.Model):
 
-    grant_en_data = models.ForeignKey(
-        GrantEnrollmentData, on_delete=models.CASCADE,
-        related_name="enrollment_grant"
-    )
-    course_details = models.ForeignKey(
-        Course, on_delete=models.CASCADE,
-        related_name="enrollment_course_detail"
-    )
-    instructor_details = models.ForeignKey(
-        Instructor, on_delete=models.CASCADE,
-        related_name="enrollment_instructor_detail"
-    )
+    # grant_en_data = models.ForeignKey(
+    #     GrantEnrollmentData, on_delete=models.CASCADE,
+    #     related_name="enrollment_grant"
+    # )
+    # course_details = models.ForeignKey(
+    #     Course, on_delete=models.CASCADE,
+    #     related_name="enrollment_course_detail"
+    # )
+    # instructor_details = models.ForeignKey(
+    #     Instructor, on_delete=models.CASCADE,
+    #     related_name="enrollment_instructor_detail"
+    # )
     student_enrollment = models.ForeignKey(
         Student, on_delete=models.CASCADE,
     )
-    course_enroll = models.ForeignKey(
-        Course, on_delete=models.CASCADE,
-    )
+    # course_enroll = models.ForeignKey(
+    #     Course, on_delete=models.CASCADE,
+    # )
     firt_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
     course_number = models.CharField(max_length=20)
@@ -576,9 +576,9 @@ class Enrollment(models.Model):
     verbose_name= "student_enrollment")
 
     TERMS = (
-        ("one","one"),
-        ("two","two"),
-        ("three","three")
+        ("One","One"),
+        ("Two","Two"),
+        ("Three","Three")
     )
     term = models.CharField(max_length=100,choices=TERMS)
     COURSE = (
@@ -589,7 +589,7 @@ class Enrollment(models.Model):
     )
     course = models.CharField(max_length=100,choices=COURSE)
     funding = models.CharField(max_length=100)
-    date_created = models.DateField(default="")
+    date_created = models.DateField(auto_now_add=True)
     username = models.CharField(max_length=100)
 
     def __str__(self):

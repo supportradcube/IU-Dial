@@ -46,23 +46,23 @@ admin.site.register(Student, StudentAdmin)
 
 #------------------------------------------course--------------------------------------------#
 
-class CourseAdmin(admin.ModelAdmin):
-        list_display_links = None
-        list_display = ['course_subject_code','Action']
-        list_filter = ['course_subject_code']
+# class CourseAdmin(admin.ModelAdmin):
+#         list_display_links = None
+#         list_display = ['course_subject_code','Action']
+#         list_filter = ['course_subject_code']
         
-        def Action(self, obj):
-            return mark_safe("<a class='button btn' style='color:white; ' href='/admin/search_module/course/{}/change/'>View/Edit</a>".format(obj.id))
+#         def Action(self, obj):
+#             return mark_safe("<a class='button btn' style='color:white; ' href='/admin/search_module/course/{}/change/'>View/Edit</a>".format(obj.id))
 
-admin.site.register(Course,CourseAdmin)
+# admin.site.register(Course,CourseAdmin)
 #-----------------------------------------------GrantEnrollmentData--------------------------#
 
-class GrantEnrollmentDataAdmin(admin.ModelAdmin):
-    list_display_links = None
-    list_display = ['class_number']
-    list_filter = ['class_number']
+# class GrantEnrollmentDataAdmin(admin.ModelAdmin):
+#     list_display_links = None
+#     list_display = ['class_number']
+#     list_filter = ['class_number']
    
-admin.site.register(GrantEnrollmentData,CourseAdmin) 
+# admin.site.register(GrantEnrollmentData,CourseAdmin) 
 
 #-----------------------------------------------IUEducationDetails-----------------------------------------#
 
@@ -186,14 +186,14 @@ class EnrollmentDataAdmin(admin.ModelAdmin):
 admin.site.register(EnrollmentData)
 
 #-----------------------------------------------Instructor--------------------------------------------#
-class InstructorAdmin(admin.ModelAdmin):
-    list_display_links = None
-    list_display = ['class_inst_name','Action']
+# class InstructorAdmin(admin.ModelAdmin):
+#     list_display_links = None
+#     list_display = ['class_inst_name','Action']
 
-    def Action(self, obj):
-         return mark_safe("<a class='button btn' style='color:white; ' href='/admin/search_module/permanentaddress/{}/change/'>View/Edit</a>".format(obj.id))
+#     def Action(self, obj):
+#          return mark_safe("<a class='button btn' style='color:white; ' href='/admin/search_module/permanentaddress/{}/change/'>View/Edit</a>".format(obj.id))
 
-admin.site.register(Instructor, InstructorAdmin)
+# admin.site.register(Instructor, InstructorAdmin)
 
 
 #-----------------------------StudentEnrollmentHistery------------------------------------------------3

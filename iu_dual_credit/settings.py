@@ -31,7 +31,7 @@ IU_DUAL_CREDIT_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    'languages',
+    'languages'
 ]
 
 INSTALLED_APPS += IU_DUAL_CREDIT_APPS + THIRD_PARTY_APPS

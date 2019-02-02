@@ -298,7 +298,7 @@
                               <td>{% if student.uid == None %}-{% else %}{{student.uid}}{% endif %}</td>
                               <td>{{student.student_type}}</td>
                               <td>{{student.dc_partner}}</td>
-                              <td>{{student.pending_course_request_date|date:'d/m/Y'}}</td>
+                              <td>{{student.pending_course_request_date|date:'m/d/y'}}</td>
                               <td>{{student.course_choice}}</td>
                               <td>{{student.second_course_choice}}</td>
                               <td>{{student.credit_hours_earned}}</td>

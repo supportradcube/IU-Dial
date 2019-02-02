@@ -20,7 +20,7 @@
               <li class="d-flex justify-content-between align-items-center"><label>UID:</label><span style="width: 50%;"><input
                     type="text" name="uid" class="form-control" id="uid" aria-describedby="emailHelp" required {% if student.uid %} value="{{student.uid}}"
                     {% endif %}></li>
-              <li><label>Date of Birth:</label><span>{{student.date_of_birth|date:'d/m/y'}}</span></li>
+              <li><label>Date of Birth:</label><span>{{student.date_of_birth|date:'m/d/y'}}</span></li>
             </ul>
             <ul class="mb0 listing">
               <li><label>Citizenship:</label><span>{{student.citizenship}}</span></li>
@@ -137,8 +137,8 @@
                      
                     <ul class="mb0 listing">
                       <li><label>Qualtrics Application ID:</label><span>{{ educationdetails2019.qualtrics_application_id }}</span></li>
-                      <li><label>Qualtrics Completion Date:</label><span>{{ educationdetails2019.qualtrics_completion_date|date:'d/m/y' }}</span></li>
-                      <li><label>Requested Start Date:</label><span>{{educationdetails2019.requested_start_date|date:'d/m/y' }}</span></li>
+                      <li><label>Qualtrics Completion Date:</label><span>{{ educationdetails2019.qualtrics_completion_date|date:'m/d/y' }}</span></li>
+                      <li><label>Requested Start Date:</label><span>{{educationdetails2019.requested_start_date|date:'m/d/y' }}</span></li>
                       <li><label>DC Partner:</label><span>{{educationdetails2019.dc_partner}}</span></li>
                       <li><label>Required Teaching in Subject Area:</label><span>{{ educationdetails2019.required_teaching_experience }}</span></li>
                     </ul>
@@ -210,8 +210,8 @@
                   <div class="p20">
                     <ul class="mb0 listing">
                       <li><label>Qualtrics Application ID:</label><span>{{educationdetails2018.qualtrics_application_id}}</span></li>
-                      <li><label>Qualtrics Completion Date:</label><span>{{educationdetails2018.qualtrics_completion_date|date:'d/m/y'}}</span></li>
-                      <li><label>Requested Start Date:</label><span>{{ educationdetails2018.requested_start_date|date:'d/m/y' }}</span></li>
+                      <li><label>Qualtrics Completion Date:</label><span>{{educationdetails2018.qualtrics_completion_date|date:'m/d/y'}}</span></li>
+                      <li><label>Requested Start Date:</label><span>{{ educationdetails2018.requested_start_date|date:'m/d/y' }}</span></li>
                       <li><label>DC Partner:</label><span>{{educationdetails2018.dc_partner}}</span></li>
                       <li><label>Required Teaching in Subject Area:</label><span>{{educationdetails2018.required_teaching_experience}}</span></li>            
                     </ul>
@@ -283,11 +283,11 @@
                   <div class="p20">
                     <ul class="mb0 listing">
                       <li><label>Qualtrics Application ID:</label><span>{{educationdetails2017.qualtrics_application_id}}</span></li>
-                      <li><label>Qualtrics Completion Date:</label><span>{{educationdetails2017.qualtrics_completion_date|date:'d/m/y'}}</span></li>
+                      <li><label>Qualtrics Completion Date:</label><span>{{educationdetails2017.qualtrics_completion_date|date:'m/d/y'}}</span></li>
                     </ul>
                    
                     <ul class="mb0 listing">
-                      <li><label>Requested Start Date:</label><span>{{ educationdetails2017.requested_start_date|date:'d/m/y' }}</span></li>
+                      <li><label>Requested Start Date:</label><span>{{ educationdetails2017.requested_start_date|date:'m/d/y' }}</span></li>
                       <li><label>DC Partner:</label><span>{{educationdetails2017.dc_partner}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
@@ -360,11 +360,11 @@
                   <div class="p20">
                     <ul class="mb0 listing">
                       <li><label>Qualtrics Application ID:</label><span>{{educationdetails2016.qualtrics_application_id}}</span></li>
-                      <li><label>Qualtrics Completion Date:</label><span>{{educationdetails2016.qualtrics_completion_date|date:'d/m/y'}}</span></li>
+                      <li><label>Qualtrics Completion Date:</label><span>{{educationdetails2016.qualtrics_completion_date|date:'m/d/y'}}</span></li>
                     </ul>
                    
                     <ul class="mb0 listing">
-                      <li><label>Requested Start Date:</label><span>{{ educationdetails2016.requested_start_date|date:'d/m/y' }}</span></li>
+                      <li><label>Requested Start Date:</label><span>{{ educationdetails2016.requested_start_date|date:'m/d/y' }}</span></li>
                       <li><label>DC Partner:</label><span>{{educationdetails2016.dc_partner}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
@@ -588,6 +588,7 @@
                 </tr>
               </thead>
               <tbody>
+                {% for enrollment in enrollmenthistory %}
                 <tr>
                   <td>{{enrollment.course}}</td>
                   <td>{{enrollment.class_student}}</td>
@@ -597,6 +598,7 @@
                   <td>{{enrollment.student_grade}}</td>
                   <td>{{enrollment.credit_house}}</td>
                 </tr>
+                {% endfor %}
               </tbody>
             </table>
           </div>
@@ -625,7 +627,7 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>09/01/2018</td>
+                  <td>02/25/2018</td>
                   <td>2</td>
                   <td>BIO512</td>
                   <td>000013</td>
@@ -634,7 +636,7 @@
                   <!-- <td>Instructor in Indiana University's Advance College</td> -->
                 </tr>
                 <tr>
-                  <td>09/01/2018</td>
+                  <td>02/25/2018</td>
                   <td>4</td>
                   <td>BIO512</td>
                   <td>000013</td>
@@ -655,15 +657,19 @@
         <h5>Enrollments</h5>
       </div>
       <div class="d-flex justify-content-center flex-wrap">
-        <form class="form-inline" method="post"  action="" >
+        {% if student.uuid %}
+        <form class="form-inline" method="post"  action="{% url 'student_search:add-enrollment' student.uuid %}" >
+          {% else %}
+          <form class="form-inline" method="post"  action="" >
+            {% endif %}
           {% csrf_token %}
           <div class="form-group">
             <label for="email">Term</label>
             <select class="browser-default custom-select" id="term_bar" name="term_bar">
               <option selected>Open this select menu</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+              <option value="One">One</option>
+              <option value="Two">Two</option>
+              <option value="Three">Three</option>
             </select>
           </div>
           <div class="form-group ml-3">
@@ -680,9 +686,9 @@
             <label for="pwd">Funding</label>
             <select class="browser-default custom-select" id="funding-bar" name="funding-bar">
               <option selected>Open this select menu</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+              <option value="One">One</option>
+              <option value="Two">Two</option>
+              <option value="Three">Three</option>
             </select>
           </div>
           <div class="d-flex ml-3">
@@ -709,13 +715,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {% for enroll in enrollments %}
+                  {% for enroll in enrollment %}
                   <tr>
                     <td>{{enroll.term}}</td>
                     <td>{{enroll.course}}</td>
                     <td>{{enroll.student_funding}}</td>
-                    <td>{{enroll.}}</td>
-                    <td>{{enroll.}}</td>
+                    <td>{{enroll.date_created}}</td>
+                    <td>{{enroll.username}}</td>
                     <td><a style="color:grey;" href="#delete_enrollment_modal" data-target="#delete_enrollment_modal"
                         data-toggle="modal" data-dismiss="modal"><i class="fa fa-trash" aria-hidden="true"></i></a>
                     </td>
@@ -746,9 +752,9 @@
           <tbody>
              {% for com in comment %}
             <tr>
-              <td>{{com.created_at|date:'d/m/y'}}</td>
+              <td>{{com.created_at|date:'m/d/y'}}</td>
               <td>{{com.comment}}</td>
-              <td>{{com.user.username}}</td>
+              <td>{{com.username}}</td>
             </tr>
             {% endfor %}
             </tbody>
@@ -778,7 +784,7 @@
     </div>
   </div>
 </div>
-
+                                                                                                                         
 <!-------------------- Modal for deleting enrollment ---------------------->
 
 <div class="modal fade" id="delete_enrollment_modal" tabindex="-1" role="dialog">
