@@ -105,3 +105,9 @@ class EnrollmentDetailsView(View):
 
     def get(self, request):
         return render(request, 'enrollment_details.html')      
+
+class DeleteEnrollment(View):
+    """Delates enrolment"""
+
+    def  get(self,request):
+         pass

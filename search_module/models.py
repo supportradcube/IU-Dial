@@ -588,7 +588,12 @@ class Enrollment(models.Model):
         ("BA","BA")
     )
     course = models.CharField(max_length=100,choices=COURSE)
-    funding = models.CharField(max_length=100)
+    FUNDING = (
+       ("One","One"),
+        ("Two","Two"),
+        ("Three","Three") 
+    )
+    funding = models.CharField(max_length=100, choices=FUNDING)
     date_created = models.DateField(auto_now_add=True)
     username = models.CharField(max_length=100)
 

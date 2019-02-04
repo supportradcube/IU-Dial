@@ -401,7 +401,7 @@
                         </thead>
                         <tbody>
                           <tr>
-                            <td>{{educationdetails2016.educator_role}}</td>
+                            <td>{{educationdetails2016.educator_role|safe}}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -442,14 +442,14 @@
         <div style="box-shadow: 0px 0px 10px #ccc">
           <nav>
             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-              <a class="nav-item nav-link active show" id="nav-home-tab" data-toggle="tab" href="#nav-home1" role="tab"
-                aria-controls="nav-home" aria-selected="false">Other Information 2019</a>
+              <a class="nav-item nav-link " id="nav-home-tab" data-toggle="tab" href="#nav-home1" role="tab"
+                aria-controls="nav-home" aria-selected="true">Other Information 2019</a>
               <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile1" role="tab"
                 aria-controls="nav-profile" aria-selected="false">Other Information 2018</a>
               <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact1" role="tab"
                 aria-controls="nav-contact" aria-selected="false">Other Information 2017</a>
-              <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about1" role="tab"
-                aria-controls="nav-about" aria-selected="true"> Other Information 2016</a>
+              <a class="nav-item nav-link active show" id="nav-about-tab" data-toggle="tab" href="#nav-about1" role="tab"
+                aria-controls="nav-about" aria-selected="false"> Other Information 2016</a>
             </div>
           </nav>
           <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
@@ -459,7 +459,7 @@
                   <div class="p20">
                     <ul class="mb0 listing">
                       
-                      <li><label>Veteran/Active Military:</label><span>{{othersdata2019.veteran_member|safe}}</span></li>
+                      <li><label>Veteran/Active Military:</label><span>{{othersdata2019.veteran_member}}</span></li>
                       <li><label>Family Military History:</label><span>{{othersdata2019.veteran_family_member}}</span></li>
                     </ul>
                     <ul class="mb0 listing">
@@ -631,7 +631,7 @@
                   <td>2</td>
                   <td>BIO512</td>
                   <td>000013</td>
-                  <td>09/01/2018</td>
+                  <td>09/018/2018</td>
                   <td>Instructor in Indiana University's Advance College</td>
                   <!-- <td>Instructor in Indiana University's Advance College</td> -->
                 </tr>
@@ -640,7 +640,7 @@
                   <td>4</td>
                   <td>BIO512</td>
                   <td>000013</td>
-                  <td>09/01/2018</td>
+                  <td>09/18/2018</td>
                   <td>Instructor in Indiana University's Advance College</td>
                   <!-- <td>Instructor in Indiana University's Advance College</td> -->
                 </tr>
@@ -719,7 +719,7 @@
                   <tr>
                     <td>{{enroll.term}}</td>
                     <td>{{enroll.course}}</td>
-                    <td>{{enroll.student_funding}}</td>
+                    <td>{{enroll.funding}}</td>
                     <td>{{enroll.date_created}}</td>
                     <td>{{enroll.username}}</td>
                     <td><a style="color:grey;" href="#delete_enrollment_modal" data-target="#delete_enrollment_modal"

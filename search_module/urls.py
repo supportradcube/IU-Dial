@@ -34,4 +34,6 @@ urlpatterns = [
 
 
     url(r'^add-comment/(?P<student_id>[0-9a-f-]+)$', views.AddCommentView.as_view(), name='comment')
+
+    #  url(r'^add-delete/(?P<student_id>[0-9a-f-]+)$', views.DeleteEnrollment.as_view(), name='delete')
     ]
