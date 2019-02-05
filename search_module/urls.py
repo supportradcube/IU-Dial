@@ -33,7 +33,7 @@ urlpatterns = [
     url(r'^add-enrollment/(?P<student_id>[0-9a-f-]+)$', views.AddEnrollmentView.as_view(), name='add-enrollment'),
 
 
-    url(r'^add-comment/(?P<student_id>[0-9a-f-]+)$', views.AddCommentView.as_view(), name='comment')
+    url(r'^add-comment/(?P<student_id>[0-9a-f-]+)$', views.AddCommentView.as_view(), name='comment'),
 
-    #  url(r'^add-delete/(?P<student_id>[0-9a-f-]+)$', views.DeleteEnrollment.as_view(), name='delete')
+    url(r'^add-delete/(?P<student_id>[0-9a-f-]+)$', views.DeleteEnrollment.as_view(), name='delete')
     ]

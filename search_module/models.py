@@ -476,17 +476,42 @@ class Campus(models.Model):
         verbose_name_plural = 'campus'
 
 
-# class Course(models.Model):
+class Course(models.Model):
 
-#     grant_en_data = models.ForeignKey(
-#         GrantEnrollmentData, on_delete=models.CASCADE,
-#         related_name="course_detail"
-#     )
-#     course_id = models.CharField(max_length=5)
-#     course_desc = models.CharField(max_length=255)
-#     course_subject_code = models.CharField(max_length=10)
-#     course_catlog_number = models.PositiveIntegerField()    
-#     course_official_grade_code = models.CharField(max_length=4)        
+    # grant_en_data = models.ForeignKey(
+    #     GrantEnrollmentData, on_delete=models.CASCADE,
+    #     related_name="course_detail"
+    # )
+    course_number = models.CharField(max_length=100)
+    course_name = models.CharField(max_length=100)
+    course_id = models.CharField(max_length=5)
+    course_desc = models.CharField(max_length=255)
+    course_subject_code = models.CharField(max_length=10)
+    course_catlog_number = models.PositiveIntegerField()    
+    course_official_grade_code = models.CharField(max_length=4) 
+    term = models.CharField(max_length=100)
+    campus_instrucation = models.CharField(max_length=100)
+    instructor = models.CharField(max_length=100)
+    total_seats = models.PositiveIntegerField()
+    enroll = models.CharField(max_length=100)
+    pending_enrollment = models.CharField(max_length=20)
+    calculated_remaining = models.CharField(max_length=100)
+    no_of_drop = models.CharField(max_length=100)
+    no_of_withdrawals = models.CharField(max_length=100)
+    campus = models.CharField(max_length=100)
+    class_number = models.CharField(max_length=100)
+    total_seats = models.PositiveIntegerField()
+    student_name = models.CharField(max_length=20)
+    sectioin = models.CharField(max_length=20)
+    course_status = models.CharField(max_length=20)
+
+
+    def __str__(self):
+        return str(self.student_name)
+
+    class Meta:
+        """docstring for meta"""
+        verbose_name_plural = "course"         
 
 # class Instructor(models.Model):
 

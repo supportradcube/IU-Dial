@@ -14,7 +14,7 @@
 <link type="text/javascript" href="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js">
 <link type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 <link type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
-<script>
+<!-- <script>
    $(document).ready(function() {
     $('#example').DataTable( {
         dom: 'Bfrtip',
@@ -23,6 +23,63 @@
         ]
     } );
 } );
+</script> -->
+<script>
+   function download_csv(csv, filename) {
+      var csvFile;
+      var downloadLink;
+
+      // CSV FILE
+      csvFile = new Blob([csv], {type: "text/csv"});
+
+      // Download link
+      downloadLink = document.createElement("a");
+
+      // File name
+      downloadLink.download = filename;
+
+      // We have to create a link to the file
+      downloadLink.href = window.URL.createObjectURL(csvFile);
+
+      // Make sure that the link is not displayed
+      downloadLink.style.display = "none";
+
+      // Add the link to your DOM
+      document.body.appendChild(downloadLink);
+
+      // Lanzamos
+      downloadLink.click();
+   }
+
+   function export_table_to_csv(html, filename) {
+      var csv = [];
+      var rows = document.querySelectorAll("table tr");
+      let c=0;
+      for (var i = 0; i < rows.length; i++) {
+         
+         var row = [], cols = rows[i].querySelectorAll("td, th");
+         let arr = [...cols]
+         if(arr[0].matches('th') && c>0)
+            break;
+         else
+            c++;
+            for (var j = 0; j < cols.length; j++) 
+                  row.push(cols[j].innerText);
+            
+            csv.push(row.join(","));
+            // let arr = [...cols]
+         console.log('value of c ',arr[0].matches('th'))
+      }
+
+      // Download CSV
+      download_csv(csv.join("\n"), filename);
+   }
+
+   function exportCSV(){
+      var html = document.getElementById("example1").outerHTML;
+      export_table_to_csv(html, "table.csv");
+   }
+
 </script>
 
 <div class="criteria" id="master-container">
@@ -296,41 +353,44 @@
                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
                   <div style="text-align: right; margin-right: 17px;">
-                     <button type="submit" id="example" class="btn btn-primary btn-red">Export</button>
+                     <button type="submit" id="example" onclick="exportCSV()" class="btn btn-primary btn-red export-button">Export</button>
                   </div>
-                  <table class="table table-responsive display" id="example">
-                     <table class="table table-hover table-responsive table-section">
-                        <thead class="thead-light">
-                           <tr>
-                              <th scope="col">Student Name</th>
-                              <th scope="col">UID</th>
-                              <th scope="col">Student Type</th>
-                              <th scope="col">DC Partner</th>
-                              <th scope="col">Pending Course Request Date</th>
-                              <th scope="col">Course Choice</th>
-                              <th scope="col">Second Course Choice</th>
-                              <th scope="col">Credit Hours Earned</th>
-                              <th scope="col">Email</th>
-                              <th scope="col">Campus Affiliation</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           {% for student in students %}
-                           <tr class="student-details" id="{{student.uuid}}">
-                              <td scope="row">{{student.student_name}}</td>
-                              <td>{% if student.uid == None %}-{% else %}{{student.uid}}{% endif %}</td>
-                              <td>{{student.student_type}}</td>
-                              <td>{{student.dc_partner}}</td>
-                              <td>{{student.pending_course_request_date|date:'m/d/y'}}</td>
-                              <td>{{student.course_choice}}</td>
-                              <td>{{student.second_course_choice}}</td>
-                              <td>{{student.credit_hours_earned}}</td>
-                              <td>{{student.email}}</td>
-                              <td>{{student.campus_affilation}}</td>
-                           </tr>    
-                           {% endfor %}
-                        </tbody>
+                  <div id="dvData">
+                     <table class="table table-responsive display" id="example1">
+                        <table class="table table-hover table-responsive table-section"  >
+                           <thead class="thead-light">
+                              <tr>
+                                 <th scope="col">Student Name</th>
+                                 <th scope="col">UID</th>
+                                 <th scope="col">Student Type</th>
+                                 <th scope="col">DC Partner</th>
+                                 <th scope="col">Pending Course Request Date</th>
+                                 <th scope="col">Course Choice</th>
+                                 <th scope="col">Second Course Choice</th>
+                                 <th scope="col">Credit Hours Earned</th>
+                                 <th scope="col">Email</th>
+                                 <th scope="col">Campus Affiliation</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              {% for student in students %}
+                              <tr class="student-details" id="{{student.uuid}}">
+                                 <td scope="row">{{student.student_name}}</td>
+                                 <td>{% if student.uid == None %}-{% else %}{{student.uid}}{% endif %}</td>
+                                 <td>{{student.student_type}}</td>
+                                 <td>{{student.dc_partner}}</td>
+                                 <td>{{student.pending_course_request_date|date:'m/d/y'}}</td>
+                                 <td>{{student.course_choice}}</td>
+                                 <td>{{student.second_course_choice}}</td>
+                                 <td>{{student.credit_hours_earned}}</td>
+                                 <td>{{student.email}}</td>
+                                 <td>{{student.campus_affilation}}</td>
+                              </tr>    
+                              {% endfor %}
+                           </tbody>
+                        </table>
                      </table>
+                  </div>
                </div>
 
                <!-- Student Table end -->
@@ -357,39 +417,19 @@
                            </tr>
                         </thead>
                         <tbody>
+                           {% for cor in course %}
                            <tr id="course-details_{{course.id}}">
-                              <td scope="row">1</td>
-                              <td>B.tech</td>
-                              <td>3 SEM</td>
-                              <td>AS PER UNIVERSIRTY</td>
-                              <td>@mdo</td>            
-                              <td>@mdo</td>
-                              <td>@mdo</td>
-                              <td>@mdo</td>
-                              <td>@mdo</td>
+                              <td scope="row">{{cor.course_number}}</td>
+                              <td>{{cor.course_name}}</td>
+                              <td>{{cor.term}}</td>
+                              <td>{{cor.campus_instrucation}}</td>
+                              <td>{{cor.instructor}}</td>            
+                              <td>{{cor.total_seats}}</td>
+                              <td>{{cor.enroll}}</td>
+                              <td>{{cor.pending_enrollment}}</td>
+                              <td>{{cor.calculated_remaining}}</td>
                            </tr>
-                           <tr id="course-details_{{course.id}}">
-                              <td scope="row">2</td>
-                              <td>Jacob</td>
-                              <td>Thornton</td>
-                              <td>@fat</td>
-                              <td>@mdo</td>
-                              <td>@mdo</td>
-                              <td>@mdo</td>
-                              <td>@mdo</td>
-                              <td>@mdo</td>
-                           </tr>
-                           <tr id="course-details_{{course.id}}">
-                              <td scope="row">3</td>
-                              <td>Larry</td>
-                              <td>the Bird</td>
-                              <td>@twitter</td>
-                              <td>@mdo</td>
-                              <td>@mdo</td>
-                              <td>@mdo</td>
-                              <td>@mdo</td>
-                              <td>@mdo</td>
-                           </tr>
+                           {% endfor %}
                         </tbody>
                      </table>
                </div>

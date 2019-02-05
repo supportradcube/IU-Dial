@@ -3,6 +3,7 @@ from django.views import View
 from .models import *
 from .forms import *
 from django.shortcuts import redirect
+from django.views.generic import DeleteView
 
 class SearchScreenView(View):
     """Landing page / Search screen View"""
@@ -87,6 +88,17 @@ class AddEnrollmentView(View):
         enrollment = Enrollment.objects.create(user=user_id,term=params['term_bar'],course=params['course_bar'], funding=params['funding-bar'], username="admin")
         return redirect('search_module:student-details',student_id)
 
+class DeleteEnrollment(DeleteView):
+    """Delates enrolment"""
+
+    def  get(self,request,enrollment_id,student_id):
+        enrollment = Enrollment.objects.get(id=enrollment_id)
+        enrollment.delete()
+        return redirect('search_module:student-details',student_id)
+
+
+         
+
 
 # ------------------------ Course Module -----------------------------------
 
@@ -95,7 +107,8 @@ class CourseDetailsView(View):
     """Course Details View"""
 
     def get(self, request):
-        return render(request, 'course_details.html')
+        course = Course.objects.all()
+        return render(request, 'course_details.html', {'course':course})
 
 # ----------------------- Enrollment Module ---------------------------------
 
@@ -104,10 +117,4 @@ class EnrollmentDetailsView(View):
     """Enrollment Details View"""
 
     def get(self, request):
-        return render(request, 'enrollment_details.html')      
-
-class DeleteEnrollment(View):
-    """Delates enrolment"""
-
-    def  get(self,request):
-         pass
+        return render(request, 'enrollment_details.html')   
