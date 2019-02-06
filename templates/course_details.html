@@ -6,17 +6,17 @@
     <div style="box-shadow:0px 0px 10px #ccc;padding:20px; max-width: 500px;    margin: 0 auto;">
       <div>
         <ul class="mb0 listing">
-          <li><label>Course Name:</label><span>Graduate Level English</li>
-          <li><label>Course Number:</label><span>L500</span></li>
+          <li><label>Course Name:</label><span>{{course.course_name}}</li>
+          <li><label>Course Number:</label><span>{{course.course_number}}</span></li>
         </ul>
         <ul class="mb0 listing">
-          <li><label>Course Description:</label><span>WR & LIT IN AFRC AM&AFRC DIASP</a></li>
-          <li><label>Term Offered:</label><span>4188 (Fall 2018)</span></li>
+          <li><label>Course Description:</label><span>{{course.course_desc}}</a></li>
+          <li><label>Term Offered:</label><span>{{course.term}}</span></li>
         </ul>
         <ul class="mb0 listing">
-          <li><label>Campus of Instruction:</label><span>Indiana University Bloomington</span></li>
-          <li><label>Number of Drops:</label><span>3</span></li>
-          <li><label>Number of Withdrawals:</label><span>2</span></li>
+          <li><label>Campus of Instruction:</label><span>{{course.campus_instrucation}}</span></li>
+          <li><label>Number of Drops:</label><span>{{course.no_of_drop}}</span></li>
+          <li><label>Number of Withdrawals:</label><span>{{course.no_of_withdrawals}}</span></li>
         </ul>
       </div>
     </div>
@@ -37,22 +37,12 @@
                 </tr>
               </thead>
               <tbody>
+                {% for cor in course %}
                 <tr>
-                  <td>Mark</td>
-                  <td>Otto</td>
+                  <td>{{cor.campus}}</td>
+                  <td>{{cor.class_number}}</td>
                 </tr>
-                <tr>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                </tr>
-                <tr>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                </tr>
-                <tr>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                </tr>
+                {% endfor %}
               </tbody>
             </table>
           </div>
@@ -65,12 +55,12 @@
         <div style="box-shadow:0px 0px 10px #ccc;padding:20px; margin: 0 auto;    height: 247px;">
           <div>
             <ul class="mb0 listing">
-              <li><label>Total Seats:</label><span>50</li>
-              <li><label>Enrolled:</label><span>2</span></li>
+              <li><label>Total Seats:</label><span>{{}}</li>
+              <li><label>Enrolled:</label><span>{{}}</span></li>
             </ul>
             <ul class="mb0 listing">
-              <li><label>Pending Enrollment:</label><span>43</a></li>
-              <li><label>Calculated Remaining:</label><span>4188 (Fall 2018)</span></li>
+              <li><label>Pending Enrollment:</label><span>{{}}</a></li>
+              <li><label>Calculated Remaining:</label><span>{{}}</span></li>
             </ul>
           </div>
         </div>
@@ -91,26 +81,13 @@
                 </tr>
               </thead>
               <tbody>
+                {% for cor in course %}
                 <tr>
-                  <td>Giacomo Guilizzoni</td>
-                  <td>000012</td>
-                  <td>Enrolled</td>
+                  <td>{{cor.}}</td>
+                  <td>{{cor.}}</td>
+                  <td>{{cor.}}</td>
                 </tr>
-                <tr>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>Otto</td>
-                </tr>
-                <tr>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>Otto</td>
-                </tr>
-                <tr>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>Otto</td>
-                </tr>
+                {% endfor %}
               </tbody>
             </table>
           </div>

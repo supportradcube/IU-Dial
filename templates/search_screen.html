@@ -1,86 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-<script src="{% static 'js/jquery-3.3.1.js' %}"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<link type="text/javascript" href="https://code.jquery.com/jquery-3.3.1.js">
-<link type="text/javascript" href="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js">
-<link type="text/javascript" href="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js">
-<link type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js">
-<link type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js">
-<link type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js">
-<link type="text/javascript" href="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js">
-<link type="text/javascript" href="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js">
-<link type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-<link type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
-<!-- <script>
-   $(document).ready(function() {
-    $('#example').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
-    } );
-} );
-</script> -->
-<script>
-   function download_csv(csv, filename) {
-      var csvFile;
-      var downloadLink;
-
-      // CSV FILE
-      csvFile = new Blob([csv], {type: "text/csv"});
-
-      // Download link
-      downloadLink = document.createElement("a");
-
-      // File name
-      downloadLink.download = filename;
-
-      // We have to create a link to the file
-      downloadLink.href = window.URL.createObjectURL(csvFile);
-
-      // Make sure that the link is not displayed
-      downloadLink.style.display = "none";
-
-      // Add the link to your DOM
-      document.body.appendChild(downloadLink);
-
-      // Lanzamos
-      downloadLink.click();
-   }
-
-   function export_table_to_csv(html, filename) {
-      var csv = [];
-      var rows = document.querySelectorAll("table tr");
-      let c=0;
-      for (var i = 0; i < rows.length; i++) {
-         
-         var row = [], cols = rows[i].querySelectorAll("td, th");
-         let arr = [...cols]
-         if(arr[0].matches('th') && c>0)
-            break;
-         else
-            c++;
-            for (var j = 0; j < cols.length; j++) 
-                  row.push(cols[j].innerText);
-            
-            csv.push(row.join(","));
-            // let arr = [...cols]
-         console.log('value of c ',arr[0].matches('th'))
-      }
-
-      // Download CSV
-      download_csv(csv.join("\n"), filename);
-   }
-
-   function exportCSV(){
-      var html = document.getElementById("example1").outerHTML;
-      export_table_to_csv(html, "table.csv");
-   }
-
-</script>
 
 <div class="criteria" id="master-container">
 
@@ -197,19 +117,19 @@
          <h5 class="mb-0"> Search Criteria</h5>
       </div>
       <div style="box-shadow:0px 0px 10px #ccc;padding:20px;">
-         <form method="POST" action="">
+         <form method="POST" action="{% url 'search_module:course-search' %}">
             {% csrf_token %}
             <div class="row">
                <div class="col-md-6">
                   <div class="form-group">
                      <label for="exampleInputEmail1">Course Number</label>
-                     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"  name="course_number"> 
                   </div>
                </div>
                <div class="col-md-6">
                   <div class="form-group">
                      <label for="exampleInputPassword1">Course Name</label>
-                     <input type="text" class="form-control" id="exampleInputPassword1" placeholder="">
+                     <input type="text" class="form-control" id="exampleInputPassword1" placeholder="" name="course_name">
                   </div>
                </div>
             </div>
@@ -217,7 +137,7 @@
                <div class="col-md-6">
                   <div class="form-group">
                      <label for="exampleInputEmail1">Campus of Instruction</label>
-                     <select class="browser-default custom-select">
+                     <select class="browser-default custom-select" name="campus_instrucation">
                         <option selected>Select</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
@@ -228,7 +148,7 @@
                <div class="col-md-6">
                   <div class="form-group">
                      <label for="exampleInputPassword1">Term</label>
-                     <select class="browser-default custom-select">
+                     <select class="browser-default custom-select" name="term">
                         <option selected>Select</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
@@ -399,10 +319,10 @@
 
                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                   <div style="text-align: right; margin-right: 18px;">
-                     <button type="submit" class="btn btn-primary btn-red">Export</button>
+                     <button type="submit" onclick="exportCSVV()" class="btn btn-primary btn-red">Export</button>
                   </div>
-                  <table class="table table-responsive">
-                     <table class="table table-hover table-responsive table-section">
+                  <table class="table table-responsive" id="example2">
+                     <table class="table table-hover table-responsive table-section"  id ="course_details1">
                         <thead class="thead-light">
                            <tr>                                                                                                                     
                               <th scope="col" style="width: 126px;">Course Number</th>
@@ -532,4 +452,86 @@
       window.location = "/student-details/" + student_id
    });
 </script>
+
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/jquery-3.3.1.js' %}"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<link type="text/javascript" href="https://code.jquery.com/jquery-3.3.1.js">
+<link type="text/javascript" href="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js">
+<link type="text/javascript" href="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js">
+<link type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js">
+<link type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js">
+<link type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js">
+<link type="text/javascript" href="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js">
+<link type="text/javascript" href="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js">
+<link type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+<link type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
+<!-- <script>
+   $(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+} );
+</script> -->
+<script>
+   function download_csv(csv, filename) {
+      var csvFile;
+      var downloadLink;
+
+      // CSV FILE
+      csvFile = new Blob([csv], {type: "text/csv"});
+
+      // Download link
+      downloadLink = document.createElement("a");
+
+      // File name
+      downloadLink.download = filename;
+
+      // We have to create a link to the file
+      downloadLink.href = window.URL.createObjectURL(csvFile);
+
+      // Make sure that the link is not displayed
+      downloadLink.style.display = "none";
+
+      // Add the link to your DOM
+      document.body.appendChild(downloadLink);
+
+      // Lanzamos
+      downloadLink.click();
+   }
+
+   function export_table_to_csv(html, filename) {
+      var csv = [];
+      var rows = document.querySelectorAll("table tr");
+      let c=0;
+      for (var i = 0; i < rows.length; i++) {
+         
+         var row = [], cols = rows[i].querySelectorAll("td, th");
+         let arr = [...cols]
+         if(arr[0].matches('th') && c>0)
+            break;
+         else
+            c++;
+            for (var j = 0; j < cols.length; j++) 
+                  row.push(cols[j].innerText);
+            
+            csv.push(row.join(","));
+            // let arr = [...cols]
+         console.log('value of c ',arr[0].matches('th'))
+      }
+
+      // Download CSV
+      download_csv(csv.join("\n"), filename);
+   }
+
+   function exportCSV(){
+      var html = document.getElementById("example1").outerHTML;
+      export_table_to_csv(html, "table.csv");
+   }
+
+</script>
+
 {% endblock %}

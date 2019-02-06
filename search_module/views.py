@@ -10,7 +10,8 @@ class SearchScreenView(View):
 
     def get(self, request):
         students = Student.objects.all()
-        return render(request, 'search_screen.html' ,{'students':students})
+        course = Course.objects.all()
+        return render(request, 'search_screen.html' ,{'students':students,'course':course})
 
 # ------------------------ Student Module -----------------------------------
 
@@ -106,9 +107,30 @@ class DeleteEnrollment(DeleteView):
 class CourseDetailsView(View):
     """Course Details View"""
 
-    def get(self, request):
-        course = Course.objects.all()
+    def get(self, request, course_id):
+        course = Course.objects.get(uuid=course_id)
         return render(request, 'course_details.html', {'course':course})
+
+class CourseSearchView(View):
+    def post(self,request):
+        course = Course.objects.all()
+        if request.POST['course_number']:
+            students = students.filter(course_number__icontains=request.POST['course_number'])
+        
+        if request.POST['course_name']:
+            students = students.filter(course_name__icontains=request.POST['course_name'])
+
+        if request.POST['campus_instrucation'] != 'Select':
+            students = students.filter(campus_instrucation__icontains=request.POST['campus_instrucation'])
+
+        if request.POST['term'] != 'Select':
+            students = students.filter(term__icontains=request.POST['term'])
+
+        return render(request, 'search_screen.html',{'course':courses})
+
+        
+
+
 
 # ----------------------- Enrollment Module ---------------------------------
 

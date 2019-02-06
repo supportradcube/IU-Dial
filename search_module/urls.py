@@ -15,6 +15,9 @@ urlpatterns = [
 
     url(r'^student-search$', views.StudentSearchView.as_view(), name='student-search'
         ),
+
+    url(r'^course-search$', views.CourseSearchView.as_view(), name='course-search'
+    ),
     url(r'^student-details/(?P<student_id>[0-9a-f-]+)$', views.StudentDetailsView.as_view(), name='student-details'
         ),
     url(r'^update-uid/(?P<student_id>[0-9a-f-]+)$', views.UpdateStudentUidView.as_view(), name='update-uid'
@@ -22,7 +25,7 @@ urlpatterns = [
 
     # Course Module
 
-    url(r'^course-details$', views.CourseDetailsView.as_view(),
+    url(r'^course-details/(?P<course_id>[0-9a-f-]+)$', views.CourseDetailsView.as_view(),
         name='course-details'),
 
     # Enrollment Module
@@ -36,4 +39,5 @@ urlpatterns = [
     url(r'^add-comment/(?P<student_id>[0-9a-f-]+)$', views.AddCommentView.as_view(), name='comment'),
 
     url(r'^add-delete/(?P<student_id>[0-9a-f-]+)$', views.DeleteEnrollment.as_view(), name='delete')
+
     ]

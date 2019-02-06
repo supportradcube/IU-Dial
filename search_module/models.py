@@ -475,13 +475,15 @@ class Campus(models.Model):
     class Meta:
         verbose_name_plural = 'campus'
 
-
 class Course(models.Model):
 
     # grant_en_data = models.ForeignKey(
     #     GrantEnrollmentData, on_delete=models.CASCADE,
     #     related_name="course_detail"
     # )
+    uuid = models.UUIDField(
+        default=uuid.uuid4, editable=False
+    )
     course_number = models.CharField(max_length=100)
     course_name = models.CharField(max_length=100)
     course_id = models.CharField(max_length=5)
@@ -492,26 +494,49 @@ class Course(models.Model):
     term = models.CharField(max_length=100)
     campus_instrucation = models.CharField(max_length=100)
     instructor = models.CharField(max_length=100)
-    total_seats = models.PositiveIntegerField()
-    enroll = models.CharField(max_length=100)
-    pending_enrollment = models.CharField(max_length=20)
-    calculated_remaining = models.CharField(max_length=100)
-    no_of_drop = models.CharField(max_length=100)
-    no_of_withdrawals = models.CharField(max_length=100)
-    campus = models.CharField(max_length=100)
-    class_number = models.CharField(max_length=100)
-    total_seats = models.PositiveIntegerField()
     student_name = models.CharField(max_length=20)
     sectioin = models.CharField(max_length=20)
     course_status = models.CharField(max_length=20)
-
+    no_of_drop = models.CharField(max_length=100)
+    no_of_withdrawals = models.CharField(max_length=100)
 
     def __str__(self):
         return str(self.student_name)
 
     class Meta:
         """docstring for meta"""
-        verbose_name_plural = "course"         
+        verbose_name_plural = "course"  
+
+class Sections(models.Model):
+    course_sec =models.ForeignKey(Course, on_delete=models.CASCADE, 
+    related_name = "course_section"
+    ) 
+    campus = models.CharField(max_length=100)
+    class_number = models.CharField(max_length=100)
+
+    def __str__(self):
+        return str(self.campus)
+
+    class Meta:
+        """docstring for meta"""
+        verbose_name_plural = "section"  
+
+class Seats(models.Model):
+    course_seat =models.ForeignKey(Course, on_delete=models.CASCADE, 
+    related_name = "course_seats"
+    )
+    total_seats = models.PositiveIntegerField(default=0)
+    enroll = models.CharField(max_length=100)
+    pending_enrollment = models.CharField(max_length=20)
+    remaining = models.CharField(max_length=100)
+
+    def __str__(self):
+        return str(self.student_name)
+
+    class Meta:
+        """docstring for Meta"""
+        verbose_name_plural = "Seats" 
+
 
 # class Instructor(models.Model):
 

@@ -789,7 +789,7 @@
 
 <div class="modal fade" id="delete_enrollment_modal" tabindex="-1" role="dialog">
   {% if enroll.id %}
-  <form method="POST" action="{% url 'search_module:delete' student.uuid %}">  
+  <form id="deletea" onclick="DeleteData()" method="POST" action="{% url 'search_module:delete' student.uuid %}">  
     {% else %}
     <form method="POST">
       {% endif %}
@@ -817,11 +817,12 @@
 </a>
 
 <script>
-var delete_enrollment_modal = documennt.getElementById('delete_enrollment_modal1');
-delete_enrollment_modal.click();
+function DeleteData() {
+     student_id = this.id;
+     var a = document.getElementById('delete_enrollment_modal');
+            location.href='/add-delete/'+ student_id;
+  };
 </script>
-<script>
-$('#delete_enrollment_modal').delete();
-</script>
+
 <!---------------------------- Modal end ----------------------------------->
 {% endblock %}
