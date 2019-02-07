@@ -25,19 +25,18 @@ urlpatterns = [
 
     # Course Module
 
-    url(r'^course-details/(?P<course_id>[0-9a-f-]+)$', views.CourseDetailsView.as_view(),
+    url(r'^course-details/$', views.CourseDetailsView.as_view(),
         name='course-details'),
 
     # Enrollment Module
 
-    url(r'^enrollment-details$', views.EnrollmentDetailsView.as_view(),
-        name='enrollment-details'),
+    url(r'^enrollment-details/$', views.EnrollmentDetailsView.as_view(), name='enrollment-details'),
   
     url(r'^add-enrollment/(?P<student_id>[0-9a-f-]+)$', views.AddEnrollmentView.as_view(), name='add-enrollment'),
 
 
     url(r'^add-comment/(?P<student_id>[0-9a-f-]+)$', views.AddCommentView.as_view(), name='comment'),
 
-    url(r'^add-delete/(?P<student_id>[0-9a-f-]+)$', views.DeleteEnrollment.as_view(), name='delete')
+    url(r'^add-delete/(?P<student_id>[0-9a-f-]+)/$', views.DeleteEnrollment.as_view(), name='delete')
 
     ]

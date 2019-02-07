@@ -475,28 +475,22 @@ class Campus(models.Model):
     class Meta:
         verbose_name_plural = 'campus'
 
+#--------------------------------Course--------------------------------------------#
+
 class Course(models.Model):
 
-    # grant_en_data = models.ForeignKey(
-    #     GrantEnrollmentData, on_delete=models.CASCADE,
-    #     related_name="course_detail"
-    # )
     uuid = models.UUIDField(
         default=uuid.uuid4, editable=False
     )
     course_number = models.CharField(max_length=100)
     course_name = models.CharField(max_length=100)
     course_id = models.CharField(max_length=5)
-    course_desc = models.CharField(max_length=255)
-    course_subject_code = models.CharField(max_length=10)
-    course_catlog_number = models.PositiveIntegerField()    
-    course_official_grade_code = models.CharField(max_length=4) 
+    course_desc = models.CharField(max_length=255)   
     term = models.CharField(max_length=100)
     campus_instrucation = models.CharField(max_length=100)
     instructor = models.CharField(max_length=100)
     student_name = models.CharField(max_length=20)
     sectioin = models.CharField(max_length=20)
-    course_status = models.CharField(max_length=20)
     no_of_drop = models.CharField(max_length=100)
     no_of_withdrawals = models.CharField(max_length=100)
 
@@ -531,11 +525,26 @@ class Seats(models.Model):
     remaining = models.CharField(max_length=100)
 
     def __str__(self):
-        return str(self.student_name)
+        return str(self.total_seats)
 
     class Meta:
         """docstring for Meta"""
         verbose_name_plural = "Seats" 
+
+class CourseData(models.Model):
+    course1 =models.ForeignKey(Course, on_delete=models.CASCADE, 
+    related_name = "course1"
+    ) 
+    student_name = models.CharField(max_length=20)
+    section = models.CharField(max_length=20)
+    course_status =models.CharField(max_length=30)
+
+    def __str__(self):
+        return str(self.course_status)
+
+    class Meta:
+        """docstring for meta"""
+        verbose_name_plural = "Course Data"    
 
 
 # class Instructor(models.Model):
@@ -553,7 +562,7 @@ class Seats(models.Model):
 # # ------------------------- Enrollemt Data ----------------------------------
 
 
-class EnrollmentData(models.Model):
+# class EnrollmentData(models.Model):
 
     # grant_en_data = models.ForeignKey(
     #     GrantEnrollmentData, on_delete=models.CASCADE,
@@ -567,35 +576,35 @@ class EnrollmentData(models.Model):
     #     Instructor, on_delete=models.CASCADE,
     #     related_name="enrollment_instructor_detail"
     # )
-    student_enrollment = models.ForeignKey(
-        Student, on_delete=models.CASCADE,
-    )
+    # student_enrollment = models.ForeignKey(
+    #     Student, on_delete=models.CASCADE,
+    # )
     # course_enroll = models.ForeignKey(
     #     Course, on_delete=models.CASCADE,
     # )
-    firt_name = models.CharField(max_length=20)
-    last_name = models.CharField(max_length=20)
-    course_number = models.CharField(max_length=20)
-    class_number = models.CharField(max_length=20)
-    campus_of_enrollment = models.CharField(max_length=20)
-    term = models.CharField(max_length=255)
-    grant = models.CharField(max_length=255)
-    uid = models.CharField(
-        max_length=20, null=True, blank=True
-    )
-    course = models.CharField(max_length=200,default=False)
-    class_student = models.CharField(max_length=200,default=False)
-    student_funding = models.CharField(max_length=200,default=False)
-    student_enrollment = models.CharField(max_length=200,default=False)
-    student_grade = models.CharField(max_length=100,default=False)
-    credit_house = models.PositiveIntegerField(default=False)
+    # firt_name = models.CharField(max_length=20)
+    # last_name = models.CharField(max_length=20)
+    # course_number = models.CharField(max_length=20)
+    # class_number = models.CharField(max_length=20)
+    # campus_of_enrollment = models.CharField(max_length=20)
+    # term = models.CharField(max_length=255)
+    # grant = models.CharField(max_length=255)
+    # uid = models.CharField(
+    #     max_length=20, null=True, blank=True
+    # )
+    # course = models.CharField(max_length=200,default=False)
+    # class_student = models.CharField(max_length=200,default=False)
+    # student_funding = models.CharField(max_length=200,default=False)
+    # student_enrollment = models.CharField(max_length=200,default=False)
+    # student_grade = models.CharField(max_length=100,default=False)
+    # credit_house = models.PositiveIntegerField(default=False)
     
-    def __str__(self):
-        return str(self.first_name)
+    # def __str__(self):
+    #     return str(self.first_name)
 
-    class Meta:
-     """return EnrollField fields"""
-    verbose_name_plural = 'Enrollment Data'
+    # class Meta:
+    #  """return EnrollField fields"""
+    # verbose_name_plural = 'Enrollment Data'
 
 #---------------------------student enrollment histery data-------------------------------#
 
@@ -695,6 +704,7 @@ class OtherDetails(models.Model):
     date = models.DateField()
     mobile_device = models.BooleanField(default=False)
     topics = models.CharField(max_length=10)
+    check_field = models.BooleanField(default=True)
 
     class Meta:
         """docstring for meta"""

@@ -10,8 +10,8 @@ class SearchScreenView(View):
 
     def get(self, request):
         students = Student.objects.all()
-        course = Course.objects.all()
-        return render(request, 'search_screen.html' ,{'students':students,'course':course})
+        courses = Course.objects.all()
+        return render(request, 'search_screen.html' ,{'students':students,'courses':courses})
 
 # ------------------------ Student Module -----------------------------------
 
@@ -36,7 +36,8 @@ class StudentSearchView(View):
             students = students.filter(currently_enrolled='True') 
         if 'pending_enrollment' in request.POST and request.POST['pending_enrollment']:
             students = students.filter(pending_enrollment='True') 
-        return render(request, 'search_screen.html', {'students': students})
+        
+        return render(request, 'search_screen.html', {'students':students})
                                  
                                                                                                  
                                          
@@ -93,9 +94,9 @@ class DeleteEnrollment(DeleteView):
     """Delates enrolment"""
 
     def  get(self,request,enrollment_id,student_id):
-        enrollment = Enrollment.objects.get(id=enrollment_id)
+        enrollment = Enrollment.objects.filter(id=enrollment_id)
         enrollment.delete()
-        return redirect('search_module:student-details',student_id)
+        return redirect('search_module:student-details',student_id,{'enrollment':enrollment})
 
 
          
@@ -107,26 +108,26 @@ class DeleteEnrollment(DeleteView):
 class CourseDetailsView(View):
     """Course Details View"""
 
-    def get(self, request, course_id):
-        course = Course.objects.get(uuid=course_id)
+    def get(self, request):
+        course = Course.objects.all()
         return render(request, 'course_details.html', {'course':course})
 
 class CourseSearchView(View):
     def post(self,request):
-        course = Course.objects.all()
+        courses = Course.objects.all()
         if request.POST['course_number']:
-            students = students.filter(course_number__icontains=request.POST['course_number'])
+            courses = courses.filter(course_number__icontains=request.POST['course_number'])
         
         if request.POST['course_name']:
-            students = students.filter(course_name__icontains=request.POST['course_name'])
+            courses = courses.filter(course_name__icontains=request.POST['course_name'])
 
         if request.POST['campus_instrucation'] != 'Select':
-            students = students.filter(campus_instrucation__icontains=request.POST['campus_instrucation'])
+            courses = courses.filter(campus_instrucation__icontains=request.POST['campus_instrucation'])
 
         if request.POST['term'] != 'Select':
-            students = students.filter(term__icontains=request.POST['term'])
+            courses = courses.filter(term__icontains=request.POST['term'])
 
-        return render(request, 'search_screen.html',{'course':courses})
+        return render(request, 'search_screen.html',{'courses':courses})
 
         
 

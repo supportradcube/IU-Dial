@@ -273,12 +273,12 @@
                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
                   <div style="text-align: right; margin-right: 17px;">
-                     <button type="submit" id="example" onclick="exportCSV()" class="btn btn-primary btn-red export-button">Export</button>
+                     <button type="submit" id="example" onclick="exportCSV1()" class="btn btn-primary btn-red export-button">Export</button>
                   </div>
                   <div id="dvData">
                      <table class="table table-responsive display" id="example1">
-                        <table class="table table-hover table-responsive table-section"  >
-                           <thead class="thead-light">
+                        <table class="table table-hover table-responsive table-section" id="studenr1">
+                           <thead class="thead-light" >
                               <tr>
                                  <th scope="col">Student Name</th>
                                  <th scope="col">UID</th>
@@ -319,7 +319,7 @@
 
                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                   <div style="text-align: right; margin-right: 18px;">
-                     <button type="submit" onclick="exportCSVV()" class="btn btn-primary btn-red">Export</button>
+                     <button type="submit" onclick="exportCSV2()" class="btn btn-primary btn-red">Export</button>
                   </div>
                   <table class="table table-responsive" id="example2">
                      <table class="table table-hover table-responsive table-section"  id ="course_details1">
@@ -337,7 +337,7 @@
                            </tr>
                         </thead>
                         <tbody>
-                           {% for cor in course %}
+                           {% for cor in courses %}
                            <tr id="course-details_{{course.id}}">
                               <td scope="row">{{cor.course_number}}</td>
                               <td>{{cor.course_name}}</td>
@@ -363,7 +363,7 @@
                      <button type="submit" class="btn btn-primary btn-red">Export</button>
                   </div>
                   <table class="table table-responsive">
-                     <table class="table table-hover table-responsive table-section">
+                     <table class="table table-hover table-responsive table-section" id="enrollment1">
                         <thead class="thead-light">
                            <tr>
                               <th scope="col" style="width: 200px;">Student Name</th>
@@ -452,6 +452,16 @@
       window.location = "/student-details/" + student_id
    });
 </script>
+<script>
+   $('#course_details1').bind('click', function () {
+      window.location = "/course-details/"
+   });
+</script>
+<script>
+   $('#enrollment1').bind('click', function () {
+      window.location = "/enrollment-details/"
+   });
+</script>
 
 <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
 <script src="{% static 'js/jquery-3.3.1.js' %}"></script>
@@ -466,16 +476,7 @@
 <link type="text/javascript" href="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js">
 <link type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 <link type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
-<!-- <script>
-   $(document).ready(function() {
-    $('#example').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
-    } );
-} );
-</script> -->
+
 <script>
    function download_csv(csv, filename) {
       var csvFile;
@@ -526,11 +527,32 @@
       // Download CSV
       download_csv(csv.join("\n"), filename);
    }
-
-   function exportCSV(){
+// if(id=example1){
+   function exportCSV1(){
       var html = document.getElementById("example1").outerHTML;
       export_table_to_csv(html, "table.csv");
    }
+   function exportCSV2(){
+      var html = document.getElementById("example2").outerHTML;
+      export_table_to_csv(html, "table.csv");
+   }
+// else if(id="example2"){
+//    function exportCSV2(){
+//       var html = document.getElementById("example2").outerHTML;
+//       export_table_to_csv(html, "table.csv"); 
+//    }} 
+// else if(id="example3"){
+//    function exportCSV3(){
+//       var html = document.getElementById("example3").outerHTML;
+//       export_table_to_csv(html, "table.csv");  
+//    }}
+// else (id="example4"){
+//    function exportCSV4(){
+//       var html = document.getElementById("example4").outerHTML;
+//       export_table_to_csv(html, "table.csv");  
+//    }}
+
+
 
 </script>
 

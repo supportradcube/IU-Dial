@@ -723,7 +723,7 @@
                     <td>{{enroll.date_created}}</td>
                     <td>{{enroll.username}}</td>
                     <td><a style="color:grey;" href="#delete_enrollment_modal" data-target="#delete_enrollment_modal"
-                        data-toggle="modal" data-dismiss="modal"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        data-toggle="modal" onclick="deleteModal('{{enroll.id}}')"><i class="fa fa-trash" aria-hidden="true"></i></a>
                     </td>
                   </tr>
                   {% endfor %}
@@ -789,7 +789,7 @@
 
 <div class="modal fade" id="delete_enrollment_modal" tabindex="-1" role="dialog">
   {% if enroll.id %}
-  <form id="deletea" onclick="DeleteData()" method="POST" action="{% url 'search_module:delete' student.uuid %}">  
+  <form onclick="DeleteData()" method="POST" action="{% url 'search_module:delete' enrollment.id %}">  
     {% else %}
     <form method="POST">
       {% endif %}
@@ -797,12 +797,12 @@
   <div class="modal-dialog max-WT-450" role="document">
     <div class="modal-content">
       <div class="modal-body custome-modla-body min-ht-300 d-flex align-items-center justify-content-center">
-        <div class="w-100">
+        <div class="w-100" id="delete1">
           <img src="" class="logOut-img" alt="">
           <h6 class="mb40 gill">Are you sure you want to delete this enrollment ?</h6>
           <center>
-            <button style="background:#921700; color:white;" type="button" class="btn btn-yellow max-WT-140" id="delete_enrollment_modal1"
-              data-dismiss="modal">Yes</button>
+            <button id="delete1" style="background:#921700; color:white;" type="button" class="btn btn-yellow max-WT-140" id="delete_enrollment_modal1"
+              data-dismiss="modal" onclick="deleteData()">Yes</button>
             <button type="button" class="btn btn-grey max-WT-140" data-dismiss="modal">No</button>
           </center>
         </div>
@@ -816,12 +816,17 @@
   </button>
 </a>
 
+
 <script>
-function DeleteData() {
-     student_id = this.id;
-     var a = document.getElementById('delete_enrollment_modal');
-            location.href='/add-delete/'+ student_id;
-  };
+  function deleteData() {
+    console.log('id => ', this.currId);
+    window.location = "/add-delete/" + this.currId 
+  }
+
+  function deleteModal(enroll) {
+    console.log('enroll data -===> ', enroll)
+    this.currId = enroll;
+  }
 </script>
 
 <!---------------------------- Modal end ----------------------------------->
