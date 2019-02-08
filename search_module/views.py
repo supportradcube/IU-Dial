@@ -11,7 +11,8 @@ class SearchScreenView(View):
     def get(self, request):
         students = Student.objects.all()
         courses = Course.objects.all()
-        return render(request, 'search_screen.html' ,{'students':students,'courses':courses})
+        seat = Seats.objects.all()
+        return render(request, 'search_screen.html' ,{'students':students,'courses':courses,'seat':seat})
 
 # ------------------------ Student Module -----------------------------------
 
@@ -93,10 +94,10 @@ class AddEnrollmentView(View):
 class DeleteEnrollment(DeleteView):
     """Delates enrolment"""
 
-    def  get(self,request,enrollment_id,student_id):
-        enrollment = Enrollment.objects.filter(id=enrollment_id)
+    def  get(self,request,student_id,enroll_id):
+        enrollment = Enrollment.objects.get(id=enroll_id)
         enrollment.delete()
-        return redirect('search_module:student-details',student_id,{'enrollment':enrollment})
+        return redirect('search_module:student-details')
 
 
          
@@ -108,8 +109,8 @@ class DeleteEnrollment(DeleteView):
 class CourseDetailsView(View):
     """Course Details View"""
 
-    def get(self, request):
-        course = Course.objects.all()
+    def get(self, request,course_id):
+        course = Course.objects.get(uuid=course_id)
         return render(request, 'course_details.html', {'course':course})
 
 class CourseSearchView(View):

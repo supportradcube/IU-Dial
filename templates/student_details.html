@@ -722,7 +722,7 @@
                     <td>{{enroll.funding}}</td>
                     <td>{{enroll.date_created}}</td>
                     <td>{{enroll.username}}</td>
-                    <td><a style="color:grey;" href="#delete_enrollment_modal" data-target="#delete_enrollment_modal"
+                    <td><a style="color:grey;" href="" data-target="#delete_enrollment_modal"
                         data-toggle="modal" onclick="deleteModal('{{enroll.id}}')"><i class="fa fa-trash" aria-hidden="true"></i></a>
                     </td>
                   </tr>
@@ -789,7 +789,7 @@
 
 <div class="modal fade" id="delete_enrollment_modal" tabindex="-1" role="dialog">
   {% if enroll.id %}
-  <form onclick="DeleteData()" method="POST" action="{% url 'search_module:delete' enrollment.id %}">  
+  <form onclick="DeleteData()" method="POST" action="{% url 'search_module:delete' enroll.id %}">  
     {% else %}
     <form method="POST">
       {% endif %}

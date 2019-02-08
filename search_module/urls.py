@@ -25,7 +25,7 @@ urlpatterns = [
 
     # Course Module
 
-    url(r'^course-details/$', views.CourseDetailsView.as_view(),
+    url(r'^course-details/(?P<course_id>[0-9a-f-]+)$', views.CourseDetailsView.as_view(),
         name='course-details'),
 
     # Enrollment Module

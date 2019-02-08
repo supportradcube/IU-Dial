@@ -319,7 +319,7 @@
 
                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                   <div style="text-align: right; margin-right: 18px;">
-                     <button type="submit" onclick="exportCSV2()" class="btn btn-primary btn-red">Export</button>
+                     <button type="submit" onclick="EexportCSV2()" class="btn btn-primary btn-red">Export</button>
                   </div>
                   <table class="table table-responsive" id="example2">
                      <table class="table table-hover table-responsive table-section"  id ="course_details1">
@@ -338,17 +338,19 @@
                         </thead>
                         <tbody>
                            {% for cor in courses %}
+                              {% for set in seat %}
                            <tr id="course-details_{{course.id}}">
                               <td scope="row">{{cor.course_number}}</td>
                               <td>{{cor.course_name}}</td>
                               <td>{{cor.term}}</td>
                               <td>{{cor.campus_instrucation}}</td>
                               <td>{{cor.instructor}}</td>            
-                              <td>{{cor.total_seats}}</td>
-                              <td>{{cor.enroll}}</td>
-                              <td>{{cor.pending_enrollment}}</td>
-                              <td>{{cor.calculated_remaining}}</td>
+                              <td>{{seat.total_seats}}</td>
+                              <td>{{seat.enroll}}</td>
+                              <td>{{seat.pending_enrollment}}</td>
+                              <td>{{seat.calculated_remaining}}</td>
                            </tr>
+                             {% endfor %}
                            {% endfor %}
                         </tbody>
                      </table>
@@ -454,7 +456,7 @@
 </script>
 <script>
    $('#course_details1').bind('click', function () {
-      window.location = "/course-details/"
+      window.location = "/course-details/" + course_id
    });
 </script>
 <script>
@@ -532,7 +534,7 @@
       var html = document.getElementById("example1").outerHTML;
       export_table_to_csv(html, "table.csv");
    }
-   function exportCSV2(){
+   function EexportCSV2(){
       var html = document.getElementById("example2").outerHTML;
       export_table_to_csv(html, "table.csv");
    }
