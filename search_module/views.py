@@ -94,8 +94,8 @@ class AddEnrollmentView(View):
 class DeleteEnrollment(DeleteView):
     """Delates enrolment"""
 
-    def  get(self,request,student_id,enroll_id):
-        enrollment = Enrollment.objects.get(id=enroll_id)
+    def  get(self,request,enrollId):
+        enrollment = Enrollment.objects.get(enroll=student_id)
         enrollment.delete()
         return redirect('search_module:student-details')
 

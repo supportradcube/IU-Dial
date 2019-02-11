@@ -1,9 +1,9 @@
-/env1
-/env
-/migrations
-/db.json
-/db.sqlite3
-__pycache__
+env1/
+env/
+migrations/
+db.json
+db.sqlite3
+__pycache__/
 *.pyc
 
 

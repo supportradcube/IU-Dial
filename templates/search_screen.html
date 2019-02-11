@@ -273,9 +273,9 @@
                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
                   <div style="text-align: right; margin-right: 17px;">
-                     <button type="submit" id="example" onclick="exportCSV1()" class="btn btn-primary btn-red export-button">Export</button>
+                     <button type="submit" id="example11" onclick="exportCSV1()" class="btn btn-primary btn-red export-button">Export</button>
                   </div>
-                  <div id="dvData">
+                  <div id="dvData11">
                      <table class="table table-responsive display" id="example1">
                         <table class="table table-hover table-responsive table-section" id="studenr1">
                            <thead class="thead-light" >
@@ -294,7 +294,7 @@
                            </thead>
                            <tbody>
                               {% for student in students %}
-                              <tr class="student-details" id="{{student.uuid}}">
+                              <tr class="student-details" id="{{student.uuid}}" onclick="studentDetail()">
                                  <td scope="row">{{student.student_name}}</td>
                                  <td>{% if student.uid == None %}-{% else %}{{student.uid}}{% endif %}</td>
                                  <td>{{student.student_type}}</td>
@@ -305,7 +305,7 @@
                                  <td>{{student.credit_hours_earned}}</td>
                                  <td>{{student.email}}</td>
                                  <td>{{student.campus_affilation}}</td>
-                              </tr>    
+                              </tr>   
                               {% endfor %}
                            </tbody>
                         </table>
@@ -321,6 +321,7 @@
                   <div style="text-align: right; margin-right: 18px;">
                      <button type="submit" onclick="EexportCSV2()" class="btn btn-primary btn-red">Export</button>
                   </div>
+                  <div id="course2">
                   <table class="table table-responsive" id="example2">
                      <table class="table table-hover table-responsive table-section"  id ="course_details1">
                         <thead class="thead-light">
@@ -339,7 +340,7 @@
                         <tbody>
                            {% for cor in courses %}
                               {% for set in seat %}
-                           <tr id="course-details_{{course.id}}">
+                           <tr id="course-details_{{cor.uuid}}" onclick="courseDetail()">
                               <td scope="row">{{cor.course_number}}</td>
                               <td>{{cor.course_name}}</td>
                               <td>{{cor.term}}</td>
@@ -354,7 +355,9 @@
                            {% endfor %}
                         </tbody>
                      </table>
+                  </div>
                </div>
+               
 
                <!-- Course Table End -->
 
@@ -449,20 +452,15 @@
 </div>
 <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
 <script>
-   $('tr').bind('click', function () {
-      student_id = this.id;
-      window.location = "/student-details/" + student_id
-   });
-</script>
-<script>
-   $('#course_details1').bind('click', function () {
-      window.location = "/course-details/" + course_id
-   });
-</script>
-<script>
-   $('#enrollment1').bind('click', function () {
-      window.location = "/enrollment-details/"
-   });
+  
+
+   function studentDetail() {
+      window.location = "/student-details/" + event.currentTarget.id
+   }
+   function courseDetail() {
+      console.log('course detail ==>> ', event.currentTarget.id)
+      // window.location = "/course-details" + event.currentTarget.id
+   }
 </script>
 
 <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
@@ -534,28 +532,66 @@
       var html = document.getElementById("example1").outerHTML;
       export_table_to_csv(html, "table.csv");
    }
-   function EexportCSV2(){
-      var html = document.getElementById("example2").outerHTML;
-      export_table_to_csv(html, "table.csv");
-   }
-// else if(id="example2"){
-//    function exportCSV2(){
-//       var html = document.getElementById("example2").outerHTML;
-//       export_table_to_csv(html, "table.csv"); 
-//    }} 
-// else if(id="example3"){
-//    function exportCSV3(){
-//       var html = document.getElementById("example3").outerHTML;
-//       export_table_to_csv(html, "table.csv");  
-//    }}
-// else (id="example4"){
-//    function exportCSV4(){
-//       var html = document.getElementById("example4").outerHTML;
-//       export_table_to_csv(html, "table.csv");  
-//    }}
-
-
 
 </script>
+
+<script>
+   function download_csv(csv, filename) {
+      var csvFile;
+      var downloadLink;
+
+      // CSV FILE
+      csvFile = new Blob([csv], {type: "text/csv"});
+
+      // Download link
+      downloadLink = document.createElement("a");
+
+      // File name
+      downloadLink.download = filename;
+
+      // We have to create a link to the file
+      downloadLink.href = window.URL.createObjectURL(csvFile);
+
+      // Make sure that the link is not displayed
+      downloadLink.style.display = "none";
+
+      // Add the link to your DOM
+      document.body.appendChild(downloadLink);
+
+      // Lanzamos
+      downloadLink.click();
+   }
+
+   function export_table_to_csv(html, filename) {
+      var csv = [];
+      var rows = document.querySelectorAll("table tr");
+      let c=0;
+      for (var i = 0; i < rows.length; i++) {
+         
+         var row = [], cols = rows[i].querySelectorAll("td, th");
+         let arr = [...cols]
+         if(arr[0].matches('th') && c>0)
+            break;
+         else
+            c++;
+            for (var j = 0; j < cols.length; j++) 
+                  row.push(cols[j].innerText);
+            
+            csv.push(row.join(","));
+            // let arr = [...cols]
+         console.log('value of c ',arr[0].matches('th'))
+      }
+
+      // Download CSV
+      download_csv(csv.join("\n"), filename);
+   }
+   function EexportCSV2(){
+      var html = document.getElementById("#course2").outerHTML;
+      export_table_to_csv(html, "table.csv");
+   }
+
+</script>
+
+
 
 {% endblock %}

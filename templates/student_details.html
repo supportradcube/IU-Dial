@@ -820,7 +820,8 @@
 <script>
   function deleteData() {
     console.log('id => ', this.currId);
-    window.location = "/add-delete/" + this.currId 
+    console.log('enroll => ', this.studentid);
+    window.location = "/add-delete/" + this.currId + "/student-details/"
   }
 
   function deleteModal(enroll) {

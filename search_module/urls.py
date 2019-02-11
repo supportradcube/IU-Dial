@@ -30,7 +30,7 @@ urlpatterns = [
 
     # Enrollment Module
 
-    url(r'^enrollment-details/$', views.EnrollmentDetailsView.as_view(), name='enrollment-details'),
+    url(r'^enrollment-details$', views.EnrollmentDetailsView.as_view(), name='enrollment-details'),
   
     url(r'^add-enrollment/(?P<student_id>[0-9a-f-]+)$', views.AddEnrollmentView.as_view(), name='add-enrollment'),
 
