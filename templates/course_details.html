@@ -37,7 +37,7 @@
                 </tr>
               </thead>
               <tbody>
-                {% for cor in courses %}
+                {% for cor in section %}
                 <tr>
                   <td>{{cor.campus}}</td>
                   <td>{{cor.class_number}}</td>
@@ -55,12 +55,12 @@
         <div style="box-shadow:0px 0px 10px #ccc;padding:20px; margin: 0 auto;    height: 247px;">
           <div>
             <ul class="mb0 listing">
-              <li><label>Total Seats:</label><span>{{course.total_seats}}</li>
-              <li><label>Enrolled:</label><span>{{course.enroll}}</span></li>
+              <li><label>Total Seats:</label><span>{{seats.total_seats}}</li>
+              <li><label>Enrolled:</label><span>{{seats.enroll}}</span></li>
             </ul>
             <ul class="mb0 listing">
-              <li><label>Pending Enrollment:</label><span>{{course.pending_enrollment}}</a></li>
-              <li><label>Calculated Remaining:</label><span>{{course.remaining}}</span></li>
+              <li><label>Pending Enrollment:</label><span>{{seats.pending_enrollment}}</a></li>
+              <li><label>Calculated Remaining:</label><span>{{seats.remaining}}</span></li>
             </ul>
           </div>
         </div>

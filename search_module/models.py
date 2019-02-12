@@ -493,6 +493,10 @@ class Course(models.Model):
     sectioin = models.CharField(max_length=20)
     no_of_drop = models.CharField(max_length=100)
     no_of_withdrawals = models.CharField(max_length=100)
+    total_seats = models.PositiveIntegerField(default=0)
+    enroll = models.CharField(max_length=100)
+    pending_enrollment = models.CharField(max_length=20)
+    remaining = models.CharField(max_length=100)
 
     def __str__(self):
         return str(self.student_name)
@@ -514,22 +518,7 @@ class Sections(models.Model):
     class Meta:
         """docstring for meta"""
         verbose_name_plural = "section"  
-
-class Seats(models.Model):
-    course_seat =models.ForeignKey(Course, on_delete=models.CASCADE, 
-    related_name = "course_seats"
-    )
-    total_seats = models.PositiveIntegerField(default=0)
-    enroll = models.CharField(max_length=100)
-    pending_enrollment = models.CharField(max_length=20)
-    remaining = models.CharField(max_length=100)
-
-    def __str__(self):
-        return str(self.total_seats)
-
-    class Meta:
-        """docstring for Meta"""
-        verbose_name_plural = "Seats" 
+ 
 
 class CourseData(models.Model):
     course1 =models.ForeignKey(Course, on_delete=models.CASCADE, 

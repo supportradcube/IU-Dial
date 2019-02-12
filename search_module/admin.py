@@ -55,7 +55,6 @@ class CourseAdmin(admin.ModelAdmin):
 
 admin.site.register(Course,CourseAdmin)
 admin.site.register(Sections)
-admin.site.register(Seats)
 admin.site.register(CourseData)
 
 #-----------------------------------------------GrantEnrollmentData--------------------------#

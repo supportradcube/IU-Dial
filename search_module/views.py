@@ -11,8 +11,7 @@ class SearchScreenView(View):
     def get(self, request):
         students = Student.objects.all()
         courses = Course.objects.all()
-        seat = Seats.objects.all()
-        return render(request, 'search_screen.html' ,{'students':students,'courses':courses,'seat':seat})
+        return render(request, 'search_screen.html' ,{'students':students,'courses':courses})
 
 # ------------------------ Student Module -----------------------------------
 
@@ -111,7 +110,8 @@ class CourseDetailsView(View):
 
     def get(self, request,course_id):
         course = Course.objects.get(uuid=course_id)
-        return render(request, 'course_details.html', {'course':course})
+        section = Sections.objects.filter(course_sec=course.id)
+        return render(request, 'course_details.html', {'course':course,"section":section})
 
 class CourseSearchView(View):
     def post(self,request):

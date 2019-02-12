@@ -31,7 +31,7 @@ IU_DUAL_CREDIT_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    'languages'
+    'languages',
 ]
 
 INSTALLED_APPS += IU_DUAL_CREDIT_APPS + THIRD_PARTY_APPS
@@ -85,12 +85,17 @@ DATABASES = {
         'PORT': "3306"
     }
 }
-
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'dual_credit',
+#         # localhost
+#         'USER': 'postgresql',
+#         'PASSWORD': 'admin',
+#         # for staging
+#         # 'USER': 'root',
+#         'HOST': "127.0.0.1",
+#         'PORT': "5432"
 #     }
 # }
 

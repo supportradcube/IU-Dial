@@ -339,8 +339,7 @@
                         </thead>
                         <tbody>
                            {% for cor in courses %}
-                              {% for set in seat %}
-                           <tr id="course-details_{{cor.uuid}}" onclick="courseDetail()">
+                           <tr id="{{cor.uuid}}" onclick="courseDetail()">
                               <td scope="row">{{cor.course_number}}</td>
                               <td>{{cor.course_name}}</td>
                               <td>{{cor.term}}</td>
@@ -351,7 +350,6 @@
                               <td>{{seat.pending_enrollment}}</td>
                               <td>{{seat.calculated_remaining}}</td>
                            </tr>
-                             {% endfor %}
                            {% endfor %}
                         </tbody>
                      </table>
@@ -458,8 +456,8 @@
       window.location = "/student-details/" + event.currentTarget.id
    }
    function courseDetail() {
-      console.log('course detail ==>> ', event.currentTarget.id)
-      // window.location = "/course-details" + event.currentTarget.id
+      // console.log('course detail ==>> ', event.currentTarget.id)
+      window.location = "/course-details/" + event.currentTarget.id
    }
 </script>
 
